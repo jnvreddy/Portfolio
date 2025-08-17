@@ -1,3 +1,4 @@
+import  { useState } from "react";
 import { Menu, X, Code, User, Briefcase, MessageCircle } from "lucide-react";
 
 const Header = () => {
