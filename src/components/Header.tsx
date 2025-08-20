@@ -13,14 +13,14 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-4 z-50 mx-auto bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm rounded-full transition-all duration-300
+      className={`sticky top-4 z-50 mx-auto bg-gray-900 backdrop-blur-md border-4 border-gray-800 shadow-sm rounded-full transition-all duration-300
         w-4/5 md:w-fit`}
     >
       {/* Header Bar */}
-      <div className="flex items-center gap-6 h-16 px-6">
+      <div className="flex items-center gap-6 h-12 md:h-16 px-6">
         {/* Logo */}
-        <div className="flex items-center">
-          <span className="text-xl font-bold text-gray-900">Jnv Reddy</span>
+        <div className="flex items-center pr-8">
+          <span className="md:text-xl font-bold text-white">Jnv Reddy</span>
         </div>
 
         {/* Desktop Navigation */}
@@ -29,7 +29,7 @@ const Header = () => {
             <a
               key={item.name}
               href={item.href}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              className="flex items-center gap-2 text-white hover:text-blue-600 transition-colors duration-200"
             >
               <item.icon className="h-4 w-4" />
               <span>{item.name}</span>
