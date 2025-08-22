@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-4 z-50 mx-auto bg-gray-900 backdrop-blur-md border-4 border-gray-800 shadow-sm rounded-full transition-all duration-300
+      className={`sticky top-4 z-50 mx-auto bg-gray-950 backdrop-blur-md border-4 border-gray-900 shadow-sm rounded-full transition-all duration-300
         w-4/5 md:w-fit`}
     >
       {/* Header Bar */}
