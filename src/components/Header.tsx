@@ -47,7 +47,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation (separate block, doesn’t change header height) */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white rounded-b-2xl">
           <nav className="flex flex-col space-y-2 px-6 py-4">
