@@ -34,21 +34,14 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-8">Experience</h2>
           <div className="space-y-6 text-left">
             <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">Software Engineer @ XYZ Corp</h3>
-              <p className="text-gray-600 dark:text-gray-400">2022 - Present</p>
+              <h3 className="text-xl font-semibold">Junior Software Engineer @ IndPro.AB </h3>
+              <p className="text-gray-600 dark:text-gray-400">2024 - Present</p>
               <p>
                 Worked on scalable MERN applications, REST APIs, and optimized performance for
                 enterprise-level solutions.
               </p>
             </div>
-            <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">Frontend Developer Intern @ ABC Tech</h3>
-              <p className="text-gray-600 dark:text-gray-400">2021 - 2022</p>
-              <p>
-                Built responsive UI components using React, improved accessibility, and optimized
-                load times by 30%.
-              </p>
-            </div>
+          
           </div>
         </div>
       </section>
@@ -62,9 +55,15 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-8">Education</h2>
           <div className="space-y-6 text-left">
             <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">B.Tech in Computer Science</h3>
-              <p className="text-gray-600 dark:text-gray-400">XYZ University, 2018 - 2022</p>
-              <p>Graduated with distinction. Specialized in full-stack development and cloud computing.</p>
+              <h3 className="text-xl font-semibold">Bachelor of Computer Application</h3>
+              <p className="text-gray-600 dark:text-gray-400">MSRCASC , 2021 - 2024</p>
+              <p>Graduated with 8.65 - CGPA</p>
+            </div>
+
+            <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
+              <h3 className="text-xl font-semibold">Pre university</h3>
+              <p className="text-gray-600 dark:text-gray-400">ST. Claret Pre University College , 2019 - 2021</p>
+              <p>Graduated with 85.5%</p>
             </div>
           </div>
         </div>
