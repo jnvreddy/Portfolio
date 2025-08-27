@@ -8,7 +8,7 @@ const Home = () => {
       {/* Hero Section */}
       <section
         id="home"
-        className="flex flex-col items-center justify-center text-center py-24 px-6 transition-colors duration-300"
+        className="flex flex-col h-[100vh] items-center justify-center text-center py-24 px-6 transition-colors duration-300"
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Hi, I’m <span className="text-blue-600 dark:text-blue-400">Jnv Reddy</span>
@@ -28,7 +28,7 @@ const Home = () => {
       {/* Experience Section */}
       <section
         id="experience"
-        className="py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
+        className="py-20 px-6 h-[100vh] bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Experience</h2>
@@ -49,7 +49,7 @@ const Home = () => {
       {/* Education Section */}
       <section
         id="education"
-        className="py-20 px-6 bg-white dark:bg-gray-950 transition-colors duration-300"
+        className="py-20 px-6 h-[100vh] bg-white dark:bg-gray-950 transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Education</h2>
@@ -72,7 +72,7 @@ const Home = () => {
       {/* Projects Section */}
       <section
         id="projects"
-        className="py-20 px-6 bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
+        className="py-20 px-6 h-[100vh] bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
       >
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Projects</h2>
@@ -96,7 +96,7 @@ const Home = () => {
       {/* Freelancing Section */}
       <section
         id="freelancing"
-        className="py-20 px-6 bg-white dark:bg-gray-950 transition-colors duration-300"
+        className="py-20 px-6 h-[100vh] bg-white dark:bg-gray-950 transition-colors duration-300"
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Freelancing</h2>
