@@ -5,7 +5,7 @@ const Home = () => {
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Header />
 
-      {/* Hero Section */}
+      {/* Main Section */}
       <section
         id="home"
         className="flex flex-col h-[100vh] items-center justify-center text-center py-24 px-6 transition-colors duration-300"
@@ -42,29 +42,6 @@ const Home = () => {
               </p>
             </div>
           
-          </div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section
-        id="education"
-        className="py-20 px-6 h-[100vh] bg-white dark:bg-gray-950 transition-colors duration-300"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Education</h2>
-          <div className="space-y-6 text-left">
-            <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">Bachelor of Computer Application</h3>
-              <p className="text-gray-600 dark:text-gray-400">MSRCASC , 2021 - 2024</p>
-              <p>Graduated with 8.65 - CGPA</p>
-            </div>
-
-            <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
-              <h3 className="text-xl font-semibold">Pre university</h3>
-              <p className="text-gray-600 dark:text-gray-400">ST. Claret Pre University College , 2019 - 2021</p>
-              <p>Graduated with 85.5%</p>
-            </div>
           </div>
         </div>
       </section>
