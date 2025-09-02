@@ -70,25 +70,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Freelancing Section */}
-      <section
-        id="freelancing"
-        className="py-20 px-6 h-[100vh] bg-white dark:bg-gray-950 transition-colors duration-300"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Freelancing</h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            I’m open to freelance opportunities in MERN stack, full-stack web development,
-            and building scalable web solutions. Let’s collaborate to bring your ideas to life!
-          </p>
-          <a
-            href="mailto:your.email@example.com"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
-          >
-            Hire Me
-          </a>
-        </div>
-      </section>
     </div>
   );
 };
