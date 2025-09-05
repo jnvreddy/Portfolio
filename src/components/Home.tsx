@@ -13,10 +13,7 @@ const Home = () => {
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Hi, I’m <span className="text-blue-600 dark:text-blue-400">Jnv Reddy</span>
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl mb-8 text-gray-700 dark:text-gray-300">
-          A passionate Software Engineer specializing in MERN stack & full-stack development.
-          I love building scalable web apps and creating seamless user experiences.
-        </p>
+        
         <a
           href="#projects"
           className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
