@@ -13,12 +13,6 @@ const Home = () => {
           Hi, I’m <span className="text-blue-600 dark:text-blue-400">Jnv Reddy</span>
         </h1>
         
-        <a
-          href="#projects"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
-        >
-          View My Work
-        </a>
       </section>
 
 
