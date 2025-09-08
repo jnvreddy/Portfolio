@@ -9,9 +9,6 @@ const Home = () => {
         id="home"
         className="flex flex-col h-[100vh] items-center justify-center text-center py-24 px-6 transition-colors duration-300"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Hi, I’m <span className="text-blue-600 dark:text-blue-400">Jnv Reddy</span>
-        </h1>
         
       </section>
 
