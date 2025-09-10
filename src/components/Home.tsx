@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 
 const Home = () => {
@@ -5,7 +6,7 @@ const Home = () => {
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Header />
 
-
+      <Footer />
     </div>
   );
 };
