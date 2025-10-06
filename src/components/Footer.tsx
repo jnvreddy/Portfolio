@@ -47,10 +47,6 @@ const Footer = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
     },
   };
 
@@ -62,40 +58,40 @@ const Footer = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="py-16"
+          className="py-12 sm:py-16 lg:py-20"
         >
           {/* Main Footer Content */}
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 mb-12">
             {/* Brand Section */}
-            <motion.div variants={itemVariants} className="text-center md:text-left">
-              <h3 className="text-2xl font-bold gradient-text-blue mb-4">
+            <motion.div variants={itemVariants} className="text-center lg:text-left sm:col-span-2 lg:col-span-1">
+              <h3 className="text-2xl sm:text-3xl font-bold gradient-text-blue mb-4">
                 Jnv Reddy
               </h3>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className="text-gray-400 leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
                 Full Stack Developer & UI/UX Designer passionate about creating
                 beautiful, functional digital experiences.
               </p>
-              <div className="flex justify-center md:justify-start space-x-4">
+              <div className="flex justify-center lg:justify-start space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group relative p-3 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-gray-400 ${social.color} ${social.bgColor} transition-all duration-300`}
+                    className={`group relative p-3 sm:p-4 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-gray-400 ${social.color} ${social.bgColor} transition-all duration-300`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <social.icon size={20} />
+                    <social.icon size={20} className="sm:w-6 sm:h-6" />
 
                     {/* Tooltip */}
                     <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
@@ -107,14 +103,14 @@ const Footer = () => {
             </motion.div>
 
             {/* Quick Links */}
-            <motion.div variants={itemVariants} className="text-center md:text-left">
-              <h4 className="text-lg font-semibold text-white mb-6">Quick Links</h4>
+            <motion.div variants={itemVariants} className="text-center lg:text-left">
+              <h4 className="text-lg sm:text-xl font-semibold text-white mb-6">Quick Links</h4>
               <div className="space-y-3">
                 {["Home", "About", "Projects", "Contact"].map((link, index) => (
                   <motion.a
                     key={link}
                     href={`#${link.toLowerCase()}`}
-                    className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
+                    className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 transform text-sm sm:text-base"
                     whileHover={{ x: 5 }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -127,11 +123,11 @@ const Footer = () => {
             </motion.div>
 
             {/* Contact Info */}
-            <motion.div variants={itemVariants} className="text-center md:text-left">
-              <h4 className="text-lg font-semibold text-white mb-6">Get In Touch</h4>
+            <motion.div variants={itemVariants} className="text-center lg:text-left">
+              <h4 className="text-lg sm:text-xl font-semibold text-white mb-6">Get In Touch</h4>
               <div className="space-y-3">
                 <motion.p
-                  className="text-gray-400"
+                  className="text-gray-400 text-sm sm:text-base"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
@@ -139,7 +135,7 @@ const Footer = () => {
                   jnvreddy@example.com
                 </motion.p>
                 <motion.p
-                  className="text-gray-400"
+                  className="text-gray-400 text-sm sm:text-base"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -147,7 +143,7 @@ const Footer = () => {
                   +1 (555) 123-4567
                 </motion.p>
                 <motion.p
-                  className="text-gray-400"
+                  className="text-gray-400 text-sm sm:text-base"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -161,14 +157,14 @@ const Footer = () => {
           {/* Divider */}
           <motion.div
             variants={itemVariants}
-            className="border-t border-gray-700/50 mb-8"
+            className="border-t border-gray-700/50 mb-8 sm:mb-12"
           />
 
           {/* Bottom Section */}
-          <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <motion.p
               variants={itemVariants}
-              className="text-gray-400 text-sm mb-4 md:mb-0 flex items-center"
+              className="text-gray-400 text-sm sm:text-base flex items-center justify-center sm:justify-start"
             >
               © {new Date().getFullYear()} Jnv Reddy. Made with{" "}
               <motion.span
@@ -184,7 +180,7 @@ const Footer = () => {
             {/* Back to Top Button */}
             <motion.button
               onClick={scrollToTop}
-              className="group flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
+              className="group flex items-center space-x-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white text-sm sm:text-base font-medium hover:shadow-lg transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               variants={itemVariants}
