@@ -99,7 +99,7 @@ const Header = () => {
         }`}
     >
       {/* Header Bar */}
-      <div className="flex items-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
+      <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
         <motion.div
           variants={itemVariants}
