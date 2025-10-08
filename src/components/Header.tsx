@@ -89,7 +89,6 @@ const Header = () => {
 
   return (
     <motion.header
-      variants={containerVariants}
       initial="hidden"
       animate="visible"
       className={`sticky top-2 sm:top-4 z-50 mx-auto backdrop-blur-md border shadow-lg rounded-full transition-all duration-500
@@ -102,7 +101,6 @@ const Header = () => {
       <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
         <motion.div
-          variants={itemVariants}
           className="flex items-center pr-4 sm:pr-8"
         >
           <motion.span
