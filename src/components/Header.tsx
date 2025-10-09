@@ -88,15 +88,6 @@ const Header = () => {
   };
 
   return (
-    <motion.header
-      initial="hidden"
-      animate="visible"
-      className={`sticky top-2 sm:top-4 z-50 mx-auto backdrop-blur-md border shadow-lg rounded-full transition-all duration-500
-        w-[95%] sm:w-4/5 md:w-fit ${scrolled
-          ? "bg-white/90 dark:bg-gray-900/90 border-gray-200 dark:border-gray-700 shadow-xl"
-          : "bg-gray-950/90 border-gray-800 shadow-2xl"
-        }`}
-    >
       {/* Header Bar */}
       <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
