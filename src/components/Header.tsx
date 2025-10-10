@@ -88,20 +88,13 @@ const Header = () => {
   };
 
   return (
+
       {/* Header Bar */}
       <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
         <motion.div
           className="flex items-center pr-4 sm:pr-8"
         >
-          <motion.span
-            className={`md:text-xl font-bold transition-colors duration-300 ${scrolled
-              ? "text-gray-900 dark:text-white"
-              : "text-white"
-              }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
             Jnv Reddy
           </motion.span>
         </motion.div>
