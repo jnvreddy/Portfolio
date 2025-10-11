@@ -92,12 +92,7 @@ const Header = () => {
       {/* Header Bar */}
       <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
-        <motion.div
-          className="flex items-center pr-4 sm:pr-8"
-        >
-            Jnv Reddy
-          </motion.span>
-        </motion.div>
+       
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
