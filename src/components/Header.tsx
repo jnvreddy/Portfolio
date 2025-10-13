@@ -120,12 +120,7 @@ const Header = () => {
               </motion.div>
               <span className="font-medium">{item.name}</span>
 
-              {/* Hover indicator */}
-              <motion.div
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"
-                initial={{ width: 0 }}
-                whileHover={{ width: "100%" }}
-              />
+              
             </motion.a>
           ))}
         </nav>
