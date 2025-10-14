@@ -32,71 +32,57 @@ const Header = () => {
 
   const containerVariants = {
     hidden: { opacity: 0, y: -50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    visible: { opacity: 1, y: 0 },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut",
-      },
-    },
+    visible: { opacity: 1, y: 0 },
   };
 
   const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-    visible: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
+    hidden: { opacity: 0, height: 0 },
+    visible: { opacity: 1, height: "auto" },
   };
 
   const mobileItemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
-
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg"
+        : "bg-transparent"
+        }`}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       {/* Header Bar */}
       <div className="flex items-center justify-center gap-3 sm:gap-6 h-12 md:h-16 px-4 sm:px-6">
         {/* Logo */}
-       
+        <motion.div
+          className="flex items-center gap-2"
+          variants={itemVariants}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-sm">J</span>
+          </div>
+          <span className={`font-bold text-lg ${scrolled
+            ? "text-gray-800 dark:text-white"
+            : "text-white"
+            }`}>
+            João Vitor
+          </span>
+        </motion.div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <motion.a
               key={item.name}
               href={item.href}
@@ -105,6 +91,7 @@ const Header = () => {
                 handleNavClick(item.href);
               }}
               variants={itemVariants}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className={`group flex items-center gap-2 transition-all duration-300 ${scrolled
                 ? "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                 : "text-white hover:text-blue-400"
@@ -112,15 +99,8 @@ const Header = () => {
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
-              <motion.div
-                className="p-2 rounded-lg bg-transparent group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors duration-300"
-                whileHover={{ rotate: 5 }}
-              >
-                <item.icon className="h-4 w-4" />
-              </motion.div>
+              <item.icon className="h-4 w-4" />
               <span className="font-medium">{item.name}</span>
-
-              
             </motion.a>
           ))}
         </nav>
@@ -136,7 +116,29 @@ const Header = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-         
+          <AnimatePresence mode="wait">
+            {isMenuOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X className="h-6 w-6" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu className="h-6 w-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.button>
       </div>
 
@@ -148,13 +150,14 @@ const Header = () => {
             initial="hidden"
             animate="visible"
             exit="hidden"
+            transition={{ duration: 0.3, ease: "easeInOut", staggerChildren: 0.1, delayChildren: 0.1 }}
             className={`md:hidden border-t rounded-b-2xl overflow-hidden ${scrolled
               ? "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
               : "border-gray-800 bg-gray-900"
               }`}
           >
             <nav className="flex flex-col space-y-2 px-6 py-4">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
@@ -163,6 +166,7 @@ const Header = () => {
                     handleNavClick(item.href);
                   }}
                   variants={mobileItemVariants}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className={`group flex items-center gap-3 transition-all duration-300 py-3 px-4 rounded-lg ${scrolled
                     ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400"
                     : "text-gray-300 hover:bg-white/10 hover:text-white"
