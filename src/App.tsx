@@ -1,9 +1,13 @@
-import  Home  from "./components/Home";
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Experience from './components/Experience';
 
 function App() {
   return (
-    <div className="min-h-screen font-inter bg-white dark:bg-gray-950 transition-colors duration-300">
-      <Home />
+    <div className="bg-white">
+      <Header />
+      <Hero />
+      <Experience />
     </div>
   );
 }
