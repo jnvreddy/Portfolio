@@ -77,20 +77,16 @@ const Experience: React.FC = () => {
                 scrollProgress = Math.min(1, scrolledThrough / totalScrollDistance);
             }
 
-            // Clamp progress between 0 and 1
             scrollProgress = Math.max(0, Math.min(1, scrollProgress));
 
-            // Set smooth progress height - directly connected to scroll
             setProgressHeight(scrollProgress * 100);
 
-            // Calculate which dot should be active based on progress
             let currentActiveIndex = -1;
             const totalDots = experiences.length;
 
-            // Each dot becomes active when progress reaches its threshold
             for (let i = 0; i < totalDots; i++) {
                 const dotThreshold = (i + 1) / totalDots;
-                if (scrollProgress >= dotThreshold - 0.05) { // Smaller buffer for more precise activation
+                if (scrollProgress >= dotThreshold - 0.05) {
                     currentActiveIndex = i;
                 }
             }
@@ -99,7 +95,7 @@ const Experience: React.FC = () => {
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Initial call
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, [experiences.length]);
 
