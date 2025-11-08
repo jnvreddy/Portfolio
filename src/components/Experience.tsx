@@ -54,11 +54,6 @@ const Experience: React.FC = () => {
             const viewportTop = 0;
             const viewportBottom = windowHeight;
 
-            // Calculate the visible portion of the section
-            const visibleTop = Math.max(sectionTop, viewportTop);
-            const visibleBottom = Math.min(sectionBottom, viewportBottom);
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
             // Calculate progress based on how much has been scrolled through
             let scrollProgress = 0;
             if (sectionTop <= viewportTop && sectionBottom >= viewportBottom) {
