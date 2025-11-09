@@ -54,16 +54,12 @@ const Experience: React.FC = () => {
             const viewportTop = 0;
             const viewportBottom = windowHeight;
 
-            // Calculate progress based on how much has been scrolled through
             let scrollProgress = 0;
             if (sectionTop <= viewportTop && sectionBottom >= viewportBottom) {
-                // Section is fully in viewport
                 scrollProgress = Math.abs(sectionTop) / (sectionHeight - windowHeight);
             } else if (sectionTop > viewportTop) {
-                // Section is entering from bottom
                 scrollProgress = 0;
             } else if (sectionBottom < viewportBottom) {
-                // Section is exiting from top
                 scrollProgress = 1;
             } else {
                 // Section is partially visible
