@@ -1,12 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+interface ExperienceItem {
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    type: string;
+}
+
 const Experience: React.FC = () => {
-    const [activeIndex, setActiveIndex] = useState(-1);
-    const [progressHeight, setProgressHeight] = useState(0);
+    const [activeIndex, setActiveIndex] = useState<number>(-1);
+    const [progressHeight, setProgressHeight] = useState<number>(0);
     const sectionRef = useRef<HTMLElement>(null);
     const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-    const experiences = [
+    const experiences: ExperienceItem[] = [
         {
             title: "Frontend Developer",
             company: "Tech Company",
@@ -37,47 +45,80 @@ const Experience: React.FC = () => {
         }
     ];
 
+    /**
+     * Scrolls to a specific experience item when its dot is clicked
+     * @param index - The index of the experience to scroll to
+     */
+    const scrollToExperience = (index: number): void => {
+        const dotElement = dotRefs.current[index];
+        if (!dotElement) return;
+
+        // Get the dot's position relative to the viewport
+        const dotRect = dotElement.getBoundingClientRect();
+
+        // Calculate the scroll position to center the dot in the viewport
+        const scrollOffset = dotRect.top + window.scrollY - (window.innerHeight / 2);
+
+        // Smooth scroll to the calculated position
+        window.scrollTo({
+            top: scrollOffset,
+            behavior: 'smooth'
+        });
+    };
+
+    /**
+     * Handles clicking on a timeline dot
+     * @param index - The index of the clicked experience
+     */
+    const handleDotClick = (index: number): void => {
+        setActiveIndex(index);
+        scrollToExperience(index);
+    };
+
     useEffect(() => {
-        const handleScroll = () => {
+        const handleScroll = (): void => {
             if (!sectionRef.current) return;
 
             const section = sectionRef.current;
             const sectionRect = section.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-
-            // Calculate progress based on scroll position within the section
             const sectionTop = sectionRect.top;
             const sectionHeight = sectionRect.height;
-
-            // Calculate how much of the section is visible and scrolled through
             const sectionBottom = sectionTop + sectionHeight;
-            const viewportTop = 0;
-            const viewportBottom = windowHeight;
 
+            // Simplified scroll progress calculation
+            // Progress is 0 when section is above viewport, 1 when below, and interpolated in between
             let scrollProgress = 0;
-            if (sectionTop <= viewportTop && sectionBottom >= viewportBottom) {
-                scrollProgress = Math.abs(sectionTop) / (sectionHeight - windowHeight);
-            } else if (sectionTop > viewportTop) {
+
+            if (sectionTop > 0) {
+                // Section hasn't entered viewport yet
                 scrollProgress = 0;
-            } else if (sectionBottom < viewportBottom) {
+            } else if (sectionBottom < windowHeight) {
+                // Section has completely passed viewport
                 scrollProgress = 1;
             } else {
-                // Section is partially visible
-                const scrolledThrough = Math.abs(sectionTop);
-                const totalScrollDistance = sectionHeight - windowHeight;
-                scrollProgress = Math.min(1, scrolledThrough / totalScrollDistance);
+                // Section is in viewport - calculate progress based on how much has scrolled
+                const scrolledDistance = Math.abs(sectionTop);
+                const totalScrollableDistance = sectionHeight - windowHeight;
+                scrollProgress = Math.min(1, Math.max(0, scrolledDistance / totalScrollableDistance));
             }
-
-            scrollProgress = Math.max(0, Math.min(1, scrollProgress));
 
             setProgressHeight(scrollProgress * 100);
 
+            // Improved active index calculation
+            // Each experience gets an equal portion of the scroll progress
+            const totalExperiences = experiences.length;
             let currentActiveIndex = -1;
-            const totalDots = experiences.length;
 
-            for (let i = 0; i < totalDots; i++) {
-                const dotThreshold = (i + 1) / totalDots;
-                if (scrollProgress >= dotThreshold - 0.05) {
+            // Calculate which experience should be active based on scroll progress
+            // First item activates when section enters viewport (progress > 0)
+            // Each subsequent item activates at its threshold
+            for (let i = 0; i < totalExperiences; i++) {
+                // Use a more reliable threshold calculation
+                // First item activates at 0%, others at their proportional thresholds
+                const threshold = i === 0 ? 0 : i / totalExperiences;
+
+                if (scrollProgress >= threshold) {
                     currentActiveIndex = i;
                 }
             }
@@ -86,8 +127,13 @@ const Experience: React.FC = () => {
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
+        // Initial call to set correct state on mount
         handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Cleanup: remove event listener on unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [experiences.length]);
 
     return (
@@ -132,7 +178,16 @@ const Experience: React.FC = () => {
                                             ? 'bg-cyan-400 scale-125 shadow-cyan-400/50'
                                             : 'bg-gray-500 hover:bg-cyan-300 hover:scale-110'
                                             }`}
-                                        onClick={() => setActiveIndex(index)}
+                                        onClick={() => handleDotClick(index)}
+                                        aria-label={`Scroll to ${exp.title} at ${exp.company}`}
+                                        role="button"
+                                        tabIndex={0}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                handleDotClick(index);
+                                            }
+                                        }}
                                     ></div>
 
                                     {/* Content Card - Alternating sides */}
