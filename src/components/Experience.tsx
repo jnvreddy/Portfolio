@@ -53,13 +53,10 @@ const Experience: React.FC = () => {
         const dotElement = dotRefs.current[index];
         if (!dotElement) return;
 
-        // Get the dot's position relative to the viewport
         const dotRect = dotElement.getBoundingClientRect();
 
-        // Calculate the scroll position to center the dot in the viewport
         const scrollOffset = dotRect.top + window.scrollY - (window.innerHeight / 2);
 
-        // Smooth scroll to the calculated position
         window.scrollTo({
             top: scrollOffset,
             behavior: 'smooth'
