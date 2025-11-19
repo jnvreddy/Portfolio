@@ -121,19 +121,7 @@ const Footer: React.FC = () => {
     };
 
     return (
-        <footer id="contact" className="bg-black text-white py-16 relative overflow-hidden">
-            {/* Simple Box Dot Pattern */}
-            <div
-                className="absolute inset-0 opacity-25"
-                style={{
-                    backgroundImage: `
-            radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)
-          `,
-                    backgroundSize: '30px 30px',
-                    backgroundPosition: '0 0'
-                }}
-            />
-
+        <footer id="contact" className="bg-transparent text-white py-16 relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 {/* Main Contact Section */}
                 <div className="text-center mb-12">

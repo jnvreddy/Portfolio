@@ -64,19 +64,7 @@ const About: React.FC = () => {
     ];
 
     return (
-        <section id="about" className="min-h-screen bg-black relative overflow-hidden py-20">
-            {/* Simple Box Dot Pattern */}
-            <div
-                className="absolute inset-0 opacity-25"
-                style={{
-                    backgroundImage: `
-                        radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '30px 30px',
-                    backgroundPosition: '0 0'
-                }}
-            />
-
+        <section id="about" className="min-h-screen bg-transparent relative overflow-hidden py-20">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-16">

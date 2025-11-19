@@ -148,24 +148,12 @@ const OpenSource: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-transparent">
             <Header />
             
             <main className="pt-32 pb-20">
                 {/* Hero Section */}
-                <section className="min-h-[60vh] flex items-center justify-center bg-black relative overflow-hidden">
-                    {/* Simple Box Dot Pattern */}
-                    <div
-                        className="absolute inset-0 opacity-25"
-                        style={{
-                            backgroundImage: `
-                                radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)
-                            `,
-                            backgroundSize: '30px 30px',
-                            backgroundPosition: '0 0'
-                        }}
-                    />
-
+                <section className="min-h-[60vh] flex items-center justify-center bg-transparent relative overflow-hidden">
                     <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in-up">
                             Open Source Contributions
@@ -177,19 +165,7 @@ const OpenSource: React.FC = () => {
                 </section>
 
                 {/* Content Section */}
-                <section className="bg-black relative overflow-hidden py-20">
-                    {/* Simple Box Dot Pattern */}
-                    <div
-                        className="absolute inset-0 opacity-25"
-                        style={{
-                            backgroundImage: `
-                                radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)
-                            `,
-                            backgroundSize: '30px 30px',
-                            backgroundPosition: '0 0'
-                        }}
-                    />
-
+                <section className="bg-transparent relative overflow-hidden py-20">
                     <div className="max-w-7xl mx-auto px-6 relative z-10">
                         {/* Tab Navigation */}
                         <div className="flex justify-center mb-12">

@@ -134,19 +134,7 @@ const Experience: React.FC = () => {
     }, [experiences.length]);
 
     return (
-        <section ref={sectionRef} id="experience" className="min-h-screen bg-black relative overflow-hidden">
-            {/* Simple Box Dot Pattern */}
-            <div
-                className="absolute inset-0 opacity-25"
-                style={{
-                    backgroundImage: `
-            radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)
-          `,
-                    backgroundSize: '30px 30px',
-                    backgroundPosition: '0 0'
-                }}
-            />
-
+        <section ref={sectionRef} id="experience" className="min-h-screen bg-transparent relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">
                     Experience
