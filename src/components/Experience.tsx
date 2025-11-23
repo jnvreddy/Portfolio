@@ -1,49 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-
-interface ExperienceItem {
-    title: string;
-    company: string;
-    period: string;
-    description: string;
-    type: string;
-}
+import Card from './ui/Card';
+import Badge from './ui/Badge';
+import { experiences } from '../constants/data';
+import type { ExperienceItem } from '../types';
 
 const Experience: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number>(-1);
     const [progressHeight, setProgressHeight] = useState<number>(0);
     const sectionRef = useRef<HTMLElement>(null);
     const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-    const experiences: ExperienceItem[] = [
-        {
-            title: "Frontend Developer",
-            company: "Tech Company",
-            period: "2022 - Present",
-            description: "Building responsive web applications using React, TypeScript, and modern CSS frameworks. Creating user-friendly interfaces and optimizing performance for better user experience.",
-            type: "Full-time"
-        },
-        {
-            title: "Full Stack Developer",
-            company: "Startup Inc",
-            period: "2020 - 2022",
-            description: "Developed end-to-end solutions with Node.js, React, and various databases. Collaborated with cross-functional teams to deliver scalable applications.",
-            type: "Full-time"
-        },
-        {
-            title: "Junior Developer",
-            company: "Digital Agency",
-            period: "2019 - 2020",
-            description: "Worked on various client projects, learning modern web development practices and contributing to team projects.",
-            type: "Full-time"
-        },
-        {
-            title: "Web Development Intern",
-            company: "Local Tech Firm",
-            period: "2018 - 2019",
-            description: "Gained hands-on experience with HTML, CSS, JavaScript, and basic backend development. Assisted senior developers with project tasks.",
-            type: "Internship"
-        }
-    ];
 
     /**
      * Scrolls to a specific experience item when its dot is clicked
@@ -176,14 +141,13 @@ const Experience: React.FC = () => {
                                     ></div>
 
                                     {/* Content Card - Alternating sides */}
-                                    <div className={`experience-card w-5/12 bg-gray-800/50 backdrop-blur-sm border p-6 rounded-lg shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 ${activeIndex === index
-                                        ? 'border-cyan-400 shadow-cyan-400/20'
-                                        : 'border-gray-700'
+                                    <Card className={`experience-card w-5/12 p-6 shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 ${
+                                        activeIndex === index
+                                            ? 'border-cyan-400 shadow-cyan-400/20'
+                                            : ''
                                         } ${isEven ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
                                         <div className="flex items-center gap-3 mb-3">
-                                            <span className="bg-cyan-400/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium">
-                                                {exp.type}
-                                            </span>
+                                            <Badge>{exp.type}</Badge>
                                             <span className="text-gray-400 text-sm">{exp.period}</span>
                                         </div>
 
@@ -198,7 +162,7 @@ const Experience: React.FC = () => {
                                         <p className="text-gray-200 leading-relaxed">
                                             {exp.description}
                                         </p>
-                                    </div>
+                                    </Card>
                                 </div>
                             );
                         })}
