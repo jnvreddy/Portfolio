@@ -7,7 +7,6 @@ function App() {
   return (
     <div style={{ position: 'relative' }}>
       <Background />
-      {/* Content Layer - scrolls normally */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
