@@ -1,4 +1,12 @@
 /* Custom styles for the portfolio */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -10,11 +18,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-a:focus {
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
 }
@@ -52,17 +62,7 @@ a:focus {
     }
 }
 
-@keyframes fadeInUpDelay {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Removed redundant fadeInUpDelay - delay is handled in the class */
 
 /* Circuit Board Animations */
 @keyframes circuitFlow {
@@ -93,8 +93,20 @@ a:focus {
 }
 
 .animate-fade-in-up-delay {
-    animation: fadeInUpDelay 1s ease-out 0.3s forwards;
+    animation: fadeInUp 1s ease-out 0.3s forwards;
     opacity: 0;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .animate-pulse-slow {
