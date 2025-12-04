@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, type FormEvent } from 'react';
 import Card from './ui/Card';
 import Button from './ui/Button';
 import Input from './ui/Input';
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
         try {
             // Simulate API call - Replace with your actual form submission endpoint
             // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-            
+
             // For now, we'll use mailto as fallback or you can integrate with a service like Formspree, EmailJS, etc.
             // You can replace this with your preferred form handling service
             await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
 
             setSubmitStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
-            
+
             // Reset success message after 5 seconds
             setTimeout(() => {
                 setSubmitStatus('idle');
@@ -111,8 +111,8 @@ const Footer: React.FC = () => {
     return (
         <footer id="contact" className="bg-transparent text-white py-16 relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
-                <SectionHeader 
-                    title="Let's Work Together" 
+                <SectionHeader
+                    title="Let's Work Together"
                     subtitle="Ready to bring your ideas to life? I'm always excited to work on new projects and collaborate with amazing people."
                     className="mb-12"
                 />
@@ -121,89 +121,89 @@ const Footer: React.FC = () => {
                 <div className="max-w-2xl mx-auto mb-12">
                     <form onSubmit={handleSubmit}>
                         <Card className="p-8">
-                        <div className="grid md:grid-cols-2 gap-6 mb-6">
-                            <Input
-                                type="text"
-                                id="name"
-                                name="name"
-                                label="Name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Your Name"
-                                error={errors.name}
-                                required
-                            />
-                            <Input
-                                type="email"
-                                id="email"
-                                name="email"
-                                label="Email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="your.email@example.com"
-                                error={errors.email}
-                                required
-                            />
-                        </div>
+                            <div className="grid md:grid-cols-2 gap-6 mb-6">
+                                <Input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    label="Name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Your Name"
+                                    error={errors.name}
+                                    required
+                                />
+                                <Input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="your.email@example.com"
+                                    error={errors.email}
+                                    required
+                                />
+                            </div>
 
-                        <div className="mb-6">
-                            <Input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                label="Subject"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                placeholder="What's this about?"
-                                error={errors.subject}
-                                required
-                            />
-                        </div>
+                            <div className="mb-6">
+                                <Input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    label="Subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    placeholder="What's this about?"
+                                    error={errors.subject}
+                                    required
+                                />
+                            </div>
 
-                        <div className="mb-6">
-                            <Textarea
-                                id="message"
-                                name="message"
-                                label="Message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows={6}
-                                placeholder="Tell me about your project or just say hello..."
-                                error={errors.message}
-                                required
-                            />
-                        </div>
+                            <div className="mb-6">
+                                <Textarea
+                                    id="message"
+                                    name="message"
+                                    label="Message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows={6}
+                                    placeholder="Tell me about your project or just say hello..."
+                                    error={errors.message}
+                                    required
+                                />
+                            </div>
 
-                        <Button
-                            type="submit"
-                            disabled={isSubmitting}
-                            variant="primary"
-                            className="w-full px-8 py-4 text-base"
-                        >
-                            {isSubmitting ? (
-                                <span className="flex items-center justify-center gap-2">
-                                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Sending...
-                                </span>
-                            ) : (
-                                'Send Message'
+                            <Button
+                                type="submit"
+                                disabled={isSubmitting}
+                                variant="primary"
+                                className="w-full px-8 py-4 text-base"
+                            >
+                                {isSubmitting ? (
+                                    <span className="flex items-center justify-center gap-2">
+                                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Sending...
+                                    </span>
+                                ) : (
+                                    'Send Message'
+                                )}
+                            </Button>
+
+                            {/* Success/Error Messages */}
+                            {submitStatus === 'success' && (
+                                <div className="mt-4 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center">
+                                    ✓ Message sent successfully! I'll get back to you soon.
+                                </div>
                             )}
-                        </Button>
-
-                        {/* Success/Error Messages */}
-                        {submitStatus === 'success' && (
-                            <div className="mt-4 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center">
-                                ✓ Message sent successfully! I'll get back to you soon.
-                            </div>
-                        )}
-                        {submitStatus === 'error' && (
-                            <div className="mt-4 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-400 text-center">
-                                ✗ Failed to send message. Please try again or contact me directly via email.
-                            </div>
-                        )}
+                            {submitStatus === 'error' && (
+                                <div className="mt-4 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-400 text-center">
+                                    ✗ Failed to send message. Please try again or contact me directly via email.
+                                </div>
+                            )}
                         </Card>
                     </form>
                 </div>

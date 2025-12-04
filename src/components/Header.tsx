@@ -8,12 +8,10 @@ const Header: React.FC = () => {
   const isOpenSourcePage = location.pathname === '/opensource';
   const [activeSection, setActiveSection] = useState<string>('');
 
-  // Handle section navigation from other pages
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, section: string) => {
     e.preventDefault();
     if (!isHomePage) {
       navigate('/');
-      // Wait for navigation, then scroll to section
       setTimeout(() => {
         const element = document.getElementById(section);
         if (element) {
@@ -28,7 +26,6 @@ const Header: React.FC = () => {
     }
   };
 
-  // Track active section on home page
   useEffect(() => {
     if (!isHomePage) {
       setActiveSection('');
@@ -48,7 +45,6 @@ const Header: React.FC = () => {
       }
     };
 
-    // Handle hash navigation on page load
     if (location.hash) {
       const hash = location.hash.substring(1);
       if (['home', 'about', 'experience', 'projects', 'contact'].includes(hash)) {
@@ -65,7 +61,7 @@ const Header: React.FC = () => {
     }
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll(); 
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage, location.hash]);
@@ -75,10 +71,8 @@ const Header: React.FC = () => {
     
     if (path === '/') {
       if (section) {
-        // For section links, check if this section is active
         isActive = isHomePage && activeSection === section;
       } else {
-        // For Home link, check if we're on home page and at top or home section
         isActive = isHomePage && (activeSection === 'home' || activeSection === '');
       }
     } else if (path === '/opensource') {

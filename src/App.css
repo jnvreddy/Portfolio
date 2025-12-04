@@ -1,4 +1,3 @@
-/* Custom styles for the portfolio */
 * {
     box-sizing: border-box;
 }
@@ -83,7 +82,6 @@ select:focus,
     }
 }
 
-/* Animation Classes */
 .animate-fade-in-up {
     animation: fadeInUp 1s ease-out forwards;
 }
