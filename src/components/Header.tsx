@@ -79,7 +79,7 @@ const Header: React.FC = () => {
       isActive = isOpenSourcePage;
     }
 
-    return `text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group ${isActive
+    return `text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 ${isActive
       ? 'text-cyan-400'
       : 'text-gray-700 hover:text-white'
       }`;
