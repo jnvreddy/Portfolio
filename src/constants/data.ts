@@ -1,4 +1,32 @@
 import type { Project, ExperienceItem, SkillCategory, Organization, Contribution } from '../types';
+import { 
+    SiReact, 
+    SiAngular, 
+    SiVuedotjs, 
+    SiNodedotjs, 
+    SiExpress, 
+    SiJavascript, 
+    SiTypescript, 
+    SiPython, 
+    SiAndroid, 
+    SiKotlin, 
+    SiMongodb, 
+    SiPostgresql, 
+    SiPrisma, 
+    SiTailwindcss, 
+    SiBootstrap, 
+    SiFastapi, 
+    SiJira, 
+    SiGit, 
+    SiDocker, 
+    SiAmazonwebservices, 
+    SiFirebase, 
+    SiGraphql,
+    SiJetpackcompose,
+    SiKtor
+} from 'react-icons/si';
+import { FaDatabase } from 'react-icons/fa';
+import { DiJava } from 'react-icons/di';
 
 export const projects: Project[] = [
     {
@@ -98,6 +126,38 @@ export const experiences: ExperienceItem[] = [
         description: "Gained hands-on experience with HTML, CSS, JavaScript, and basic backend development. Assisted senior developers with project tasks.",
         type: "Internship"
     }
+];
+
+// Technical skills with icons
+export const technicalSkills = [
+    { name: 'Android', icon: SiAndroid },
+    { name: 'Android Kotlin', icon: SiKotlin },
+    { name: 'Jetpack Compose', icon: SiJetpackcompose },
+    { name: 'Ktor', icon: SiKtor },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'React', icon: SiReact },
+    { name: 'Angular', icon: SiAngular },
+    { name: 'MongoDB', icon: SiMongodb },
+    { name: 'Prisma', icon: SiPrisma },
+    { name: 'PostgreSQL', icon: SiPostgresql },
+    { name: 'Room Database', icon: FaDatabase },
+    { name: 'Vue.js', icon: SiVuedotjs },
+    { name: 'Express', icon: SiExpress },
+    { name: 'Tailwind CSS', icon: SiTailwindcss },
+    { name: 'Bootstrap', icon: SiBootstrap },
+    { name: 'JavaScript', icon: SiJavascript },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Python', icon: SiPython },
+    { name: 'Fast API', icon: SiFastapi },
+    { name: 'Java', icon: DiJava },
+    { name: 'Jira', icon: SiJira },
+    { name: 'Git', icon: SiGit },
+    { name: 'Docker', icon: SiDocker },
+    { name: 'AWS', icon: SiAmazonwebservices },
+    { name: 'Firebase', icon: SiFirebase },
+    { name: 'Agile/Scrum', icon: SiJira },
+    { name: 'RESTful API', icon: SiExpress },
+    { name: 'GraphQL API', icon: SiGraphql }
 ];
 
 export const skillCategories: SkillCategory[] = [

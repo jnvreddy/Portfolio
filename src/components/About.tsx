@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './ui/Card';
 import SectionHeader from './ui/SectionHeader';
-import { skillCategories } from '../constants/data';
+import { skillCategories, technicalSkills } from '../constants/data';
 
 const About: React.FC = () => {
     return (
@@ -97,25 +97,47 @@ const About: React.FC = () => {
                         Technical Skills
                     </h3>
                     
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {skillCategories.map((category, categoryIndex) => (
-                            <Card key={categoryIndex} className="p-6">
-                                <h4 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                                    <span className="text-2xl">{category.icon}</span>
-                                    {category.title}
-                                </h4>
-                                <div className="flex flex-wrap gap-3">
-                                    {category.skills.map((skill, skillIndex) => (
-                                        <span
-                                            key={skillIndex}
-                                            className="bg-cyan-400/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium border border-cyan-400/30 hover:bg-cyan-400/30 hover:border-cyan-400 transition-all duration-300"
-                                        >
+                    {/* Marquee Container */}
+                    <div className="relative overflow-hidden w-full py-8">
+                        <div 
+                            className="flex gap-12 items-center"
+                            style={{
+                                animation: 'marquee 40s linear infinite',
+                                display: 'flex',
+                                width: 'max-content'
+                            }}
+                        >
+                            {/* First set of skills */}
+                            {technicalSkills.map((skill, index) => {
+                                const IconComponent = skill.icon;
+                                return (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <IconComponent className="text-5xl sm:text-6xl" />
+                                        <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
-                                    ))}
-                                </div>
-                            </Card>
-                        ))}
+                                    </div>
+                                );
+                            })}
+                            {/* Duplicate for seamless loop */}
+                            {technicalSkills.map((skill, index) => {
+                                const IconComponent = skill.icon;
+                                return (
+                                    <div
+                                        key={`duplicate-${index}`}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <IconComponent className="text-5xl sm:text-6xl" />
+                                        <span className="text-white text-sm font-medium whitespace-nowrap">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
 
