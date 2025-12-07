@@ -115,7 +115,10 @@ const About: React.FC = () => {
                                         key={index}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent className="text-5xl sm:text-6xl" />
+                                        <IconComponent 
+                                            className="text-5xl sm:text-6xl"
+                                            style={{ color: skill.color }}
+                                        />
                                         <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
@@ -130,7 +133,10 @@ const About: React.FC = () => {
                                         key={`duplicate-${index}`}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent className="text-5xl sm:text-6xl" />
+                                        <IconComponent 
+                                            className="text-5xl sm:text-6xl"
+                                            style={{ color: skill.color }}
+                                        />
                                         <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
@@ -140,35 +146,6 @@ const About: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Soft Skills */}
-                <Card className="p-8">
-                    <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
-                        <span className="text-3xl">💡</span>
-                        Soft Skills
-                    </h3>
-                    <div className="grid md:grid-cols-3 gap-4">
-                        {[
-                            'Problem Solving',
-                            'Team Collaboration',
-                            'Communication',
-                            'Time Management',
-                            'Adaptability',
-                            'Attention to Detail',
-                            'Creative Thinking',
-                            'Leadership',
-                            'Continuous Learning'
-                        ].map((skill, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center gap-2 text-gray-300"
-                            >
-                                <span className="text-cyan-400">✓</span>
-                                <span>{skill}</span>
-                            </div>
-                        ))}
-                    </div>
-                </Card>
             </div>
         </section>
     );

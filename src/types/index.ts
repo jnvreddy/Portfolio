@@ -25,6 +25,12 @@ export interface Skill {
     category: 'language' | 'framework' | 'tool' | 'other';
 }
 
+export interface TechnicalSkill {
+    name: string;
+    icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+    color: string;
+}
+
 export interface SkillCategory {
     title: string;
     skills: Skill[];

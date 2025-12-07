@@ -86,7 +86,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-white border border-gray-200 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-sm">
+    <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-gray-800/80 backdrop-blur-sm border border-gray-600 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-sm">
       <nav className="flex space-x-3 sm:space-x-5 md:space-x-8">
         <Link
           to="/"

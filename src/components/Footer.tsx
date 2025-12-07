@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
             await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
 
             // Option 1: Use mailto (client-side only)
-            const mailtoLink = `mailto:your.email@example.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+            const mailtoLink = `mailto:jnvreddyofficial@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
             window.location.href = mailtoLink;
 
             // Option 2: If you have a backend, uncomment this:
@@ -209,7 +209,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Contact Information Grid */}
-                <div className="grid md:grid-cols-3 gap-8 mb-12">
+                <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-2xl mx-auto">
                     {/* Email */}
                     <div className="text-center group">
                         <Card className="p-6 hover:scale-105">
@@ -219,20 +219,7 @@ const Footer: React.FC = () => {
                                 </svg>
                             </div>
                             <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-                            <p className="text-gray-300">your.email@example.com</p>
-                        </Card>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="text-center group">
-                        <Card className="p-6 hover:scale-105">
-                            <div className="w-12 h-12 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-400/30 transition-colors">
-                                <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-lg font-semibold text-white mb-2">Phone</h3>
-                            <p className="text-gray-300">+1 (555) 123-4567</p>
+                            <p className="text-gray-300">jnvreddyofficial@gmail.com</p>
                         </Card>
                     </div>
 
@@ -246,7 +233,7 @@ const Footer: React.FC = () => {
                                 </svg>
                             </div>
                             <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
-                            <p className="text-gray-300">Your City, Country</p>
+                            <p className="text-gray-300">bengaluru.karnataka INDIA</p>
                         </Card>
                     </div>
                 </div>
