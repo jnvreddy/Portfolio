@@ -7,9 +7,9 @@ const About: React.FC = () => {
     return (
         <section id="about" className="min-h-screen bg-transparent relative overflow-hidden py-20">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
-                <SectionHeader 
-                    title="About Me" 
-                    subtitle="Get to know more about my background and expertise" 
+                <SectionHeader
+                    title="About Me"
+                    subtitle="Get to know more about my background and expertise"
                 />
 
                 {/* About Content Grid */}
@@ -21,22 +21,22 @@ const About: React.FC = () => {
                             Who I Am
                         </h3>
                         <p className="text-gray-300 leading-relaxed mb-4">
-                            I'm a passionate full-stack developer with a love for creating beautiful, 
-                            functional, and user-friendly web applications. With years of experience 
-                            in modern web technologies, I specialize in building scalable solutions 
-                            that solve real-world problems.
+                            I'm a Junior Software Engineer with hands-on experience in multi-stack development,
+                            specializing in Android native development with Kotlin and full-stack web applications.
+                            With over a year of professional experience, I've worked on diverse projects ranging
+                            from mobile apps to AI-powered e-commerce platforms.
                         </p>
                         <p className="text-gray-300 leading-relaxed mb-4">
-                            My journey in web development started with a curiosity about how websites 
-                            work, and it has evolved into a career focused on crafting exceptional 
-                            digital experiences. I enjoy working with cutting-edge technologies and 
-                            staying up-to-date with industry best practices.
+                            My experience includes leading AI feature development for the Chat & Shop project,
+                            where I built intelligent chat capabilities and integrated AI technologies. Beyond
+                            technical work, I've mentored 10+ interns and conducted technical interviews,
+                            developing strong leadership and communication skills.
                         </p>
                         <p className="text-gray-300 leading-relaxed">
-                            When I'm not coding, you can find me exploring new technologies, 
-                            contributing to open-source projects, or sharing knowledge with the 
-                            developer community. I believe in continuous learning and always 
-                            strive to improve my skills.
+                            I'm passionate about building scalable solutions, working with cutting-edge
+                            technologies like AI/ML, and contributing to team success through effective
+                            collaboration and project ownership. I believe in continuous learning and
+                            sharing knowledge with the developer community.
                         </p>
                     </Card>
 
@@ -50,40 +50,42 @@ const About: React.FC = () => {
                             <li className="flex items-start gap-3">
                                 <span className="text-cyan-400 mt-1">▹</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Frontend Development</h4>
+                                    <h4 className="text-white font-medium mb-1">Android Native Development</h4>
                                     <p className="text-gray-400 text-sm">
-                                        Building responsive and interactive user interfaces using React, 
-                                        TypeScript, and modern CSS frameworks.
+                                        Building native Android applications using Kotlin, Jetpack Compose,
+                                        and modern Android architecture patterns. Experience with Room database
+                                        and RESTful API integration.
                                     </p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="text-cyan-400 mt-1">▹</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Backend Development</h4>
+                                    <h4 className="text-white font-medium mb-1">Full-Stack Development</h4>
                                     <p className="text-gray-400 text-sm">
-                                        Creating robust server-side applications, RESTful APIs, and 
-                                        database solutions with Node.js and various databases.
+                                        Developing end-to-end applications with React, Node.js, and various
+                                        databases. Experience in both frontend and backend API development.
                                     </p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="text-cyan-400 mt-1">▹</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Full-Stack Solutions</h4>
+                                    <h4 className="text-white font-medium mb-1">AI Application Integration</h4>
                                     <p className="text-gray-400 text-sm">
-                                        Developing end-to-end applications from concept to deployment, 
-                                        ensuring seamless integration between frontend and backend.
+                                        Leading AI feature development, integrating machine learning models,
+                                        and building intelligent applications. Experience with Chat & Shop AI project.
                                     </p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
                                 <span className="text-cyan-400 mt-1">▹</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">UI/UX Design</h4>
+                                    <h4 className="text-white font-medium mb-1">Leadership & Mentoring</h4>
                                     <p className="text-gray-400 text-sm">
-                                        Designing intuitive and visually appealing interfaces that 
-                                        provide excellent user experiences.
+                                        Mentoring 10+ interns, conducting technical interviews for hiring,
+                                        and managing projects using Jira. Strong focus on team coordination
+                                        and knowledge sharing.
                                     </p>
                                 </div>
                             </li>
@@ -96,10 +98,10 @@ const About: React.FC = () => {
                     <h3 className="text-3xl font-bold text-white text-center mb-12">
                         Technical Skills
                     </h3>
-                    
+
                     {/* Marquee Container */}
                     <div className="relative overflow-hidden w-full py-8">
-                        <div 
+                        <div
                             className="flex gap-12 items-center"
                             style={{
                                 animation: 'marquee 40s linear infinite',
@@ -115,7 +117,7 @@ const About: React.FC = () => {
                                         key={index}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent 
+                                        <IconComponent
                                             className="text-5xl sm:text-6xl"
                                             style={{ color: skill.color }}
                                         />
@@ -133,7 +135,7 @@ const About: React.FC = () => {
                                         key={`duplicate-${index}`}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent 
+                                        <IconComponent
                                             className="text-5xl sm:text-6xl"
                                             style={{ color: skill.color }}
                                         />

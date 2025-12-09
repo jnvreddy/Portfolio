@@ -6,11 +6,11 @@ const Hero: React.FC = () => {
             {/* Content with Professional Animations */}
             <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                 <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in-up">
-                    Welcome to My Portfolio
+                    Junior Software Engineer
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 leading-relaxed animate-fade-in-up-delay">
-                    I'm a passionate developer creating beautiful and functional web experiences.
-                    Explore my work and discover how I can help bring your ideas to life.
+                    Specializing in Android native development, full-stack applications, and AI integration.
+                    With experience in multi-stack development, team leadership, and delivering impactful solutions.
                 </p>
             </div>
         </section>

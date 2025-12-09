@@ -1,26 +1,26 @@
 import type { Project, ExperienceItem, SkillCategory, Organization, Contribution } from '../types';
-import { 
-    SiReact, 
-    SiAngular, 
-    SiVuedotjs, 
-    SiNodedotjs, 
-    SiExpress, 
-    SiJavascript, 
-    SiTypescript, 
-    SiPython, 
-    SiAndroid, 
-    SiKotlin, 
-    SiMongodb, 
-    SiPostgresql, 
-    SiPrisma, 
-    SiTailwindcss, 
-    SiBootstrap, 
-    SiFastapi, 
-    SiJira, 
-    SiGit, 
-    SiDocker, 
-    SiAmazonwebservices, 
-    SiFirebase, 
+import {
+    SiReact,
+    SiAngular,
+    SiVuedotjs,
+    SiNodedotjs,
+    SiExpress,
+    SiJavascript,
+    SiTypescript,
+    SiPython,
+    SiAndroid,
+    SiKotlin,
+    SiMongodb,
+    SiPostgresql,
+    SiPrisma,
+    SiTailwindcss,
+    SiBootstrap,
+    SiFastapi,
+    SiJira,
+    SiGit,
+    SiDocker,
+    SiAmazonwebservices,
+    SiFirebase,
     SiGraphql,
     SiJetpackcompose,
     SiKtor
@@ -31,6 +31,28 @@ import { DiJava } from 'react-icons/di';
 export const projects: Project[] = [
     {
         id: 1,
+        title: "Chat & Shop - AI E-Commerce",
+        description: "AI-powered e-commerce platform with intelligent chat features. Led AI feature development and built core functionality.",
+        longDescription: "Developed an innovative e-commerce platform with integrated AI chat capabilities. Led the AI feature development team, built intelligent shopping assistants, and implemented natural language processing for product recommendations. The platform combines modern web technologies with cutting-edge AI to enhance user shopping experience.",
+        image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+        technologies: ["React", "Node.js", "AI/ML", "Python", "TypeScript", "MongoDB"],
+        category: "Full Stack",
+        liveUrl: undefined,
+        githubUrl: undefined
+    },
+    {
+        id: 2,
+        title: "Android Native App",
+        description: "Native Android application built with Kotlin, featuring modern UI and robust architecture.",
+        longDescription: "Developed a native Android application using Kotlin and Jetpack Compose. Implemented clean architecture patterns, Room database for local storage, and integrated RESTful APIs. The app features modern Material Design UI and follows Android best practices.",
+        image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
+        technologies: ["Kotlin", "Android", "Jetpack Compose", "Room Database", "RESTful API"],
+        category: "Mobile",
+        liveUrl: undefined,
+        githubUrl: undefined
+    },
+    {
+        id: 3,
         title: "E-Commerce Platform",
         description: "A full-stack e-commerce solution with payment integration and admin dashboard.",
         longDescription: "Built a comprehensive e-commerce platform featuring user authentication, product management, shopping cart, payment processing, and an admin dashboard. Implemented secure payment gateway integration and real-time inventory management.",
@@ -41,90 +63,64 @@ export const projects: Project[] = [
         githubUrl: "https://github.com/example"
     },
     {
-        id: 2,
-        title: "Task Management App",
-        description: "Collaborative task management application with real-time updates and team features.",
-        longDescription: "Developed a real-time collaborative task management application with drag-and-drop functionality, team collaboration features, notifications, and progress tracking. Built with modern web technologies for optimal performance.",
-        image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-        technologies: ["React", "Firebase", "Tailwind CSS", "Framer Motion"],
-        category: "Frontend",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/example"
-    },
-    {
-        id: 3,
-        title: "Weather Dashboard",
-        description: "Beautiful weather application with location-based forecasts and interactive maps.",
-        longDescription: "Created an intuitive weather dashboard that provides detailed forecasts, interactive maps, and location-based weather data. Features include 7-day forecasts, hourly updates, and weather alerts.",
-        image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=600&fit=crop",
-        technologies: ["React", "OpenWeather API", "Chart.js", "CSS3"],
-        category: "Frontend",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/example"
-    },
-    {
         id: 4,
-        title: "Social Media Analytics",
-        description: "Analytics dashboard for social media metrics with data visualization and insights.",
-        longDescription: "Built a comprehensive social media analytics platform that aggregates data from multiple platforms, provides detailed insights, and generates visual reports. Features include trend analysis and engagement metrics.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-        technologies: ["React", "Python", "PostgreSQL", "D3.js", "Express"],
-        category: "Full Stack",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/example"
+        title: "Backend API Development",
+        description: "RESTful API development with authentication, database integration, and comprehensive documentation.",
+        longDescription: "Developed backend APIs with partial full-stack integration. Implemented authentication systems, database connections, and API endpoints. Worked on optimizing API performance and ensuring secure data handling.",
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
+        technologies: ["Node.js", "Express", "MongoDB", "PostgreSQL", "RESTful API"],
+        category: "Backend",
+        liveUrl: undefined,
+        githubUrl: undefined
     },
     {
         id: 5,
-        title: "Portfolio Website",
-        description: "Modern, responsive portfolio website with smooth animations and dark theme.",
-        longDescription: "Designed and developed a personal portfolio website featuring smooth scroll animations, interactive sections, and a modern dark theme. Built with React and TypeScript for optimal performance and maintainability.",
+        title: "Full-Stack Web Application",
+        description: "End-to-end web application with modern frontend and robust backend integration.",
+        longDescription: "Built a complete full-stack application from frontend to backend. Implemented responsive UI, integrated APIs, managed database operations, and ensured seamless communication between client and server components.",
         image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
-        technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-        category: "Frontend",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/example"
-    },
-    {
-        id: 6,
-        title: "REST API Backend",
-        description: "Scalable REST API with authentication, rate limiting, and comprehensive documentation.",
-        longDescription: "Developed a robust REST API backend with JWT authentication, rate limiting, comprehensive error handling, and API documentation. Implemented database optimization and caching strategies for improved performance.",
-        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
-        technologies: ["Node.js", "Express", "MongoDB", "JWT", "Swagger"],
-        category: "Backend",
+        technologies: ["React", "Node.js", "TypeScript", "MongoDB", "Express"],
+        category: "Full Stack",
         liveUrl: undefined,
-        githubUrl: "https://github.com/example"
+        githubUrl: undefined
     }
 ];
 
 export const experiences: ExperienceItem[] = [
     {
-        title: "Frontend Developer",
-        company: "Tech Company",
-        period: "2022 - Present",
-        description: "Building responsive web applications using React, TypeScript, and modern CSS frameworks. Creating user-friendly interfaces and optimizing performance for better user experience.",
+        title: "Junior Software Engineer",
+        company: "Technology Company",
+        period: "2023 - 2024",
+        description: "Worked on multi-stack projects including Android native development with Kotlin, full-stack applications, and backend API development. Led AI feature development for Chat & Shop project, mentored 10+ interns, and conducted technical interviews for hiring. Managed tasks using Jira and coordinated with cross-functional teams.",
         type: "Full-time"
     },
     {
-        title: "Full Stack Developer",
-        company: "Startup Inc",
-        period: "2020 - 2022",
-        description: "Developed end-to-end solutions with Node.js, React, and various databases. Collaborated with cross-functional teams to deliver scalable applications.",
-        type: "Full-time"
+        title: "Software Developer",
+        company: "Technology Company",
+        period: "2023",
+        description: "Part-time role working on full-stack projects with exposure to both frontend and backend technologies. Gained experience in project ownership and team collaboration.",
+        type: "Part-time"
     },
     {
-        title: "Junior Developer",
-        company: "Digital Agency",
-        period: "2019 - 2020",
-        description: "Worked on various client projects, learning modern web development practices and contributing to team projects.",
-        type: "Full-time"
-    },
-    {
-        title: "Web Development Intern",
-        company: "Local Tech Firm",
-        period: "2018 - 2019",
-        description: "Gained hands-on experience with HTML, CSS, JavaScript, and basic backend development. Assisted senior developers with project tasks.",
+        title: "Software Development Intern",
+        company: "Technology Company",
+        period: "2023",
+        description: "Internship focused on learning modern software development practices, contributing to team projects, and gaining hands-on experience with various technologies.",
         type: "Internship"
+    },
+    {
+        title: "Computer Vision Intern",
+        company: "Technology Company",
+        period: "2022 - 2023",
+        description: "6-month internship specializing in computer vision technologies. Worked on image processing, machine learning models, and AI applications.",
+        type: "Internship"
+    },
+    {
+        title: "Freelance Developer",
+        company: "Freelance",
+        period: "2022",
+        description: "Successfully delivered a freelance project, managing the entire development lifecycle from requirements gathering to deployment. Demonstrated project ownership and client communication skills.",
+        type: "Freelance"
     }
 ];
 
@@ -197,6 +193,7 @@ export const skillCategories: SkillCategory[] = [
         title: 'Programming Languages',
         icon: '💻',
         skills: [
+            { name: 'Kotlin', category: 'language' },
             { name: 'JavaScript', category: 'language' },
             { name: 'TypeScript', category: 'language' },
             { name: 'Python', category: 'language' },
@@ -206,14 +203,15 @@ export const skillCategories: SkillCategory[] = [
         ]
     },
     {
-        title: 'Frameworks & Libraries',
-        icon: '⚛️',
+        title: 'Mobile & Frameworks',
+        icon: '📱',
         skills: [
+            { name: 'Android', category: 'framework' },
+            { name: 'Jetpack Compose', category: 'framework' },
+            { name: 'Ktor', category: 'framework' },
             { name: 'React', category: 'framework' },
             { name: 'Node.js', category: 'framework' },
             { name: 'Express', category: 'framework' },
-            { name: 'Next.js', category: 'framework' },
-            { name: 'Vue.js', category: 'framework' },
             { name: 'Tailwind CSS', category: 'framework' }
         ]
     },
@@ -222,23 +220,25 @@ export const skillCategories: SkillCategory[] = [
         icon: '🛠️',
         skills: [
             { name: 'Git', category: 'tool' },
-            { name: 'Docker', category: 'tool' },
-            { name: 'AWS', category: 'tool' },
+            { name: 'Jira', category: 'tool' },
             { name: 'MongoDB', category: 'tool' },
             { name: 'PostgreSQL', category: 'tool' },
-            { name: 'Firebase', category: 'tool' }
+            { name: 'Room Database', category: 'tool' },
+            { name: 'Firebase', category: 'tool' },
+            { name: 'Docker', category: 'tool' }
         ]
     },
     {
-        title: 'Other Skills',
+        title: 'Professional Skills',
         icon: '🌟',
         skills: [
+            { name: 'AI/ML Integration', category: 'other' },
+            { name: 'Mentoring', category: 'other' },
+            { name: 'Technical Interviewing', category: 'other' },
+            { name: 'Project Ownership', category: 'other' },
+            { name: 'Team Coordination', category: 'other' },
             { name: 'Agile/Scrum', category: 'other' },
-            { name: 'UI/UX Design', category: 'other' },
-            { name: 'RESTful APIs', category: 'other' },
-            { name: 'GraphQL', category: 'other' },
-            { name: 'Testing', category: 'other' },
-            { name: 'CI/CD', category: 'other' }
+            { name: 'RESTful APIs', category: 'other' }
         ]
     }
 ];

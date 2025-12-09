@@ -10,16 +10,16 @@ const Projects: React.FC = () => {
 
     const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
 
-    const filteredProjects = selectedCategory === 'All' 
-        ? projects 
+    const filteredProjects = selectedCategory === 'All'
+        ? projects
         : projects.filter(p => p.category === selectedCategory);
 
     return (
         <section id="projects" className="min-h-screen bg-transparent relative overflow-hidden py-20">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <SectionHeader 
-                    title="My Projects" 
-                    subtitle="A collection of projects showcasing my skills and experience in web development" 
+                <SectionHeader
+                    title="My Projects"
+                    subtitle="A collection of projects showcasing my skills in Android development, full-stack applications, and AI integration"
                 />
 
                 {/* Category Filter */}
