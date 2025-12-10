@@ -33,7 +33,7 @@ const Header: React.FC = () => {
     }
 
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'projects', 'contact'];
+      const sections = ['home', 'about', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 200; // Offset for header
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
 
     if (location.hash) {
       const hash = location.hash.substring(1);
-      if (['home', 'about', 'experience', 'projects', 'contact'].includes(hash)) {
+      if (['home', 'about', 'projects', 'contact'].includes(hash)) {
         setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
@@ -103,15 +103,6 @@ const Header: React.FC = () => {
         >
           About
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
-            }`}></span>
-        </a>
-        <a
-          href="#experience"
-          onClick={(e) => handleSectionClick(e, 'experience')}
-          className={getLinkClassName('/', 'experience')}
-        >
-          Experience
-          <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'experience' ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </a>
         <a
