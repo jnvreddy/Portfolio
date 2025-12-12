@@ -10,7 +10,7 @@ const OpenSource: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'organizations' | 'contributions'>('organizations');
 
     return (
-        <PageLayout>
+        <PageLayout showFooter={false}>
             {/* Hero Section */}
             <section className="min-h-[60vh] flex items-center justify-center bg-transparent relative overflow-hidden">
                 <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
