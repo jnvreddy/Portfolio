@@ -1,29 +1,16 @@
 import type { Project, ExperienceItem, SkillCategory, Organization, Contribution } from '../types';
 import {
     SiReact,
-    SiAngular,
-    SiVuedotjs,
     SiNodedotjs,
-    SiExpress,
     SiJavascript,
     SiTypescript,
-    SiPython,
     SiAndroid,
     SiKotlin,
-    SiMongodb,
     SiPostgresql,
     SiPrisma,
-    SiTailwindcss,
-    SiBootstrap,
-    SiFastapi,
-    SiJira,
-    SiGit,
     SiDocker,
-    SiAmazonwebservices,
-    SiFirebase,
-    SiGraphql,
     SiJetpackcompose,
-    SiKtor
+    SiSpringboot
 } from 'react-icons/si';
 import { FaDatabase } from 'react-icons/fa';
 import { DiJava } from 'react-icons/di';
@@ -127,65 +114,35 @@ export const experiences: ExperienceItem[] = [
 // Brand colors for icons
 const brandColors: Record<string, string> = {
     'Android': '#3DDC84',
-    'Android Kotlin': '#7F52FF',
+    'Kotlin': '#7F52FF',
     'Jetpack Compose': '#4285F4',
-    'Ktor': '#0095D5',
-    'Node.js': '#339933',
+    'Node': '#339933',
     'React': '#61DAFB',
-    'Angular': '#DD0031',
-    'MongoDB': '#47A248',
     'Prisma': '#2D3748',
-    'PostgreSQL': '#336791',
-    'Room Database': '#4285F4',
-    'Vue.js': '#4FC08D',
-    'Express': '#000000',
-    'Tailwind CSS': '#06B6D4',
-    'Bootstrap': '#7952B3',
-    'JavaScript': '#F7DF1E',
-    'TypeScript': '#3178C6',
-    'Python': '#3776AB',
-    'Fast API': '#009688',
+    'Postgres': '#336791',
+    'Room DB': '#4285F4',
+    'JS': '#F7DF1E',
+    'TS': '#3178C6',
     'Java': '#ED8B00',
-    'Jira': '#0052CC',
-    'Git': '#F05032',
     'Docker': '#2496ED',
-    'AWS': '#FF9900',
-    'Firebase': '#FFCA28',
-    'Agile/Scrum': '#0052CC',
-    'RESTful API': '#000000',
-    'GraphQL API': '#E10098'
+    'Spring Boot': '#6DB33F'
 };
 
 // Technical skills with icons
 export const technicalSkills = [
     { name: 'Android', icon: SiAndroid, color: brandColors['Android'] },
-    { name: 'Android Kotlin', icon: SiKotlin, color: brandColors['Android Kotlin'] },
     { name: 'Jetpack Compose', icon: SiJetpackcompose, color: brandColors['Jetpack Compose'] },
-    { name: 'Ktor', icon: SiKtor, color: brandColors['Ktor'] },
-    { name: 'Node.js', icon: SiNodedotjs, color: brandColors['Node.js'] },
-    { name: 'React', icon: SiReact, color: brandColors['React'] },
-    { name: 'Angular', icon: SiAngular, color: brandColors['Angular'] },
-    { name: 'MongoDB', icon: SiMongodb, color: brandColors['MongoDB'] },
-    { name: 'Prisma', icon: SiPrisma, color: brandColors['Prisma'] },
-    { name: 'PostgreSQL', icon: SiPostgresql, color: brandColors['PostgreSQL'] },
-    { name: 'Room Database', icon: FaDatabase, color: brandColors['Room Database'] },
-    { name: 'Vue.js', icon: SiVuedotjs, color: brandColors['Vue.js'] },
-    { name: 'Express', icon: SiExpress, color: brandColors['Express'] },
-    { name: 'Tailwind CSS', icon: SiTailwindcss, color: brandColors['Tailwind CSS'] },
-    { name: 'Bootstrap', icon: SiBootstrap, color: brandColors['Bootstrap'] },
-    { name: 'JavaScript', icon: SiJavascript, color: brandColors['JavaScript'] },
-    { name: 'TypeScript', icon: SiTypescript, color: brandColors['TypeScript'] },
-    { name: 'Python', icon: SiPython, color: brandColors['Python'] },
-    { name: 'Fast API', icon: SiFastapi, color: brandColors['Fast API'] },
+    { name: 'Kotlin', icon: SiKotlin, color: brandColors['Kotlin'] },
     { name: 'Java', icon: DiJava, color: brandColors['Java'] },
-    { name: 'Jira', icon: SiJira, color: brandColors['Jira'] },
-    { name: 'Git', icon: SiGit, color: brandColors['Git'] },
+    { name: 'JS', icon: SiJavascript, color: brandColors['JS'] },
+    { name: 'TS', icon: SiTypescript, color: brandColors['TS'] },
+    { name: 'Prisma', icon: SiPrisma, color: brandColors['Prisma'] },
+    { name: 'Postgres', icon: SiPostgresql, color: brandColors['Postgres'] },
+    { name: 'Room DB', icon: FaDatabase, color: brandColors['Room DB'] },
     { name: 'Docker', icon: SiDocker, color: brandColors['Docker'] },
-    { name: 'AWS', icon: SiAmazonwebservices, color: brandColors['AWS'] },
-    { name: 'Firebase', icon: SiFirebase, color: brandColors['Firebase'] },
-    { name: 'Agile/Scrum', icon: SiJira, color: brandColors['Agile/Scrum'] },
-    { name: 'RESTful API', icon: SiExpress, color: brandColors['RESTful API'] },
-    { name: 'GraphQL API', icon: SiGraphql, color: brandColors['GraphQL API'] }
+    { name: 'React', icon: SiReact, color: brandColors['React'] },
+    { name: 'Node', icon: SiNodedotjs, color: brandColors['Node'] },
+    { name: 'Spring Boot', icon: SiSpringboot, color: brandColors['Spring Boot'] }
 ];
 
 export const skillCategories: SkillCategory[] = [
