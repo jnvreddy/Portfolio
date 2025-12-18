@@ -104,6 +104,15 @@ const Header: React.FC = () => {
       }`;
   };
 
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/cv.pdf'; // Path to your CV file in the public folder
+    link.download = 'CV.pdf'; // Name of the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-gray-800/80 backdrop-blur-sm border border-gray-600 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-sm">
       <nav className="flex space-x-3 sm:space-x-5 md:space-x-8">
@@ -169,6 +178,13 @@ const Header: React.FC = () => {
             </div>
           )}
         </div>
+        <button
+          onClick={handleDownloadCV}
+          className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-700 hover:text-white"
+        >
+          CV
+          <span className="absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 w-0 group-hover:w-full"></span>
+        </button>
         <Link
           to="/opensource"
           className={getLinkClassName('/opensource')}
