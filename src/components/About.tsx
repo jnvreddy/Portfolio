@@ -31,6 +31,62 @@ const About: React.FC = () => {
                     </Card>
                 </div>
 
+                {/* Skills Section */}
+                <div className="mb-16">
+                    <h3 className="text-3xl font-bold text-white text-center mb-12">
+                        Technical Skills
+                    </h3>
+
+                    {/* Marquee Container */}
+                    <div className="relative overflow-hidden w-full py-8">
+                        <div
+                            className="flex gap-12 items-center"
+                            style={{
+                                animation: 'marquee 40s linear infinite',
+                                display: 'flex',
+                                width: 'max-content'
+                            }}
+                        >
+                            {/* First set of skills */}
+                            {technicalSkills.map((skill, index) => {
+                                const IconComponent = skill.icon;
+                                return (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <IconComponent
+                                            className="text-5xl sm:text-6xl"
+                                            style={{ color: skill.color }}
+                                        />
+                                        <span className="text-white text-sm font-medium whitespace-nowrap">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                            {/* Duplicate for seamless loop */}
+                            {technicalSkills.map((skill, index) => {
+                                const IconComponent = skill.icon;
+                                return (
+                                    <div
+                                        key={`duplicate-${index}`}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <IconComponent
+                                            className="text-5xl sm:text-6xl"
+                                            style={{ color: skill.color }}
+                                        />
+                                        <span className="text-white text-sm font-medium whitespace-nowrap">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
                 {/* Projects Section */}
                 <div className="mb-16">
                     <h3 className="text-3xl font-bold text-white text-center mb-12">
@@ -159,62 +215,6 @@ const About: React.FC = () => {
                                 </div>
                             </div>
                         </Card>
-                    </div>
-                </div>
-
-                {/* Skills Section */}
-                <div className="mb-16">
-                    <h3 className="text-3xl font-bold text-white text-center mb-12">
-                        Technical Skills
-                    </h3>
-
-                    {/* Marquee Container */}
-                    <div className="relative overflow-hidden w-full py-8">
-                        <div
-                            className="flex gap-12 items-center"
-                            style={{
-                                animation: 'marquee 40s linear infinite',
-                                display: 'flex',
-                                width: 'max-content'
-                            }}
-                        >
-                            {/* First set of skills */}
-                            {technicalSkills.map((skill, index) => {
-                                const IconComponent = skill.icon;
-                                return (
-                                    <div
-                                        key={index}
-                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
-                                    >
-                                        <IconComponent
-                                            className="text-5xl sm:text-6xl"
-                                            style={{ color: skill.color }}
-                                        />
-                                        <span className="text-white text-sm font-medium whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                            {/* Duplicate for seamless loop */}
-                            {technicalSkills.map((skill, index) => {
-                                const IconComponent = skill.icon;
-                                return (
-                                    <div
-                                        key={`duplicate-${index}`}
-                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
-                                    >
-                                        <IconComponent
-                                            className="text-5xl sm:text-6xl"
-                                            style={{ color: skill.color }}
-                                        />
-                                        <span className="text-white text-sm font-medium whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                        </div>
                     </div>
                 </div>
             </div>
