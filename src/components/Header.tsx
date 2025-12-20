@@ -6,6 +6,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
   const isOpenSourcePage = location.pathname === '/opensource';
+  const isProjectsPage = location.pathname === '/projects';
   const [activeSection, setActiveSection] = useState<string>('');
   const [isContactDropdownOpen, setIsContactDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -96,6 +97,8 @@ const Header: React.FC = () => {
       }
     } else if (path === '/opensource') {
       isActive = isOpenSourcePage;
+    } else if (path === '/projects') {
+      isActive = isProjectsPage;
     }
 
     return `text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 ${isActive
@@ -133,6 +136,14 @@ const Header: React.FC = () => {
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </a>
+        <Link
+          to="/projects"
+          className={getLinkClassName('/projects')}
+        >
+          Projects
+          <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
+            }`}></span>
+        </Link>
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
