@@ -36,7 +36,7 @@ const Header: React.FC = () => {
     }
 
     const handleScroll = () => {
-      const sections = ['home', 'about'];
+      const sections = ['home', 'about', 'projects'];
       const scrollPosition = window.scrollY + 200; // Offset for header
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
 
     if (location.hash) {
       const hash = location.hash.substring(1);
-      if (['home', 'about'].includes(hash)) {
+      if (['home', 'about', 'projects'].includes(hash)) {
         setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
@@ -136,14 +136,26 @@ const Header: React.FC = () => {
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </a>
-        <Link
-          to="/projects"
-          className={getLinkClassName('/projects')}
-        >
-          Projects
-          <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
-            }`}></span>
-        </Link>
+        {isHomePage ? (
+          <a
+            href="#projects"
+            onClick={(e) => handleSectionClick(e, 'projects')}
+            className={getLinkClassName('/', 'projects')}
+          >
+            Projects
+            <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'projects' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+          </a>
+        ) : (
+          <Link
+            to="/projects"
+            className={getLinkClassName('/projects')}
+          >
+            Projects
+            <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+          </Link>
+        )}
         <Link
           to="/opensource"
           className={getLinkClassName('/opensource')}
