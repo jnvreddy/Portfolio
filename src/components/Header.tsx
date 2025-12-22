@@ -183,7 +183,7 @@ const Header: React.FC = () => {
           {isContactDropdownOpen && (
             <div className="absolute top-full mt-2 right-0 bg-gray-800/95 backdrop-blur-sm border border-gray-600 rounded-lg shadow-lg py-2 min-w-[200px] z-50">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/jnvreddy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
@@ -195,7 +195,7 @@ const Header: React.FC = () => {
                 <span>LinkedIn</span>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/jnvreddy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
