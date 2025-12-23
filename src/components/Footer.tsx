@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 pt-8 text-center">
                     <p className="text-gray-400">
-                        © 2024 Your Name. All rights reserved. Built with React & TypeScript.
+                        © 2024 Jnv Reddy. All rights reserved. Built with React & TypeScript.
                     </p>
                 </div>
             </div>
