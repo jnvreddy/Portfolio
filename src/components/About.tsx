@@ -102,7 +102,12 @@ const About: React.FC = () => {
                                     <img
                                         src={projects[0].image}
                                         alt={projects[0].title}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = 'https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Project+Image';
+                                        }}
                                     />
                                 </div>
                                 {/* Information - 60% */}
@@ -164,7 +169,12 @@ const About: React.FC = () => {
                                     <img
                                         src={projects[1].image}
                                         alt={projects[1].title}
+                                        loading="lazy"
                                         className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.src = 'https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Project+Image';
+                                        }}
                                     />
                                 </div>
                                 {/* Information - 60% */}
