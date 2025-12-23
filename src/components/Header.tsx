@@ -14,13 +14,7 @@ const Header: React.FC = () => {
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, section: string) => {
     e.preventDefault();
     if (!isHomePage) {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(section);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      navigate('/', { state: { scrollTo: section } });
     } else {
       const element = document.getElementById(section);
       if (element) {
@@ -28,6 +22,22 @@ const Header: React.FC = () => {
       }
     }
   };
+
+  // Handle scroll after navigation
+  useEffect(() => {
+    const locationState = location.state as { scrollTo?: string } | null;
+    if (locationState?.scrollTo && isHomePage) {
+      // Use requestAnimationFrame for more reliable timing
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const element = document.getElementById(locationState.scrollTo!);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    }
+  }, [isHomePage, location.state]);
 
   useEffect(() => {
     if (!isHomePage) {
