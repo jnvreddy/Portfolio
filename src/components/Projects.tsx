@@ -15,7 +15,7 @@ const Projects: React.FC = () => {
         : projects.filter(p => p.category === selectedCategory);
 
     return (
-        <section id="projects" className="min-h-screen bg-transparent relative overflow-hidden py-20">
+        <section id="projects" className="h-screen bg-transparent relative overflow-hidden py-12">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <SectionHeader
                     title="My Projects"
