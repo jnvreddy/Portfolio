@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Card from './ui/Card';
 import Badge from './ui/Badge';
 import { experiences } from '../constants/data';
-import type { ExperienceItem } from '../types';
 
 const Experience: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number>(-1);
