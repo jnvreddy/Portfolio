@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import resumePdf from '../assets/Nagavardhan(jnvreddy)-Resume.pdf';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -112,29 +113,29 @@ const Header: React.FC = () => {
     }
 
     return `text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 ${isActive
-      ? 'text-cyan-400'
-      : 'text-white hover:text-cyan-400'
+      ? 'text-white'
+      : 'text-gray-400 hover:text-white'
       }`;
   };
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv.pdf'; // Path to your CV file in the public folder
-    link.download = 'CV.pdf'; // Name of the downloaded file
+    link.href = resumePdf;
+    link.download = 'Nagavardhan(jnvreddy)-Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-gray-800/80 backdrop-blur-sm border border-gray-600 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-sm">
+    <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-lg">
       <nav className="flex space-x-3 sm:space-x-5 md:space-x-8">
         <Link
           to="/"
           className={getLinkClassName('/')}
         >
           Home
-          <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${(isHomePage && (activeSection === 'home' || activeSection === '')) ? 'w-full' : 'w-0 group-hover:w-full'
+          <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${(isHomePage && (activeSection === 'home' || activeSection === '')) ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </Link>
         <a
@@ -143,7 +144,7 @@ const Header: React.FC = () => {
           className={getLinkClassName('/', 'about')}
         >
           About
-          <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
+          <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </a>
         {isHomePage ? (
@@ -153,7 +154,7 @@ const Header: React.FC = () => {
             className={getLinkClassName('/', 'projects')}
           >
             Projects
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${activeSection === 'projects' ? 'w-full' : 'w-0 group-hover:w-full'
+            <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'projects' ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
           </a>
         ) : (
@@ -162,7 +163,7 @@ const Header: React.FC = () => {
             className={getLinkClassName('/projects')}
           >
             Projects
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
+            <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
           </Link>
         )}
@@ -176,27 +177,27 @@ const Header: React.FC = () => {
         </Link> */}
         <button
           onClick={handleDownloadCV}
-          className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-white hover:text-cyan-400"
+          className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
         >
           CV
-          <span className="absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 w-0 group-hover:w-full"></span>
+          <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
         </button>
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
-            className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-white hover:text-cyan-400"
+            className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
           >
             Contact
-            <span className="absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 w-0 group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
           </button>
-          
+
           {isContactDropdownOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-gray-800/95 backdrop-blur-sm border border-gray-600 rounded-lg shadow-lg py-2 min-w-[200px] z-50">
+            <div className="absolute top-full mt-2 right-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl py-2 min-w-[200px] z-50">
               <a
                 href="https://www.linkedin.com/in/jnvreddy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                 onClick={() => setIsContactDropdownOpen(false)}
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -208,7 +209,7 @@ const Header: React.FC = () => {
                 href="https://github.com/jnvreddy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                 onClick={() => setIsContactDropdownOpen(false)}
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -220,7 +221,7 @@ const Header: React.FC = () => {
                 href="https://x.com/jnv_reddy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
                 onClick={() => setIsContactDropdownOpen(false)}
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -228,7 +229,7 @@ const Header: React.FC = () => {
                 </svg>
                 <span>X (Twitter)</span>
               </a>
-              <div className="border-t border-gray-700 my-1"></div>
+              <div className="border-t border-white/10 my-1"></div>
               <div className="flex items-center gap-3 px-4 py-3 text-gray-300">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

@@ -109,7 +109,7 @@ const Experience: React.FC = () => {
                     {/* Progress Line - Centered with scroll animation */}
                     <div className="absolute top-0 bottom-0 w-1 bg-gray-600">
                         <div
-                            className="w-full bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-500 shadow-lg shadow-cyan-400/50"
+                            className="w-full bg-gradient-to-b from-white via-gray-400 to-gray-800 shadow-lg shadow-gray-500/50"
                             style={{ height: `${progressHeight}%` }}
                         ></div>
                     </div>
@@ -124,8 +124,8 @@ const Experience: React.FC = () => {
                                     <div
                                         ref={(el) => { dotRefs.current[index] = el; }}
                                         className={`absolute w-6 h-6 rounded-full border-4 border-black shadow-lg z-10 cursor-pointer transition-all duration-300 ${activeIndex === index
-                                            ? 'bg-cyan-400 scale-125 shadow-cyan-400/50'
-                                            : 'bg-gray-500 hover:bg-cyan-300 hover:scale-110'
+                                            ? 'bg-white scale-125 shadow-white/50'
+                                            : 'bg-gray-500 hover:bg-gray-300 hover:scale-110'
                                             }`}
                                         onClick={() => handleDotClick(index)}
                                         aria-label={`Scroll to ${exp.title} at ${exp.company}`}
@@ -142,7 +142,7 @@ const Experience: React.FC = () => {
                                     {/* Content Card - Alternating sides */}
                                     <Card className={`experience-card w-5/12 p-6 shadow-lg transition-all duration-500 hover:shadow-xl hover:scale-105 ${
                                         activeIndex === index
-                                            ? 'border-cyan-400 shadow-cyan-400/20'
+                                            ? 'border-white shadow-white/20'
                                             : ''
                                         } ${isEven ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
                                         <div className="flex items-center gap-3 mb-3">
@@ -154,7 +154,7 @@ const Experience: React.FC = () => {
                                             {exp.title}
                                         </h3>
 
-                                        <p className="text-cyan-400 text-lg font-medium mb-4">
+                                        <p className="text-white text-lg font-medium mb-4">
                                             {exp.company}
                                         </p>
 

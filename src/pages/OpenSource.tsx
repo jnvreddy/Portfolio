@@ -56,7 +56,7 @@ const OpenSource: React.FC = () => {
                                 >
                                     <div className={`w-16 h-16 rounded-full bg-gray-700 mb-3 flex items-center justify-center overflow-hidden transition-all ${
                                         selectedOrgId === org.id 
-                                            ? 'ring-2 ring-cyan-400 ring-offset-2 ring-offset-transparent scale-110' 
+                                            ? 'ring-2 ring-white ring-offset-2 ring-offset-transparent scale-110' 
                                             : 'group-hover:scale-105'
                                     }`}>
                                         <img
@@ -71,8 +71,8 @@ const OpenSource: React.FC = () => {
                                     </div>
                                     <h3 className={`text-base font-semibold transition-colors ${
                                         selectedOrgId === org.id
-                                            ? 'text-cyan-400'
-                                            : 'text-white group-hover:text-cyan-400'
+                                            ? 'text-white'
+                                            : 'text-gray-400 group-hover:text-white'
                                     }`}>
                                         {org.name}
                                     </h3>
@@ -92,19 +92,19 @@ const OpenSource: React.FC = () => {
                             {selectedContributions.length > 0 && (
                                 <div className="grid md:grid-cols-3 gap-6 mb-12">
                                     <Card className="p-6 text-center">
-                                        <div className="text-4xl font-bold text-cyan-400 mb-2">
+                                        <div className="text-4xl font-bold text-white mb-2">
                                             {selectedContributions.filter(c => c.type === 'PR').length}
                                         </div>
                                         <div className="text-gray-300">Pull Requests</div>
                                     </Card>
                                     <Card className="p-6 text-center">
-                                        <div className="text-4xl font-bold text-cyan-400 mb-2">
+                                        <div className="text-4xl font-bold text-white mb-2">
                                             {selectedContributions.filter(c => c.type === 'Issue').length}
                                         </div>
                                         <div className="text-gray-300">Issues</div>
                                     </Card>
                                     <Card className="p-6 text-center">
-                                        <div className="text-4xl font-bold text-cyan-400 mb-2">
+                                        <div className="text-4xl font-bold text-white mb-2">
                                             {selectedContributions.filter(c => c.status === 'merged').length}
                                         </div>
                                         <div className="text-gray-300">Merged PRs</div>
@@ -128,7 +128,7 @@ const OpenSource: React.FC = () => {
                                                     <div className="flex-1">
                                                         <div className="flex items-center gap-3 mb-3">
                                                             <span className="text-2xl">{getTypeIcon(contribution.type)}</span>
-                                                            <h3 className="text-xl font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                                                            <h3 className="text-xl font-semibold text-white group-hover:text-gray-300 transition-colors">
                                                                 {contribution.title}
                                                             </h3>
                                                         </div>
@@ -154,7 +154,7 @@ const OpenSource: React.FC = () => {
                                                         <Badge variant="status" status={contribution.status}>
                                                             {contribution.status}
                                                         </Badge>
-                                                        <span className="text-cyan-400 text-sm group-hover:underline">
+                                                        <span className="text-white text-sm group-hover:underline">
                                                             View →
                                                         </span>
                                                     </div>
