@@ -18,9 +18,9 @@ import { DiJava } from 'react-icons/di';
 export const projects: Project[] = [
     {
         id: 1,
-        title: "Chat & Shop - AI E-Commerce",
-        description: "AI-powered e-commerce platform with intelligent chat features. Led AI feature development and built core functionality.",
-        longDescription: "Developed an innovative e-commerce platform with integrated AI chat capabilities. Led the AI feature development team, built intelligent shopping assistants, and implemented natural language processing for product recommendations. The platform combines modern web technologies with cutting-edge AI to enhance user shopping experience.",
+        title: "College Management System (CMS)",
+        description: "Comprehensive college management system for managing students, faculty, courses, and administrative tasks. Led development and built core functionality.",
+        longDescription: "Developed a comprehensive College Management System (CMS) to streamline academic and administrative operations. The system includes student enrollment, faculty management, course scheduling, attendance tracking, grade management, and administrative dashboards. Built with modern web technologies to provide an efficient and user-friendly platform for educational institutions.",
         image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
         technologies: ["React", "Node.js", "AI/ML", "Python", "TypeScript", "MongoDB"],
         category: "Full Stack",
@@ -49,28 +49,6 @@ export const projects: Project[] = [
         liveUrl: "https://example.com",
         githubUrl: "https://github.com/example"
     },
-    {
-        id: 4,
-        title: "Backend API Development",
-        description: "RESTful API development with authentication, database integration, and comprehensive documentation.",
-        longDescription: "Developed backend APIs with partial full-stack integration. Implemented authentication systems, database connections, and API endpoints. Worked on optimizing API performance and ensuring secure data handling.",
-        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
-        technologies: ["Node.js", "Express", "MongoDB", "PostgreSQL", "RESTful API"],
-        category: "Backend",
-        liveUrl: undefined,
-        githubUrl: undefined
-    },
-    {
-        id: 5,
-        title: "Full-Stack Web Application",
-        description: "End-to-end web application with modern frontend and robust backend integration.",
-        longDescription: "Built a complete full-stack application from frontend to backend. Implemented responsive UI, integrated APIs, managed database operations, and ensured seamless communication between client and server components.",
-        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
-        technologies: ["React", "Node.js", "TypeScript", "MongoDB", "Express"],
-        category: "Full Stack",
-        liveUrl: undefined,
-        githubUrl: undefined
-    }
 ];
 
 export const experiences: ExperienceItem[] = [
