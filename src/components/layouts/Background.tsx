@@ -11,10 +11,7 @@ const Background: React.FC = () => {
                 height: '100%',
                 zIndex: 0,
                 pointerEvents: 'none',
-                backgroundColor: '#000000',
-                backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px)',
-                backgroundSize: '30px 30px',
-                backgroundPosition: '0 0'
+                backgroundColor: '#000000'
             }}
         />
     );

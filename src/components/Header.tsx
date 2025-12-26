@@ -166,14 +166,14 @@ const Header: React.FC = () => {
               }`}></span>
           </Link>
         )}
-        <Link
+        {/* <Link
           to="/opensource"
           className={getLinkClassName('/opensource')}
         >
           Open Source
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isOpenSourcePage ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
-        </Link>
+        </Link> */}
         <button
           onClick={handleDownloadCV}
           className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-white hover:text-cyan-400"
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-sm">jnvreddyofficial@gmail.com</span>
+                <span className="text-sm">jnvreddy.dev@gmail.com</span>
               </div>
             </div>
           )}
