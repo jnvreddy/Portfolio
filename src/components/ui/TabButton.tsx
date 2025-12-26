@@ -12,8 +12,8 @@ const TabButton: React.FC<TabButtonProps> = ({ label, isActive, onClick }) => {
             onClick={onClick}
             className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                 isActive
-                    ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black shadow-lg shadow-cyan-400/25'
-                    : 'text-gray-300 hover:text-cyan-400'
+                    ? 'bg-white text-black shadow-lg shadow-white/20'
+                    : 'text-gray-300 hover:text-white bg-white/5 backdrop-blur-sm'
             }`}
         >
             {label}

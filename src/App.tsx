@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Background from './components/layouts/Background';
+import Loader from './components/ui/Loader';
 
 // Lazy load routes for code splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -8,11 +9,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 // const OpenSource = lazy(() => import('./pages/OpenSource'));
 
 // Loading fallback component
-const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-black">
-    <div className="text-white text-xl">Loading...</div>
-  </div>
-);
+const LoadingFallback = () => <Loader />;
 
 function App() {
   return (

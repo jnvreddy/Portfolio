@@ -20,11 +20,7 @@ const About: React.FC = () => {
                             Who I Am
                         </h3>
                         <p className="text-gray-300 leading-relaxed">
-                            I'm a Junior Software Engineer specializing in Android native development with Kotlin and full-stack web applications. 
-                            With over a year of professional experience, I've led AI feature development for e-commerce platforms, 
-                            mentored 10+ interns, and built scalable solutions using cutting-edge technologies. 
-                            I'm passionate about continuous learning, effective collaboration, and contributing to team success through 
-                            both technical excellence and leadership.
+                            I am a Junior Software Engineer specializing in Android native application development, with strong expertise in Kotlin, Java, and Spring Boot–based backend systems. I also have hands-on experience building full-stack web applications using React, Next.js, and Tailwind CSS, allowing me to work comfortably across mobile and web platforms.
                         </p>
                     </Card>
                 </div>
