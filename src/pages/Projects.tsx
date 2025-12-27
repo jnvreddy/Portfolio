@@ -77,9 +77,9 @@ const Projects: React.FC = () => {
                                 }}
                             >
                                 <Card className="p-0 overflow-hidden h-full">
-                                    <div className="flex flex-col md:flex-row h-full">
+                                    <div className="flex flex-row h-full">
                                         {/* Image - 40% */}
-                                        <div className="w-full md:w-[40%] h-64 md:h-full">
+                                        <div className="w-[40%] h-full">
                                             <img
                                                 src={project.image}
                                                 alt={project.title}
@@ -87,7 +87,7 @@ const Projects: React.FC = () => {
                                             />
                                         </div>
                                         {/* Information - 60% */}
-                                        <div className="w-full md:w-[60%] p-6 md:p-8 flex flex-col justify-center">
+                                        <div className="w-[60%] p-6 md:p-8 flex flex-col justify-center">
                                             <Badge className="mb-3 w-fit">
                                                 {project.category}
                                             </Badge>
