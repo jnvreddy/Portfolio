@@ -95,7 +95,10 @@ const About: React.FC = () => {
                             Who I Am
                         </h3>
                         <p className="text-gray-300 leading-relaxed">
-                            I am a Junior Software Engineer specializing in Android native application development, with strong expertise in Kotlin, Java, and Spring Boot–based backend systems. I also have hands-on experience building full-stack web applications using React, Next.js, and Tailwind CSS, allowing me to work comfortably across mobile and web platforms.
+                            I am a Junior Software Engineer with a primary focus on Android native development, building production-ready applications using Kotlin and Java. My Android expertise spans both XML-based UI development and modern Jetpack Compose, with strong working knowledge of Gradle and Android build systems.
+                        </p>
+                        <p className="text-gray-300 leading-relaxed mt-4">
+                            In addition to mobile development, I have secondary experience in backend and web development, including Spring Boot–based services, as well as full-stack web applications using React, TypeScript, JavaScript, and Node.js.
                         </p>
                     </Card>
                 </div>

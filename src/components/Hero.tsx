@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
     const name = "JNV REDDY";
     const letters = name.split('');
+    const description = "Android-focused Software Engineer building native apps with Kotlin and Java, using XML and Jetpack Compose, with working experience in Spring Boot and React-based web applications.";
+    const [displayedText, setDisplayedText] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
+
+    // Calculate when name animation finishes: last letter delay (8 * 0.1) + animation duration (0.8) = 1.6s
+    const nameAnimationDuration = 1.6;
+
+    useEffect(() => {
+        // Start typing animation after name animation finishes
+        const typingTimeout = setTimeout(() => {
+            setIsTyping(true);
+        }, nameAnimationDuration * 1000);
+
+        return () => clearTimeout(typingTimeout);
+    }, []);
+
+    useEffect(() => {
+        if (!isTyping) return;
+
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+            if (currentIndex < description.length) {
+                setDisplayedText(description.substring(0, currentIndex + 1));
+                currentIndex++;
+            } else {
+                clearInterval(typingInterval);
+            }
+        }, 50); // Typing speed: 50ms per character
+
+        return () => clearInterval(typingInterval);
+    }, [isTyping, description]);
 
     return (
         <section id="home" className="h-screen flex items-center justify-center bg-transparent relative overflow-hidden">
@@ -28,6 +59,13 @@ const Hero: React.FC = () => {
                         </span>
                     ))}
                 </h1>
+                
+                {/* Typing Animation Description */}
+                <div className="mt-8 sm:mt-12 md:mt-16">
+                    <p className="text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto">
+                        {displayedText}
+                    </p>
+                </div>
             </div>
             <style>{`
                 @keyframes slideFadeIn {
