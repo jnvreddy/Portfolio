@@ -43,15 +43,16 @@ const About: React.FC = () => {
                         >
                             {/* First set of skills */}
                             {technicalSkills.map((skill, index) => {
-                                const IconComponent = skill.icon;
                                 return (
                                     <div
                                         key={index}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent
-                                            className="text-5xl sm:text-6xl"
-                                            style={{ color: skill.color }}
+                                        <img
+                                            src={skill.icon}
+                                            alt={skill.name}
+                                            className="w-16 h-16 sm:w-20 sm:h-20"
+                                            style={{ filter: skill.color ? `drop-shadow(0 0 8px ${skill.color})` : undefined }}
                                         />
                                         <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {skill.name}
@@ -61,15 +62,16 @@ const About: React.FC = () => {
                             })}
                             {/* Duplicate for seamless loop */}
                             {technicalSkills.map((skill, index) => {
-                                const IconComponent = skill.icon;
                                 return (
                                     <div
                                         key={`duplicate-${index}`}
                                         className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
                                     >
-                                        <IconComponent
-                                            className="text-5xl sm:text-6xl"
-                                            style={{ color: skill.color }}
+                                        <img
+                                            src={skill.icon}
+                                            alt={skill.name}
+                                            className="w-16 h-16 sm:w-20 sm:h-20"
+                                            style={{ filter: skill.color ? `drop-shadow(0 0 8px ${skill.color})` : undefined }}
                                         />
                                         <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {skill.name}

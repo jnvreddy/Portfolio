@@ -27,7 +27,7 @@ export interface Skill {
 
 export interface TechnicalSkill {
     name: string;
-    icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+    icon: string; // Path to SVG icon
     color: string;
 }
 

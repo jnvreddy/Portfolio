@@ -1,19 +1,4 @@
 import type { Project, ExperienceItem, SkillCategory, Organization, Contribution } from '../types';
-import {
-    SiReact,
-    SiNodedotjs,
-    SiJavascript,
-    SiTypescript,
-    SiAndroid,
-    SiKotlin,
-    SiPostgresql,
-    SiPrisma,
-    SiDocker,
-    SiJetpackcompose,
-    SiSpringboot
-} from 'react-icons/si';
-import { FaDatabase } from 'react-icons/fa';
-import { DiJava } from 'react-icons/di';
 
 export const projects: Project[] = [
     {
@@ -96,31 +81,27 @@ const brandColors: Record<string, string> = {
     'Jetpack Compose': '#4285F4',
     'Node': '#339933',
     'React': '#61DAFB',
-    'Prisma': '#2D3748',
     'Postgres': '#336791',
-    'Room DB': '#4285F4',
-    'JS': '#F7DF1E',
-    'TS': '#3178C6',
+    'SQLite': '#0b7fcc',
     'Java': '#ED8B00',
     'Docker': '#2496ED',
-    'Spring Boot': '#6DB33F'
+    'Gradle': '#02303A',
+    'Tailwind CSS': '#38bdf8'
 };
 
-// Technical skills with icons
+// Technical skills with SVG icons from T-icons folder
 export const technicalSkills = [
-    { name: 'Android', icon: SiAndroid, color: brandColors['Android'] },
-    { name: 'Jetpack Compose', icon: SiJetpackcompose, color: brandColors['Jetpack Compose'] },
-    { name: 'Kotlin', icon: SiKotlin, color: brandColors['Kotlin'] },
-    { name: 'Java', icon: DiJava, color: brandColors['Java'] },
-    { name: 'JS', icon: SiJavascript, color: brandColors['JS'] },
-    { name: 'TS', icon: SiTypescript, color: brandColors['TS'] },
-    { name: 'Prisma', icon: SiPrisma, color: brandColors['Prisma'] },
-    { name: 'Postgres', icon: SiPostgresql, color: brandColors['Postgres'] },
-    { name: 'Room DB', icon: FaDatabase, color: brandColors['Room DB'] },
-    { name: 'Docker', icon: SiDocker, color: brandColors['Docker'] },
-    { name: 'React', icon: SiReact, color: brandColors['React'] },
-    { name: 'Node', icon: SiNodedotjs, color: brandColors['Node'] },
-    { name: 'Spring Boot', icon: SiSpringboot, color: brandColors['Spring Boot'] }
+    { name: 'Android', icon: '/T-icons/android-original.svg', color: brandColors['Android'] },
+    { name: 'Jetpack Compose', icon: '/T-icons/jetpackcompose-original.svg', color: brandColors['Jetpack Compose'] },
+    { name: 'Kotlin', icon: '/T-icons/kotlin-original.svg', color: brandColors['Kotlin'] },
+    { name: 'Java', icon: '/T-icons/java-original.svg', color: brandColors['Java'] },
+    { name: 'React', icon: '/T-icons/react-original.svg', color: brandColors['React'] },
+    { name: 'Node', icon: '/T-icons/nodejs-icon.svg', color: brandColors['Node'] },
+    { name: 'Postgres', icon: '/T-icons/postgresql-original.svg', color: brandColors['Postgres'] },
+    { name: 'SQLite', icon: '/T-icons/sqlite-original.svg', color: brandColors['SQLite'] },
+    { name: 'Docker', icon: '/T-icons/docker-original.svg', color: brandColors['Docker'] },
+    { name: 'Gradle', icon: '/T-icons/gradle-original.svg', color: brandColors['Gradle'] },
+    { name: 'Tailwind CSS', icon: '/T-icons/tailwindcss-original.svg', color: brandColors['Tailwind CSS'] }
 ];
 
 export const skillCategories: SkillCategory[] = [
