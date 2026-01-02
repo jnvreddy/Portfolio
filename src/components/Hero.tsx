@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
         <section id="home" className="h-screen flex items-center justify-center bg-transparent relative overflow-hidden">
             {/* Content with Professional Animations */}
             <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                <h1 className="text-8xl md:text-[14rem] font-bold flex items-center justify-center gap-2 md:gap-4">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl xl:text-[12rem] font-bold flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
                     {letters.map((letter, index) => (
                         <span
                             key={index}

@@ -128,8 +128,8 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-lg">
-      <nav className="flex space-x-3 sm:space-x-5 md:space-x-8">
+    <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-lg">
+      <nav className="flex items-center space-x-3 sm:space-x-5 md:space-x-8">
         <Link
           to="/"
           className={getLinkClassName('/')}
@@ -182,7 +182,7 @@ const Header: React.FC = () => {
           CV
           <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
         </button>
-        <div className="relative" ref={dropdownRef}>
+        <div className="relative flex items-center" ref={dropdownRef}>
           <button
             onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
             className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
