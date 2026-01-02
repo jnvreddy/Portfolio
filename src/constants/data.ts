@@ -86,23 +86,48 @@ const brandColors: Record<string, string> = {
     'Java': '#ED8B00',
     'Docker': '#2496ED',
     'Gradle': '#02303A',
-    'Tailwind CSS': '#38bdf8'
+    'Tailwind CSS': '#38bdf8',
+    'Git': '#DE4C36',
+    'Firebase': '#FFCA28',
+    'Spring Boot': '#6DB33F',
+    'Redis': '#DC382D',
+    'Figma': '#F24E1E',
+    'Angular': '#DD0031',
+    'Python': '#3776AB',
+    'TypeScript': '#3178C6',
+    'JavaScript': '#F7DF1E'
 };
 
-// Technical skills with SVG icons from T-icons folder
-export const technicalSkills = [
+// Primary technical skills (core expertise)
+export const primarySkills = [
     { name: 'Android', icon: '/T-icons/android-original.svg', color: brandColors['Android'] },
     { name: 'Jetpack Compose', icon: '/T-icons/jetpackcompose-original.svg', color: brandColors['Jetpack Compose'] },
     { name: 'Kotlin', icon: '/T-icons/kotlin-original.svg', color: brandColors['Kotlin'] },
     { name: 'Java', icon: '/T-icons/java-original.svg', color: brandColors['Java'] },
+    { name: 'SQLite', icon: '/T-icons/sqlite-original.svg', color: brandColors['SQLite'] },
+    { name: 'Gradle', icon: '/T-icons/gradle-original.svg', color: brandColors['Gradle'] },
+    { name: 'Git', icon: '/T-icons/git-icon.svg', color: brandColors['Git'] },
+    { name: 'Firebase', icon: '/T-icons/firebase-2.svg', color: brandColors['Firebase'] }
+];
+
+// Secondary technical skills
+export const secondarySkills = [
     { name: 'React', icon: '/T-icons/react-original.svg', color: brandColors['React'] },
     { name: 'Node', icon: '/T-icons/nodejs-icon.svg', color: brandColors['Node'] },
     { name: 'Postgres', icon: '/T-icons/postgresql-original.svg', color: brandColors['Postgres'] },
-    { name: 'SQLite', icon: '/T-icons/sqlite-original.svg', color: brandColors['SQLite'] },
     { name: 'Docker', icon: '/T-icons/docker-original.svg', color: brandColors['Docker'] },
-    { name: 'Gradle', icon: '/T-icons/gradle-original.svg', color: brandColors['Gradle'] },
-    { name: 'Tailwind CSS', icon: '/T-icons/tailwindcss-original.svg', color: brandColors['Tailwind CSS'] }
+    { name: 'Tailwind CSS', icon: '/T-icons/tailwindcss-original.svg', color: brandColors['Tailwind CSS'] },
+    { name: 'Spring Boot', icon: '/T-icons/spring-boot-1.svg', color: brandColors['Spring Boot'] },
+    { name: 'Redis', icon: '/T-icons/redis.svg', color: brandColors['Redis'] },
+    { name: 'Figma', icon: '/T-icons/figma-icon.svg', color: brandColors['Figma'] },
+    { name: 'Angular', icon: '/T-icons/angular_gradient.png', color: brandColors['Angular'] },
+    { name: 'Python', icon: '/T-icons/python-5.svg', color: brandColors['Python'] },
+    { name: 'TypeScript', icon: '/T-icons/typescript.svg', color: brandColors['TypeScript'] },
+    { name: 'JavaScript', icon: '/T-icons/javascript-1.svg', color: brandColors['JavaScript'] }
 ];
+
+// All technical skills (for backward compatibility)
+export const technicalSkills = [...primarySkills, ...secondarySkills];
 
 export const skillCategories: SkillCategory[] = [
     {

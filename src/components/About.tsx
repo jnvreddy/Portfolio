@@ -1,11 +1,11 @@
 import React from 'react';
 import Card from './ui/Card';
 import SectionHeader from './ui/SectionHeader';
-import { technicalSkills } from '../constants/data';
+import { primarySkills, secondarySkills } from '../constants/data';
 
 const About: React.FC = () => {
     return (
-        <section id="about" className="h-screen bg-transparent relative overflow-hidden py-12">
+        <section id="about" className="h-[200vh] bg-transparent relative overflow-hidden py-12">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <SectionHeader
                     title="About Me"
@@ -24,25 +24,90 @@ const About: React.FC = () => {
                         </p>
                     </Card>
                 </div>
+            </div>
 
-                {/* Skills Section */}
-                <div className="mb-16">
-                    <h3 className="text-3xl font-bold text-white text-center mb-12">
-                        Technical Skills
-                    </h3>
+            {/* Skills Section - Full Width */}
+            <div className="w-full mb-16 relative z-10">
+                <h3 className="text-3xl font-bold text-white text-center mb-12">
+                    Technical Skills
+                </h3>
 
-                    {/* Marquee Container */}
-                    <div className="relative overflow-hidden w-full py-8">
+                {/* Primary Skills Section */}
+                <div className="mb-12">
+                    <h4 className="text-xl font-semibold text-white text-center mb-6 flex items-center justify-center gap-2">
+                        <span className="text-2xl">⭐</span>
+                        Primary Skills
+                    </h4>
+                    <div className="relative overflow-hidden w-full py-6 left-0">
                         <div
-                            className="flex gap-12 items-center"
+                            className="flex items-center"
                             style={{
-                                animation: 'marquee 40s linear infinite',
+                                animation: 'marquee 35s linear infinite',
                                 display: 'flex',
-                                width: 'max-content'
+                                width: 'max-content',
+                                gap: '4rem',
+                                willChange: 'transform'
                             }}
                         >
-                            {/* First set of skills */}
-                            {technicalSkills.map((skill, index) => {
+                            {/* First set of primary skills */}
+                            {primarySkills.map((skill, index) => {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-3 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <img
+                                            src={skill.icon}
+                                            alt={skill.name}
+                                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 transition-all duration-300 group-hover:scale-110"
+                                        />
+                                        <span className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                            {/* Duplicate for seamless loop */}
+                            {primarySkills.map((skill, index) => {
+                                return (
+                                    <div
+                                        key={`duplicate-${index}`}
+                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-3 hover:scale-110 transition-transform duration-300"
+                                    >
+                                        <img
+                                            src={skill.icon}
+                                            alt={skill.name}
+                                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 transition-all duration-300 group-hover:scale-110"
+                                        />
+                                        <span className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Secondary Skills Section */}
+                <div>
+                    <h4 className="text-xl font-semibold text-gray-400 text-center mb-6 flex items-center justify-center gap-2">
+                        <span className="text-xl">🔧</span>
+                        Secondary Skills
+                    </h4>
+                    <div className="relative overflow-hidden w-full py-6 left-0">
+                        <div
+                            className="flex items-center"
+                            style={{
+                                animation: 'marquee 30s linear infinite',
+                                display: 'flex',
+                                width: 'max-content',
+                                gap: '3.5rem',
+                                willChange: 'transform'
+                            }}
+                        >
+                            {/* First set of secondary skills */}
+                            {secondarySkills.map((skill, index) => {
                                 return (
                                     <div
                                         key={index}
@@ -51,17 +116,16 @@ const About: React.FC = () => {
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-16 h-16 sm:w-20 sm:h-20"
-                                            style={{ filter: skill.color ? `drop-shadow(0 0 8px ${skill.color})` : undefined }}
+                                            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-80"
                                         />
-                                        <span className="text-white text-sm font-medium whitespace-nowrap">
+                                        <span className="text-gray-400 text-[10px] sm:text-xs font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>
                                 );
                             })}
                             {/* Duplicate for seamless loop */}
-                            {technicalSkills.map((skill, index) => {
+                            {secondarySkills.map((skill, index) => {
                                 return (
                                     <div
                                         key={`duplicate-${index}`}
@@ -70,10 +134,9 @@ const About: React.FC = () => {
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-16 h-16 sm:w-20 sm:h-20"
-                                            style={{ filter: skill.color ? `drop-shadow(0 0 8px ${skill.color})` : undefined }}
+                                            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 opacity-80"
                                         />
-                                        <span className="text-white text-sm font-medium whitespace-nowrap">
+                                        <span className="text-gray-400 text-[10px] sm:text-xs font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>
