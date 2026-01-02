@@ -34,8 +34,7 @@ const About: React.FC = () => {
 
                 {/* Primary Skills Section */}
                 <div className="mb-12">
-                    <h4 className="text-xl font-semibold text-white text-center mb-6 flex items-center justify-center gap-2">
-                        <span className="text-2xl">⭐</span>
+                    <h4 className="text-xl font-semibold text-white text-center mb-6">
                         Primary Skills
                     </h4>
                     <div className="relative overflow-hidden w-full py-6 left-0">
