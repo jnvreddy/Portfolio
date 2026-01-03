@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Background from './components/layouts/Background';
 import Loader from './components/ui/Loader';
+import SocialIcons from './components/SocialIcons';
 
 // Lazy load routes for code splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -15,6 +16,7 @@ function App() {
   return (
     <div style={{ position: 'relative' }}>
       <Background />
+      <SocialIcons />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
