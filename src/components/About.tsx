@@ -80,7 +80,7 @@ const About: React.FC = () => {
         };
     }, []);
     return (
-        <section id="about" className="h-[200vh] bg-transparent relative overflow-hidden py-12">
+        <section id="about" className="min-h-[200vh] bg-transparent relative overflow-hidden py-12">
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <SectionHeader
                     title="About Me"

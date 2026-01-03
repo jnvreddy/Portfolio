@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import resumePdf from '../assets/Nagavardhan(jnvreddy)-Resume.pdf';
+// import resumePdf from '../assets/Nagavardhan(jnvreddy)-Resume.pdf';
 import { useContactModal } from '../contexts/ContactModalContext';
 
 const Header: React.FC = () => {
@@ -102,14 +102,14 @@ const Header: React.FC = () => {
       }`;
   };
 
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = resumePdf;
-    link.download = 'Nagavardhan(jnvreddy)-Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownloadCV = () => {
+  //   const link = document.createElement('a');
+  //   link.href = resumePdf;
+  //   link.download = 'Nagavardhan(jnvreddy)-Resume.pdf';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 shadow-lg">
@@ -159,13 +159,13 @@ const Header: React.FC = () => {
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${isOpenSourcePage ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </Link> */}
-        <button
+        {/* <button
           onClick={handleDownloadCV}
           className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
         >
           CV
           <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
-        </button>
+        </button> */}
         <button
           onClick={openModal}
           className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
