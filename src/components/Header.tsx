@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import resumePdf from '../assets/Nagavardhan(jnvreddy)-Resume.pdf';
+import { useContactModal } from '../contexts/ContactModalContext';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -9,8 +10,7 @@ const Header: React.FC = () => {
   const isOpenSourcePage = location.pathname === '/opensource';
   const isProjectsPage = location.pathname === '/projects';
   const [activeSection, setActiveSection] = useState<string>('');
-  const [isContactDropdownOpen, setIsContactDropdownOpen] = useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { openModal } = useContactModal();
 
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, section: string) => {
     e.preventDefault();
@@ -80,22 +80,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage, location.hash]);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsContactDropdownOpen(false);
-      }
-    };
-
-    if (isContactDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isContactDropdownOpen]);
 
   const getLinkClassName = (path: string, section?: string) => {
     let isActive = false;
@@ -182,26 +166,13 @@ const Header: React.FC = () => {
           CV
           <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
         </button>
-        <div className="relative flex items-center" ref={dropdownRef}>
-          <button
-            onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
-            className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
-          >
-            Contact
-            <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
-          </button>
-
-          {isContactDropdownOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-xl py-2 min-w-[200px] z-50">
-              <div className="flex items-center gap-3 px-4 py-3 text-gray-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="text-sm">jnvreddy.dev@gmail.com</span>
-              </div>
-            </div>
-          )}
-        </div>
+        <button
+          onClick={openModal}
+          className="text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-105 relative group whitespace-nowrap flex-shrink-0 text-gray-400 hover:text-white"
+        >
+          Contact
+          <span className="absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 w-0 group-hover:w-full"></span>
+        </button>
       </nav>
     </header>
   );
