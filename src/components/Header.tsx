@@ -117,6 +117,17 @@ const Header: React.FC = () => {
         <Link
           to="/"
           className={getLinkClassName('/')}
+          onClick={(e) => {
+            if (isHomePage) {
+              e.preventDefault();
+              const homeElement = document.getElementById('home');
+              if (homeElement) {
+                homeElement.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }
+          }}
         >
           Home
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${(isHomePage && (activeSection === 'home' || activeSection === '')) ? 'w-full' : 'w-0 group-hover:w-full'
