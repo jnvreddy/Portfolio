@@ -95,11 +95,21 @@ const About: React.FC = () => {
                             Who I Am
                         </h3>
                         <p className="text-gray-300 leading-relaxed">
-                            I am a Junior Software Engineer with a primary focus on Android native development, building production-ready applications using Kotlin and Java. My Android expertise spans both XML-based UI development and modern Jetpack Compose, with strong working knowledge of Gradle and Android build systems.
+                            I’m a Software Engineer focused on native Android development, building and maintaining production applications with an emphasis on correctness, performance, and long-term maintainability. I work close to the Android platform, using Kotlin and Java across both XML-based UI systems and modern Jetpack Compose.
                         </p>
+
                         <p className="text-gray-300 leading-relaxed mt-4">
-                            In addition to mobile development, I have secondary experience in backend and web development, including Spring Boot–based services, as well as full-stack web applications using React, TypeScript, JavaScript, and Node.js.
+                            In my current role, I contribute to a large production Android codebase, handling regular maintenance, bug fixes, and feature development. Alongside this, I refactor and migrate legacy components to Kotlin within active release cycles, shipping new features while progressively introducing Jetpack Compose–based UI and state-driven patterns to improve stability and long-term maintainability.
                         </p>
+
+                        <p className="text-gray-300 leading-relaxed mt-4">
+                            Beyond development, I’ve mentored interns, supported onboarding for new team members, and evaluated candidates through technical interviews, strengthening my approach to code reviews, technical communication, and trade-off driven decision-making.
+                        </p>
+
+                        <p className="text-gray-300 leading-relaxed mt-4">
+                            While I have experience with backend and full-stack development (Spring Boot, React, TypeScript, Node.js), my core strength and long-term focus remain Android-native development. I’m currently deepening my expertise in Jetpack Compose and exploring Kotlin Multiplatform (KMP) to share business logic across platforms while maintaining platform-native UI for Android and iOS, without compromising user experience or performance.
+                        </p>
+
                     </Card>
                 </div>
             </div>
