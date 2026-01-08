@@ -107,6 +107,39 @@ export const useSectionSnap = ({
     [sectionIds, isTransitioning, updateSectionStates]
   );
 
+  // Check if section can scroll internally (returns true if we should allow normal scrolling)
+  const canScrollInSection = useCallback((sectionId: string, direction: 'up' | 'down'): boolean => {
+    const sectionElement = sectionRefs.current.get(sectionId);
+    if (!sectionElement) return false;
+
+    // Special handling for 'about' section - allow internal scrolling
+    if (sectionId === 'about') {
+      const rect = sectionElement.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionBottom = sectionTop + rect.height;
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const viewportBottom = currentScrollY + viewportHeight;
+      const threshold = 150; // Threshold in pixels to trigger section change
+
+      if (direction === 'down') {
+        // Check if we're near the bottom of the section
+        // If the bottom of the section is within threshold of viewport bottom, trigger snap
+        const distanceFromBottom = sectionBottom - viewportBottom;
+        // Allow normal scroll if there's still content below
+        return distanceFromBottom > threshold;
+      } else {
+        // Check if we're near the top of the section
+        // If the top of the section is within threshold of viewport top, trigger snap
+        const distanceFromTop = currentScrollY - sectionTop;
+        // Allow normal scroll if there's still content above
+        return distanceFromTop > threshold;
+      }
+    }
+
+    return false;
+  }, []);
+
   // Handle wheel scroll
   const handleWheel = useCallback(
     (e: WheelEvent) => {
@@ -125,7 +158,15 @@ export const useSectionSnap = ({
 
       const deltaY = e.deltaY;
       const direction = deltaY > 0 ? 'down' : 'up';
+      const currentSectionId = sectionIds[currentSectionIndex];
 
+      // Check if we can scroll within the current section (for About section)
+      if (canScrollInSection(currentSectionId, direction)) {
+        // Allow normal scrolling within the section
+        return;
+      }
+
+      // Otherwise, trigger section snap
       if (direction === 'down' && currentSectionIndex < sectionIds.length - 1) {
         e.preventDefault();
         scrollToSection(currentSectionIndex + 1, 'down');
@@ -134,7 +175,7 @@ export const useSectionSnap = ({
         scrollToSection(currentSectionIndex - 1, 'up');
       }
     },
-    [currentSectionIndex, sectionIds.length, isTransitioning, debounceDelay, scrollToSection]
+    [currentSectionIndex, sectionIds, isTransitioning, debounceDelay, scrollToSection, canScrollInSection]
   );
 
   // Handle touch start
@@ -152,6 +193,16 @@ export const useSectionSnap = ({
       const minSwipeDistance = 50; // Minimum distance for a swipe
 
       if (Math.abs(diff) > minSwipeDistance) {
+        const direction = diff > 0 ? 'down' : 'up';
+        const currentSectionId = sectionIds[currentSectionIndex];
+
+        // Check if we can scroll within the current section (for About section)
+        if (canScrollInSection(currentSectionId, direction)) {
+          // Allow normal scrolling within the section
+          return;
+        }
+
+        // Otherwise, trigger section snap
         if (diff > 0 && currentSectionIndex < sectionIds.length - 1) {
           // Swipe up - go to next section
           scrollToSection(currentSectionIndex + 1, 'down');
@@ -161,7 +212,7 @@ export const useSectionSnap = ({
         }
       }
     },
-    [currentSectionIndex, sectionIds.length, isTransitioning, scrollToSection]
+    [currentSectionIndex, sectionIds, isTransitioning, scrollToSection, canScrollInSection]
   );
 
   // Handle keyboard navigation

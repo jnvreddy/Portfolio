@@ -109,7 +109,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
         <section 
             ref={sectionRef}
             id="about" 
-            className="h-screen bg-transparent relative overflow-hidden py-12"
+            className="min-h-screen bg-transparent relative py-12"
         >
             <div className={`max-w-6xl mx-auto px-6 relative z-10 ${getAnimationClass()}`}>
                 <SectionHeader
