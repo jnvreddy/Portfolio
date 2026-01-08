@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useImperativeHandle, forwardRef } from 'react';
 import SectionHeader from './ui/SectionHeader';
 import type { SectionAnimationState } from '../types/sectionSnap';
 

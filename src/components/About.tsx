@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import Card from './ui/Card';
 import SectionHeader from './ui/SectionHeader';
 import { primarySkills, secondarySkills } from '../constants/data';
