@@ -1,9 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import Card from './ui/Card';
 import SectionHeader from './ui/SectionHeader';
 import { primarySkills, secondarySkills } from '../constants/data';
+import type { SectionAnimationState } from '../types/sectionSnap';
 
-const About: React.FC = () => {
+interface AboutProps {
+  animationState?: SectionAnimationState;
+  direction?: 'up' | 'down';
+}
+
+const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', direction }, ref) => {
     const primaryContainerRef = useRef<HTMLDivElement>(null);
     const primaryContentRef = useRef<HTMLDivElement>(null);
     const secondaryContainerRef = useRef<HTMLDivElement>(null);
@@ -79,9 +85,33 @@ const About: React.FC = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useImperativeHandle(ref, () => sectionRef.current as HTMLElement);
+
+    const getAnimationClass = () => {
+        switch (animationState) {
+            case 'entering':
+                return direction === 'down' ? 'animate-slide-in-up' : 'animate-slide-in-down';
+            case 'exiting':
+                return direction === 'down' ? 'animate-slide-out-up' : 'animate-slide-out-down';
+            case 'active':
+                return '';
+            case 'hidden':
+                return 'opacity-0';
+            default:
+                return '';
+        }
+    };
+
     return (
-        <section id="about" className="min-h-[200vh] bg-transparent relative overflow-hidden py-12">
-            <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <section 
+            ref={sectionRef}
+            id="about" 
+            className="h-screen bg-transparent relative overflow-hidden py-12"
+        >
+            <div className={`max-w-6xl mx-auto px-6 relative z-10 ${getAnimationClass()}`}>
                 <SectionHeader
                     title="About Me"
                     subtitle="Get to know more about my background and expertise"
@@ -244,7 +274,9 @@ const About: React.FC = () => {
             </div>
         </section>
     );
-};
+});
+
+About.displayName = 'About';
 
 export default About;
 

@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useRef, useImperativeHandle, forwardRef } from 'react';
 import SectionHeader from './ui/SectionHeader';
+import type { SectionAnimationState } from '../types/sectionSnap';
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  animationState?: SectionAnimationState;
+  direction?: 'up' | 'down';
+}
+
+const Projects = forwardRef<HTMLElement, ProjectsProps>(({ animationState = 'active', direction }, ref) => {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useImperativeHandle(ref, () => sectionRef.current as HTMLElement);
+
+    const getAnimationClass = () => {
+        switch (animationState) {
+            case 'entering':
+                return direction === 'down' ? 'animate-slide-in-up' : 'animate-slide-in-down';
+            case 'exiting':
+                return direction === 'down' ? 'animate-slide-out-up' : 'animate-slide-out-down';
+            case 'active':
+                return '';
+            case 'hidden':
+                return 'opacity-0';
+            default:
+                return '';
+        }
+    };
+
     return (
-        <section id="projects" className="bg-transparent relative py-12">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <section 
+            ref={sectionRef}
+            id="projects" 
+            className="h-screen bg-transparent relative py-12 overflow-hidden"
+        >
+            <div className={`max-w-7xl mx-auto px-6 relative z-10 ${getAnimationClass()}`}>
                 <SectionHeader
                     title="My Projects"
                     subtitle="A collection of projects showcasing my skills in Android development, full-stack applications, and AI integration"
@@ -15,7 +44,9 @@ const Projects: React.FC = () => {
             </div>
         </section>
     );
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;
 

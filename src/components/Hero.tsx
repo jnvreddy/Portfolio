@@ -1,6 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import type { SectionAnimationState } from '../types/sectionSnap';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  animationState?: SectionAnimationState;
+  direction?: 'up' | 'down';
+}
+
+const Hero = forwardRef<HTMLElement, HeroProps>(({ animationState = 'active', direction }, ref) => {
     const name = "JNV REDDY";
     const letters = name.split('');
     const description = "Android-focused Software Engineer building native apps with Kotlin and Java, using XML and Jetpack Compose, with working experience in Spring Boot and React-based web applications.";
@@ -35,10 +41,33 @@ const Hero: React.FC = () => {
         return () => clearInterval(typingInterval);
     }, [isTyping, description]);
 
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useImperativeHandle(ref, () => sectionRef.current as HTMLElement);
+
+    const getAnimationClass = () => {
+        switch (animationState) {
+            case 'entering':
+                return direction === 'down' ? 'animate-slide-in-up' : 'animate-slide-in-down';
+            case 'exiting':
+                return direction === 'down' ? 'animate-slide-out-up' : 'animate-slide-out-down';
+            case 'active':
+                return '';
+            case 'hidden':
+                return 'opacity-0';
+            default:
+                return '';
+        }
+    };
+
     return (
-        <section id="home" className="h-screen flex items-center justify-center bg-transparent relative overflow-hidden">
+        <section 
+            ref={sectionRef}
+            id="home" 
+            className="h-screen flex items-center justify-center bg-transparent relative overflow-hidden"
+        >
             {/* Content with Professional Animations */}
-            <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div className={`max-w-4xl mx-auto px-6 text-center relative z-10 ${getAnimationClass()}`}>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl xl:text-[12rem] font-bold flex items-center justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
                     {letters.map((letter, index) => (
                         <span
@@ -81,6 +110,8 @@ const Hero: React.FC = () => {
             `}</style>
         </section>
     );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
