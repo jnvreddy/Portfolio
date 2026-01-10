@@ -16,6 +16,67 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
     const secondaryContentRef = useRef<HTMLDivElement>(null);
     const [primaryNeedsMarquee, setPrimaryNeedsMarquee] = useState(false);
     const [secondaryNeedsMarquee, setSecondaryNeedsMarquee] = useState(false);
+    
+    // Paragraph carousel state
+    const paragraphs = [
+        "I'm a Software Engineer focused on native Android development, building and maintaining production applications with an emphasis on correctness, performance, and long-term maintainability. I work close to the Android platform, using Kotlin and Java across both XML-based UI systems and modern Jetpack Compose.",
+        "In my current role, I contribute to a large production Android codebase, handling regular maintenance, bug fixes, and feature development. Alongside this, I refactor and migrate legacy components to Kotlin within active release cycles, shipping new features while progressively introducing Jetpack Compose–based UI and state-driven patterns to improve stability and long-term maintainability.",
+        "Beyond development, I've mentored interns, supported onboarding for new team members, and evaluated candidates through technical interviews, strengthening my approach to code reviews, technical communication, and trade-off driven decision-making.",
+        "While I have experience with backend and full-stack development (Spring Boot, React, TypeScript, Node.js), my core strength and long-term focus remain Android-native development. I'm currently deepening my expertise in Jetpack Compose and exploring Kotlin Multiplatform (KMP) to share business logic across platforms while maintaining platform-native UI for Android and iOS, without compromising user experience or performance."
+    ];
+    
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [containerHeight, setContainerHeight] = useState<number | 'auto'>('auto');
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const paragraphRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
+
+    // Update container height based on current paragraph
+    useEffect(() => {
+        if (paragraphRefs.current[currentIndex]) {
+            const currentParagraph = paragraphRefs.current[currentIndex];
+            if (currentParagraph) {
+                setContainerHeight(currentParagraph.offsetHeight);
+            }
+        }
+    }, [currentIndex]);
+
+    // Auto-slide every 8 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % paragraphs.length);
+        }, 8000);
+
+        return () => clearInterval(interval);
+    }, [paragraphs.length]);
+
+    // Touch handlers for swipe
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStartX.current || !touchEndX.current) return;
+        
+        const distance = touchStartX.current - touchEndX.current;
+        const minSwipeDistance = 50;
+
+        if (distance > minSwipeDistance) {
+            // Swipe left - next paragraph
+            setCurrentIndex((prev) => (prev + 1) % paragraphs.length);
+        } else if (distance < -minSwipeDistance) {
+            // Swipe right - previous paragraph
+            setCurrentIndex((prev) => (prev - 1 + paragraphs.length) % paragraphs.length);
+        }
+
+        touchStartX.current = null;
+        touchEndX.current = null;
+    };
 
     useEffect(() => {
         const checkOverflow = () => {
@@ -120,26 +181,48 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 {/* About Content */}
                 <div className="max-w-3xl mx-auto mb-16">
                     <Card className="p-8">
-                        <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-3">
-                            <span className="text-3xl">👋</span>
-                            Who I Am
-                        </h3>
-                        <p className="text-gray-300 leading-relaxed">
-                            I’m a Software Engineer focused on native Android development, building and maintaining production applications with an emphasis on correctness, performance, and long-term maintainability. I work close to the Android platform, using Kotlin and Java across both XML-based UI systems and modern Jetpack Compose.
-                        </p>
+                        {/* Paragraph Carousel */}
+                        <div 
+                            className="relative overflow-hidden"
+                            style={{ height: containerHeight === 'auto' ? 'auto' : `${containerHeight}px`, transition: 'height 0.3s ease-in-out' }}
+                        >
+                            <div
+                                ref={carouselRef}
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                                onTouchStart={handleTouchStart}
+                                onTouchMove={handleTouchMove}
+                                onTouchEnd={handleTouchEnd}
+                            >
+                                {paragraphs.map((paragraph, index) => (
+                                    <div
+                                        key={index}
+                                        ref={(el) => { paragraphRefs.current[index] = el; }}
+                                        className="w-full flex-shrink-0 px-2"
+                                    >
+                                        <p className="text-gray-300 leading-relaxed">
+                                            {paragraph}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
-                        <p className="text-gray-300 leading-relaxed mt-4">
-                            In my current role, I contribute to a large production Android codebase, handling regular maintenance, bug fixes, and feature development. Alongside this, I refactor and migrate legacy components to Kotlin within active release cycles, shipping new features while progressively introducing Jetpack Compose–based UI and state-driven patterns to improve stability and long-term maintainability.
-                        </p>
-
-                        <p className="text-gray-300 leading-relaxed mt-4">
-                            Beyond development, I’ve mentored interns, supported onboarding for new team members, and evaluated candidates through technical interviews, strengthening my approach to code reviews, technical communication, and trade-off driven decision-making.
-                        </p>
-
-                        <p className="text-gray-300 leading-relaxed mt-4">
-                            While I have experience with backend and full-stack development (Spring Boot, React, TypeScript, Node.js), my core strength and long-term focus remain Android-native development. I’m currently deepening my expertise in Jetpack Compose and exploring Kotlin Multiplatform (KMP) to share business logic across platforms while maintaining platform-native UI for Android and iOS, without compromising user experience or performance.
-                        </p>
-
+                        {/* Progress Dots */}
+                        <div className="flex justify-center items-center gap-2 mt-6">
+                            {paragraphs.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentIndex(index)}
+                                    className={`transition-all duration-300 rounded-full ${
+                                        index === currentIndex
+                                            ? 'w-3 h-3 bg-white'
+                                            : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+                                    }`}
+                                    aria-label={`Go to paragraph ${index + 1}`}
+                                />
+                            ))}
+                        </div>
                     </Card>
                 </div>
             </div>
@@ -279,4 +362,3 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
 About.displayName = 'About';
 
 export default About;
-
