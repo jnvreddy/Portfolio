@@ -129,18 +129,18 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
       {/* Centered Modal */}
       <div
-        className="relative w-[90%] max-w-4xl h-[80vh] max-h-[800px] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-[90%] max-w-2xl max-h-[90vh] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Close Button */}
-        <div className="flex justify-end p-4 sm:p-6">
+        <div className="flex justify-end p-3 sm:p-4 flex-shrink-0">
           <button
             onClick={onClose}
-            className="text-white/70 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+            className="text-white/70 hover:text-white transition-colors p-1.5 hover:bg-white/10 rounded-full"
             aria-label="Close modal"
           >
             <svg
-              className="w-6 h-6 sm:w-8 sm:h-8"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -156,15 +156,15 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 overflow-y-auto">
-          <div className="w-full max-w-2xl">
+        <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
+          <div className="w-full">
             {/* Title */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 text-center">
               Get In Touch
             </h2>
 
             {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <Input
                 id="name"
                 name="name"
@@ -200,11 +200,11 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 onChange={handleChange}
                 error={errors.body}
                 required
-                rows={6}
+                rows={4}
                 className="text-white"
               />
 
-              <div className="pt-4">
+              <div className="pt-2 sm:pt-3">
                 <Button
                   type="submit"
                   variant="primary"

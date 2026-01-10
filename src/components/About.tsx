@@ -172,7 +172,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             id="about" 
             className="h-screen bg-transparent relative overflow-hidden flex flex-col"
         >
-            <div className={`w-full px-6 py-12 relative z-10 flex-1 overflow-y-auto ${getAnimationClass()}`}>
+            <div className={`w-full px-6 pt-12 pb-0 relative z-10 flex-1 overflow-y-auto ${getAnimationClass()}`}>
                 <div className="w-full mb-2">
                     <SectionHeader
                         title="About Me"
@@ -181,8 +181,8 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 </div>
 
                 {/* About Content */}
-                <div className="max-w-3xl mx-auto mb-8">
-                    <Card className="p-8">
+                <div className="max-w-2xl mx-auto mb-8">
+                    <Card className="p-4 sm:p-6 md:p-8">
                         {/* Paragraph Carousel */}
                         <div 
                             className="relative overflow-hidden"
@@ -202,7 +202,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         ref={(el) => { paragraphRefs.current[index] = el; }}
                                         className="w-full flex-shrink-0 px-2"
                                     >
-                                        <p className="text-gray-300 leading-relaxed">
+                                        <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg">
                                             {paragraph}
                                         </p>
                                     </div>
@@ -229,14 +229,14 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 </div>
 
                 {/* Skills Section - Full Width */}
-                <div className="w-full mb-8 relative z-10">
-                <h3 className="text-3xl font-bold text-white text-center mb-6">
+                <div className="w-full mb-0 relative z-10">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center mb-6">
                     Technical Skills
                 </h3>
 
                 {/* Primary Skills Section */}
                 <div className="mb-4">
-                    <h4 className="text-xl font-semibold text-white text-center mb-4">
+                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-white text-center mb-4">
                         Primary Skills
                     </h4>
                     <div
@@ -266,9 +266,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 transition-all duration-300 group-hover:scale-110"
+                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-all duration-300 group-hover:scale-110"
                                         />
-                                        <span className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap">
+                                        <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>
@@ -283,9 +283,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 transition-all duration-300 group-hover:scale-110"
+                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-all duration-300 group-hover:scale-110"
                                         />
-                                        <span className="text-white text-xs sm:text-sm font-semibold whitespace-nowrap">
+                                        <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>
@@ -297,12 +297,12 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
 
                 {/* Secondary Skills Section */}
                 <div>
-                    <h4 className="text-xl font-semibold text-gray-400 text-center mb-2 flex items-center justify-center gap-2">
+                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-400 text-center mb-2 flex items-center justify-center gap-2">
                         Secondary Skills
                     </h4>
                     <div
                         ref={secondaryContainerRef}
-                        className={`relative overflow-hidden w-full py-4 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
+                        className={`relative overflow-hidden w-full pt-4 pb-0 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
                     >
                         <div
                             ref={secondaryContentRef}
@@ -327,9 +327,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 opacity-80"
+                                            className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 opacity-80"
                                         />
-                                        <span className="text-gray-400 text-[10px] sm:text-xs font-medium whitespace-nowrap">
+                                        <span className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>
@@ -344,9 +344,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         <img
                                             src={skill.icon}
                                             alt={skill.name}
-                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 opacity-80"
+                                            className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 opacity-80"
                                         />
-                                        <span className="text-gray-400 text-[10px] sm:text-xs font-medium whitespace-nowrap">
+                                        <span className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs font-medium whitespace-nowrap">
                                             {skill.name}
                                         </span>
                                     </div>

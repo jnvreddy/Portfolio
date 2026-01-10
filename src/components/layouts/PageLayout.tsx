@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header';
+import FloatingContactButton from '../FloatingContactButton';
 import Footer from '../Footer';
 
 interface PageLayoutProps {
@@ -10,8 +10,8 @@ interface PageLayoutProps {
 const PageLayout: React.FC<PageLayoutProps> = ({ children, showFooter = true }) => {
     return (
         <div className="min-h-screen bg-transparent">
-            <Header />
-            <main className="pt-32 pb-20">
+            <FloatingContactButton />
+            <main className="pb-20">
                 {children}
             </main>
             {showFooter && <Footer />}

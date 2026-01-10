@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import type { SectionAnimationState } from '../types/sectionSnap';
 
-interface HeroProps {
+interface HomeProps {
   animationState?: SectionAnimationState;
   direction?: 'up' | 'down';
 }
 
-const Hero = forwardRef<HTMLElement, HeroProps>(({ animationState = 'active', direction }, ref) => {
+const Home = forwardRef<HTMLElement, HomeProps>(({ animationState = 'active', direction }, ref) => {
     const name = "JNV REDDY";
     const letters = name.split('');
-    const description = "Android-focused Software Engineer building native apps with Kotlin and Java, using XML and Jetpack Compose, with working experience in Spring Boot and React-based web applications.";
+    const description = "Android-first Mobile Engineer building native apps with Kotlin and Jetpack Compose, with experience in cross-platform and backend development.";
     const [displayedText, setDisplayedText] = useState('');
     const [isTyping, setIsTyping] = useState(false);
 
@@ -112,6 +112,6 @@ const Hero = forwardRef<HTMLElement, HeroProps>(({ animationState = 'active', di
     );
 });
 
-Hero.displayName = 'Hero';
+Home.displayName = 'Home';
 
-export default Hero;
+export default Home;
