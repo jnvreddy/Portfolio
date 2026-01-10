@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     }, [registerSection]);
 
     return (
-        <div>
+        <div className="flex flex-col">
             <Header />
             <Hero 
                 ref={heroRef}
