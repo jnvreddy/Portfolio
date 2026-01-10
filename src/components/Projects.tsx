@@ -31,9 +31,9 @@ const Projects = forwardRef<HTMLElement, ProjectsProps>(({ animationState = 'act
         <section 
             ref={sectionRef}
             id="projects" 
-            className="h-screen bg-transparent relative py-12 overflow-hidden"
+            className="h-screen bg-transparent relative overflow-hidden"
         >
-            <div className={`max-w-7xl mx-auto px-6 relative z-10 ${getAnimationClass()}`}>
+            <div className={`max-w-7xl mx-auto px-6 py-12 relative z-10 h-full overflow-y-auto ${getAnimationClass()}`}>
                 <SectionHeader
                     title="My Projects"
                     subtitle="A collection of projects showcasing my skills in Android development, full-stack applications, and AI integration"
