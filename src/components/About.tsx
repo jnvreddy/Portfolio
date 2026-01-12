@@ -171,9 +171,13 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             ref={sectionRef}
             id="about" 
             className="h-screen bg-transparent relative overflow-hidden flex flex-col"
+            style={{ height: '100vh' }}
         >
-            <div className={`w-full px-6 pt-12 pb-0 relative z-10 flex-1 overflow-y-auto ${getAnimationClass()}`}>
-                <div className="w-full mb-2">
+            <div 
+                className={`w-full px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6 relative z-10 flex-1 overflow-y-auto hide-scrollbar ${getAnimationClass()}`}
+                style={{ maxHeight: '100vh' }}
+            >
+                <div className="w-full mb-3 sm:mb-4">
                     <SectionHeader
                         title="About Me"
                         subtitle="Get to know more about my background and expertise"
@@ -181,8 +185,8 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 </div>
 
                 {/* About Content */}
-                <div className="max-w-2xl mx-auto mb-8">
-                    <Card className="p-4 sm:p-6 md:p-8">
+                <div className="max-w-2xl mx-auto mb-4 sm:mb-6 md:mb-8">
+                    <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
                         {/* Paragraph Carousel */}
                         <div 
                             className="relative overflow-hidden"
@@ -202,7 +206,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         ref={(el) => { paragraphRefs.current[index] = el; }}
                                         className="w-full flex-shrink-0 px-2"
                                     >
-                                        <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg">
+                                        <p className="text-gray-300 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">
                                             {paragraph}
                                         </p>
                                     </div>
@@ -211,7 +215,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                         </div>
 
                         {/* Progress Dots */}
-                        <div className="flex justify-center items-center gap-2 mt-6">
+                        <div className="flex justify-center items-center gap-2 mt-4 sm:mt-6">
                             {paragraphs.map((_, index) => (
                                 <button
                                     key={index}
@@ -229,132 +233,132 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 </div>
 
                 {/* Skills Section - Full Width */}
-                <div className="w-full mb-0 relative z-10">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center mb-6">
-                    Technical Skills
-                </h3>
+                <div className="w-full mb-4 sm:mb-6 relative z-10">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white text-center mb-3 sm:mb-4 md:mb-6">
+                        Technical Skills
+                    </h3>
 
-                {/* Primary Skills Section */}
-                <div className="mb-4">
-                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-white text-center mb-4">
-                        Primary Skills
-                    </h4>
-                    <div
-                        ref={primaryContainerRef}
-                        className={`relative overflow-hidden w-full py-4 ${primaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
-                    >
+                    {/* Primary Skills Section */}
+                    <div className="mb-3 sm:mb-4">
+                        <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white text-center mb-2 sm:mb-3 md:mb-4">
+                            Primary Skills
+                        </h4>
                         <div
-                            ref={primaryContentRef}
-                            className={primaryNeedsMarquee
-                                ? "flex items-center"
-                                : "flex items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12"
-                            }
-                            style={primaryNeedsMarquee ? {
-                                animation: 'marquee 35s linear infinite',
-                                display: 'flex',
-                                width: 'max-content',
-                                gap: '4rem',
-                                willChange: 'transform'
-                            } : {}}
+                            ref={primaryContainerRef}
+                            className={`relative overflow-hidden w-full py-2 sm:py-3 md:py-4 ${primaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
                         >
-                            {primarySkills.map((skill, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`flex flex-col items-center justify-center gap-3 hover:scale-110 transition-transform duration-300 ${primaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
-                                    >
-                                        <img
-                                            src={skill.icon}
-                                            alt={skill.name}
-                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-all duration-300 group-hover:scale-110"
-                                        />
-                                        <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                            {primaryNeedsMarquee && primarySkills.map((skill, index) => {
-                                return (
-                                    <div
-                                        key={`duplicate-${index}`}
-                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-3 hover:scale-110 transition-transform duration-300"
-                                    >
-                                        <img
-                                            src={skill.icon}
-                                            alt={skill.name}
-                                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 transition-all duration-300 group-hover:scale-110"
-                                        />
-                                        <span className="text-white text-[10px] sm:text-xs md:text-sm font-semibold whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
+                            <div
+                                ref={primaryContentRef}
+                                className={primaryNeedsMarquee
+                                    ? "flex items-center"
+                                    : "flex items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10"
+                                }
+                                style={primaryNeedsMarquee ? {
+                                    animation: 'marquee 35s linear infinite',
+                                    display: 'flex',
+                                    width: 'max-content',
+                                    gap: '4rem',
+                                    willChange: 'transform'
+                                } : {}}
+                            >
+                                {primarySkills.map((skill, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300 ${primaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
+                                        >
+                                            <img
+                                                src={skill.icon}
+                                                alt={skill.name}
+                                                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                            />
+                                            <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                                {primaryNeedsMarquee && primarySkills.map((skill, index) => {
+                                    return (
+                                        <div
+                                            key={`duplicate-${index}`}
+                                            className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300"
+                                        >
+                                            <img
+                                                src={skill.icon}
+                                                alt={skill.name}
+                                                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                            />
+                                            <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Secondary Skills Section */}
-                <div>
-                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-400 text-center mb-2 flex items-center justify-center gap-2">
-                        Secondary Skills
-                    </h4>
-                    <div
-                        ref={secondaryContainerRef}
-                        className={`relative overflow-hidden w-full pt-4 pb-0 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
-                    >
+                    {/* Secondary Skills Section */}
+                    <div>
+                        <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-400 text-center mb-2 sm:mb-3 flex items-center justify-center gap-2">
+                            Secondary Skills
+                        </h4>
                         <div
-                            ref={secondaryContentRef}
-                            className={secondaryNeedsMarquee
-                                ? "flex items-center"
-                                : "flex items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10"
-                            }
-                            style={secondaryNeedsMarquee ? {
-                                animation: 'marquee 30s linear infinite',
-                                display: 'flex',
-                                width: 'max-content',
-                                gap: '3.5rem',
-                                willChange: 'transform'
-                            } : {}}
+                            ref={secondaryContainerRef}
+                            className={`relative overflow-hidden w-full pt-2 sm:pt-3 md:pt-4 pb-2 sm:pb-4 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
                         >
-                            {secondarySkills.map((skill, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300 ${secondaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
-                                    >
-                                        <img
-                                            src={skill.icon}
-                                            alt={skill.name}
-                                            className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 opacity-80"
-                                        />
-                                        <span className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs font-medium whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                            {secondaryNeedsMarquee && secondarySkills.map((skill, index) => {
-                                return (
-                                    <div
-                                        key={`duplicate-${index}`}
-                                        className="flex-shrink-0 flex flex-col items-center justify-center gap-2 hover:scale-110 transition-transform duration-300"
-                                    >
-                                        <img
-                                            src={skill.icon}
-                                            alt={skill.name}
-                                            className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 opacity-80"
-                                        />
-                                        <span className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs font-medium whitespace-nowrap">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
+                            <div
+                                ref={secondaryContentRef}
+                                className={secondaryNeedsMarquee
+                                    ? "flex items-center"
+                                    : "flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8"
+                                }
+                                style={secondaryNeedsMarquee ? {
+                                    animation: 'marquee 30s linear infinite',
+                                    display: 'flex',
+                                    width: 'max-content',
+                                    gap: '3.5rem',
+                                    willChange: 'transform'
+                                } : {}}
+                            >
+                                {secondarySkills.map((skill, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300 ${secondaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
+                                        >
+                                            <img
+                                                src={skill.icon}
+                                                alt={skill.name}
+                                                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                            />
+                                            <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                                {secondaryNeedsMarquee && secondarySkills.map((skill, index) => {
+                                    return (
+                                        <div
+                                            key={`duplicate-${index}`}
+                                            className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300"
+                                        >
+                                            <img
+                                                src={skill.icon}
+                                                alt={skill.name}
+                                                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                            />
+                                            <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </section>
