@@ -114,26 +114,42 @@ export const useSectionSnap = ({
 
     // Special handling for 'about' section - allow internal scrolling
     if (sectionId === 'about') {
-      const rect = sectionElement.getBoundingClientRect();
-      const sectionTop = rect.top + window.scrollY;
-      const sectionBottom = sectionTop + rect.height;
-      const currentScrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const viewportBottom = currentScrollY + viewportHeight;
-      const threshold = 150; // Threshold in pixels to trigger section change
+      // Find the scrollable container inside the about section
+      const scrollableContainer = sectionElement.querySelector('[class*="overflow-y-auto"]') as HTMLElement;
+      
+      if (scrollableContainer) {
+        const scrollTop = scrollableContainer.scrollTop;
+        const scrollHeight = scrollableContainer.scrollHeight;
+        const clientHeight = scrollableContainer.clientHeight;
+        const threshold = 10; // Small threshold to account for rounding
 
-      if (direction === 'down') {
-        // Check if we're near the bottom of the section
-        // If the bottom of the section is within threshold of viewport bottom, trigger snap
-        const distanceFromBottom = sectionBottom - viewportBottom;
-        // Allow normal scroll if there's still content below
-        return distanceFromBottom > threshold;
+        if (direction === 'down') {
+          // Check if we're at or near the bottom of the scrollable container
+          const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
+          // Allow normal scroll if there's still content below
+          return distanceFromBottom > threshold;
+        } else {
+          // Check if we're at or near the top of the scrollable container
+          // Allow normal scroll if there's still content above
+          return scrollTop > threshold;
+        }
       } else {
-        // Check if we're near the top of the section
-        // If the top of the section is within threshold of viewport top, trigger snap
-        const distanceFromTop = currentScrollY - sectionTop;
-        // Allow normal scroll if there's still content above
-        return distanceFromTop > threshold;
+        // Fallback to original logic if scrollable container not found
+        const rect = sectionElement.getBoundingClientRect();
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
+        const currentScrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const viewportBottom = currentScrollY + viewportHeight;
+        const threshold = 150;
+
+        if (direction === 'down') {
+          const distanceFromBottom = sectionBottom - viewportBottom;
+          return distanceFromBottom > threshold;
+        } else {
+          const distanceFromTop = currentScrollY - sectionTop;
+          return distanceFromTop > threshold;
+        }
       }
     }
 
