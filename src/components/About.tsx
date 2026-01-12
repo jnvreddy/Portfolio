@@ -174,7 +174,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             style={{ height: '100vh' }}
         >
             <div 
-                className={`w-full px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6 relative z-10 flex-1 overflow-y-auto ${getAnimationClass()}`}
+                className={`w-full px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6 relative z-10 flex-1 overflow-y-auto hide-scrollbar ${getAnimationClass()}`}
                 style={{ maxHeight: '100vh' }}
             >
                 <div className="w-full mb-3 sm:mb-4">
