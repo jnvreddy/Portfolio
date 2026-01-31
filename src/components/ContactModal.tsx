@@ -130,6 +130,14 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleMessageModalClose = () => {
+    const wasSuccess = messageModal.variant === 'success';
+    setMessageModal((prev) => ({ ...prev, isOpen: false }));
+    if (wasSuccess) {
+      onClose();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -176,7 +184,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       });
       setFormData({ name: '', email: '', body: '' });
       setErrors({});
-      onClose();
+      // Do NOT call onClose() here — contact modal stays open so success modal can show.
+      // onClose() is called when user dismisses the success modal (handleMessageModalClose).
     } catch (error) {
       console.error('Error submitting form:', error);
       setMessageModal({
@@ -333,7 +342,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     </div>
     <MessageModal
       isOpen={messageModal.isOpen}
-      onClose={() => setMessageModal((prev) => ({ ...prev, isOpen: false }))}
+      onClose={handleMessageModalClose}
       title={messageModal.title}
       message={messageModal.message}
       variant={messageModal.variant}
