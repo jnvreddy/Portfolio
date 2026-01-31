@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Input from './ui/Input';
 import Textarea from './ui/Textarea';
 import Button from './ui/Button';
+import MessageModal from './ui/MessageModal';
+import type { MessageVariant } from './ui/MessageModal';
 import { validateEmail } from '../utils/validation';
 
 interface ContactModalProps {
@@ -29,6 +31,48 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [messageModal, setMessageModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    variant: MessageVariant;
+  }>({ isOpen: false, title: '', message: '', variant: 'success' });
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      // Disable body scroll
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Restore body scroll
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    return () => {
+      // Cleanup on unmount
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+      }
+    };
+  }, [isOpen]);
 
   // Close on Escape key
   useEffect(() => {
@@ -93,25 +137,54 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       return;
     }
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setMessageModal({
+        isOpen: true,
+        title: 'Configuration needed',
+        message: 'Contact form is not configured. Please add VITE_WEB3FORMS_ACCESS_KEY to your environment.',
+        variant: 'error',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // TODO: Integrate with your backend/email service
-      // For now, we'll just log and show a success message
-      console.log('Form submitted:', formData);
-      
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      alert('Thank you for your message! I\'ll get back to you soon.');
-      
-      // Reset form and close modal
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.body,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      setMessageModal({
+        isOpen: true,
+        title: 'Message sent',
+        message: "Thank you for your message! I'll get back to you soon.",
+        variant: 'success',
+      });
       setFormData({ name: '', email: '', body: '' });
       setErrors({});
       onClose();
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Something went wrong. Please try again later.');
+      setMessageModal({
+        isOpen: true,
+        title: 'Something went wrong',
+        message: "We couldn't send your message right now. Please try again later.",
+        variant: 'error',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -120,6 +193,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
+    <>
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
       onClick={onClose}
@@ -129,7 +203,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
       {/* Centered Modal */}
       <div
-        className="relative w-[90%] max-w-2xl max-h-[90vh] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-[90%] max-w-2xl max-h-[90vh] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-y-auto hide-scrollbar flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Social Icons (mobile only) and Close Button */}
@@ -194,7 +268,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
+        <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
           <div className="w-full">
             {/* Title */}
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 text-center">
@@ -257,6 +331,14 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>
+    <MessageModal
+      isOpen={messageModal.isOpen}
+      onClose={() => setMessageModal((prev) => ({ ...prev, isOpen: false }))}
+      title={messageModal.title}
+      message={messageModal.message}
+      variant={messageModal.variant}
+    />
+    </>
   );
 };
 
