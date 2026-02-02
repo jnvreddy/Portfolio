@@ -38,7 +38,7 @@ export const projects: Project[] = [
 
 export const experiences: ExperienceItem[] = [
     {
-        title: "Junior Software Engineer",
+        title: "Software Engineer",
         company: "Technology Company",
         period: "2023 - 2024",
         description: "Worked on multi-stack projects including Android native development with Kotlin, full-stack applications, and backend API development. Led AI feature development for Chat & Shop project, mentored 10+ interns, and conducted technical interviews for hiring. Managed tasks using Jira and coordinated with cross-functional teams.",
