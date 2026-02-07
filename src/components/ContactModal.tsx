@@ -212,7 +212,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
       {/* Centered Modal */}
       <div
-        className="relative w-[90%] max-w-2xl max-h-[90vh] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-y-auto hide-scrollbar flex flex-col"
+        className="relative w-[90%] max-w-2xl max-h-[90vh] bg-gray-900/30 backdrop-blur-sm border border-gray-600/50 rounded-2xl shadow-lg shadow-blue-500/10 overflow-y-auto hide-scrollbar flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Close Button */}

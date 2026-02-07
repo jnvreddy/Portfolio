@@ -10,7 +10,7 @@ const FloatingContactButton: React.FC = () => {
       onClick={openModal}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed top-0 right-4 z-50 bg-white/10 backdrop-blur-md border border-white/20 rounded-b-lg shadow-lg transition-all duration-300 hover:bg-white/20 hover:border-white/30 group overflow-hidden"
+      className="fixed top-0 right-4 z-50 bg-gray-900/30 backdrop-blur-sm border border-gray-600/50 rounded-b-lg shadow-lg shadow-blue-500/10 transition-all duration-300 hover:bg-gray-900/40 hover:border-gray-600/70 group overflow-hidden"
       aria-label="Contact"
     >
       <div className="flex flex-col items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5">

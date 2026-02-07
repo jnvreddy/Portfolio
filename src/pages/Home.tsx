@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import FloatingContactButton from '../components/FloatingContactButton';
 import HomeSection from '../components/Hero';
 import About from '../components/About';
 // import Projects from '../components/Projects';
@@ -33,7 +32,6 @@ const Home: React.FC = () => {
 
     return (
         <div className="flex flex-col">
-            <FloatingContactButton />
             <HomeSection 
                 ref={heroRef}
                 animationState={getSectionAnimationState('home')}
