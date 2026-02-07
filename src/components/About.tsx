@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
-import Card from './ui/Card';
 import SectionHeader from './ui/SectionHeader';
-import { primarySkills, secondarySkills } from '../constants/data';
+import { primarySkills, secondarySkills, profileInfo } from '../constants/data';
 import type { SectionAnimationState } from '../types/sectionSnap';
 
 interface AboutProps {
@@ -174,20 +173,69 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             style={{ height: '100vh' }}
         >
             <div 
-                className={`w-full px-4 sm:px-6 pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6 relative z-10 flex-1 overflow-y-auto hide-scrollbar ${getAnimationClass()}`}
+                className={`w-full h-full pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6 relative z-10 overflow-y-auto hide-scrollbar flex flex-col md:flex-row gap-6 md:gap-8 px-4 sm:px-6 ${getAnimationClass()}`}
                 style={{ maxHeight: '100vh' }}
             >
-                <div className="w-full mb-3 sm:mb-4">
-                    <SectionHeader
-                        title="About Me"
-                        subtitle="Get to know more about my background and expertise"
-                    />
+                {/* Left Sidebar - 20% with Border */}
+                <div className="w-full md:w-[20%] h-auto md:h-auto flex flex-col items-center md:items-center justify-start gap-6 md:gap-8 rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 md:p-10">
+                    {/* Profile Image */}
+                    <div className="flex justify-center">
+                        <img 
+                            src={profileInfo.profileImage} 
+                            alt={profileInfo.name}
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-blue-400/50 shadow-lg shadow-blue-500/20 object-cover"
+                        />
+                    </div>
+
+                    {/* Name */}
+                    <div className="text-center">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
+                            {profileInfo.name}
+                        </h2>
+                    </div>
+
+                    {/* Designation */}
+                    <div className="text-center">
+                        <p className="text-sm md:text-base text-gray-400 font-medium">
+                            {profileInfo.designation}
+                        </p>
+                    </div>
+
+                    {/* Social Icons */}
+                    <div className="flex gap-4 md:gap-5 justify-center mt-2">
+                        {profileInfo.socialLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white/70 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+                                aria-label={link.label}
+                            >
+                                {link.icon === 'twitter' && (
+                                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                    </svg>
+                                )}
+                                {link.icon === 'linkedin' && (
+                                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                )}
+                                {link.icon === 'github' && (
+                                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                    </svg>
+                                )}
+                            </a>
+                        ))}
+                    </div>
                 </div>
 
-                {/* About Content */}
-                <div className="max-w-2xl mx-auto mb-4 sm:mb-6 md:mb-8">
-                    <Card className="p-3 sm:p-4 md:p-6 lg:p-8">
-                        {/* Paragraph Carousel */}
+                {/* Main Content Section - 70% with Border, Rounded, and Elevation */}
+                <div className="w-full md:w-[70%] h-auto flex flex-col justify-start rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 md:p-10">
+                    {/* Paragraph Carousel */}
+                    <div className="mb-8 md:mb-10">
                         <div 
                             className="relative overflow-hidden"
                             style={{ height: containerHeight === 'auto' ? 'auto' : `${containerHeight}px`, transition: 'height 0.3s ease-in-out' }}
@@ -215,7 +263,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                         </div>
 
                         {/* Progress Dots */}
-                        <div className="flex justify-center items-center gap-2 mt-4 sm:mt-6">
+                        <div className="flex justify-center items-center gap-2 mt-6 sm:mt-8">
                             {paragraphs.map((_, index) => (
                                 <button
                                     key={index}
@@ -229,133 +277,133 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                 />
                             ))}
                         </div>
-                    </Card>
-                </div>
-
-                {/* Skills Section - Full Width */}
-                <div className="w-full mb-4 sm:mb-6 relative z-10">
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white text-center mb-3 sm:mb-4 md:mb-6">
-                        Technical Skills
-                    </h3>
-
-                    {/* Primary Skills Section */}
-                    <div className="mb-3 sm:mb-4">
-                        <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white text-center mb-2 sm:mb-3 md:mb-4">
-                            Primary Skills
-                        </h4>
-                        <div
-                            ref={primaryContainerRef}
-                            className={`relative overflow-hidden w-full py-2 sm:py-3 md:py-4 ${primaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
-                        >
-                            <div
-                                ref={primaryContentRef}
-                                className={primaryNeedsMarquee
-                                    ? "flex items-center"
-                                    : "flex items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10"
-                                }
-                                style={primaryNeedsMarquee ? {
-                                    animation: 'marquee 35s linear infinite',
-                                    display: 'flex',
-                                    width: 'max-content',
-                                    gap: '4rem',
-                                    willChange: 'transform'
-                                } : {}}
-                            >
-                                {primarySkills.map((skill, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={`flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300 ${primaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
-                                        >
-                                            <img
-                                                src={skill.icon}
-                                                alt={skill.name}
-                                                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
-                                            />
-                                            <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
-                                                {skill.name}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                                {primaryNeedsMarquee && primarySkills.map((skill, index) => {
-                                    return (
-                                        <div
-                                            key={`duplicate-${index}`}
-                                            className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300"
-                                        >
-                                            <img
-                                                src={skill.icon}
-                                                alt={skill.name}
-                                                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
-                                            />
-                                            <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
-                                                {skill.name}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
                     </div>
 
-                    {/* Secondary Skills Section */}
-                    <div>
-                        <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-400 text-center mb-2 sm:mb-3 flex items-center justify-center gap-2">
-                            Secondary Skills
-                        </h4>
-                        <div
-                            ref={secondaryContainerRef}
-                            className={`relative overflow-hidden w-full pt-2 sm:pt-3 md:pt-4 pb-2 sm:pb-4 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
-                        >
+                    {/* Technical Skills Section */}
+                    <div className="w-full">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white text-center mb-3 sm:mb-4 md:mb-6">
+                            Technical Skills
+                        </h3>
+
+                        {/* Primary Skills Section */}
+                        <div className="mb-6 md:mb-8">
+                            <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white text-center mb-2 sm:mb-3 md:mb-4">
+                                Primary Skills
+                            </h4>
                             <div
-                                ref={secondaryContentRef}
-                                className={secondaryNeedsMarquee
-                                    ? "flex items-center"
-                                    : "flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8"
-                                }
-                                style={secondaryNeedsMarquee ? {
-                                    animation: 'marquee 30s linear infinite',
-                                    display: 'flex',
-                                    width: 'max-content',
-                                    gap: '3.5rem',
-                                    willChange: 'transform'
-                                } : {}}
+                                ref={primaryContainerRef}
+                                className={`relative overflow-hidden w-full py-2 sm:py-3 md:py-4 ${primaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
                             >
-                                {secondarySkills.map((skill, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={`flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300 ${secondaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
-                                        >
-                                            <img
-                                                src={skill.icon}
-                                                alt={skill.name}
-                                                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
-                                            />
-                                            <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
-                                                {skill.name}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                                {secondaryNeedsMarquee && secondarySkills.map((skill, index) => {
-                                    return (
-                                        <div
-                                            key={`duplicate-${index}`}
-                                            className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300"
-                                        >
-                                            <img
-                                                src={skill.icon}
-                                                alt={skill.name}
-                                                className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
-                                            />
-                                            <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
-                                                {skill.name}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
+                                <div
+                                    ref={primaryContentRef}
+                                    className={primaryNeedsMarquee
+                                        ? "flex items-center"
+                                        : "flex items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10"
+                                    }
+                                    style={primaryNeedsMarquee ? {
+                                        animation: 'marquee 35s linear infinite',
+                                        display: 'flex',
+                                        width: 'max-content',
+                                        gap: '4rem',
+                                        willChange: 'transform'
+                                    } : {}}
+                                >
+                                    {primarySkills.map((skill, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={`flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300 ${primaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
+                                            >
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                                />
+                                                <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                    {primaryNeedsMarquee && primarySkills.map((skill, index) => {
+                                        return (
+                                            <div
+                                                key={`duplicate-${index}`}
+                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300"
+                                            >
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                                />
+                                                <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Secondary Skills Section */}
+                        <div>
+                            <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-400 text-center mb-2 sm:mb-3 flex items-center justify-center gap-2">
+                                Secondary Skills
+                            </h4>
+                            <div
+                                ref={secondaryContainerRef}
+                                className={`relative overflow-hidden w-full pt-2 sm:pt-3 md:pt-4 pb-2 sm:pb-4 ${secondaryNeedsMarquee ? '' : 'flex flex-wrap items-center justify-center'}`}
+                            >
+                                <div
+                                    ref={secondaryContentRef}
+                                    className={secondaryNeedsMarquee
+                                        ? "flex items-center"
+                                        : "flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8"
+                                    }
+                                    style={secondaryNeedsMarquee ? {
+                                        animation: 'marquee 30s linear infinite',
+                                        display: 'flex',
+                                        width: 'max-content',
+                                        gap: '3.5rem',
+                                        willChange: 'transform'
+                                    } : {}}
+                                >
+                                    {secondarySkills.map((skill, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={`flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300 ${secondaryNeedsMarquee ? 'flex-shrink-0' : ''}`}
+                                            >
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                                />
+                                                <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                    {secondaryNeedsMarquee && secondarySkills.map((skill, index) => {
+                                        return (
+                                            <div
+                                                key={`duplicate-${index}`}
+                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300"
+                                            >
+                                                <img
+                                                    src={skill.icon}
+                                                    alt={skill.name}
+                                                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                                />
+                                                <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>

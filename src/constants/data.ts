@@ -1,5 +1,32 @@
 import type { Project, ExperienceItem, SkillCategory, Organization, Contribution } from '../types';
 
+// Profile Information
+export const profileInfo = {
+    name: 'J Nagavardhan Reddy',
+    designation: 'Software Engineer',
+    profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    socialLinks: [
+        {
+            name: 'Twitter',
+            url: 'https://x.com/jnv_reddy',
+            icon: 'twitter',
+            label: 'X (Twitter)'
+        },
+        {
+            name: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/jnvreddy',
+            icon: 'linkedin',
+            label: 'LinkedIn'
+        },
+        {
+            name: 'GitHub',
+            url: 'https://github.com/jnvreddy',
+            icon: 'github',
+            label: 'GitHub'
+        }
+    ]
+};
+
 export const projects: Project[] = [
     {
         id: 1,
