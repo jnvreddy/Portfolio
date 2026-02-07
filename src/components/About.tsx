@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
-import SectionHeader from './ui/SectionHeader';
 import { primarySkills, secondarySkills, profileInfo } from '../constants/data';
 import type { SectionAnimationState } from '../types/sectionSnap';
 

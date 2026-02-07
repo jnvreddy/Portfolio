@@ -2,7 +2,7 @@ import React from 'react';
 
 const SocialIcons: React.FC = () => {
   return (
-    <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 sm:gap-6 hidden md:flex">
+    <div className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 sm:gap-6 md:flex">
       <a
         href="https://x.com/jnv_reddy"
         target="_blank"
