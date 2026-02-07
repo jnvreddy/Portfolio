@@ -17,18 +17,16 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
     const [primaryNeedsMarquee, setPrimaryNeedsMarquee] = useState(false);
     const [secondaryNeedsMarquee, setSecondaryNeedsMarquee] = useState(false);
     
-    // Paragraph carousel state
+    // Single paragraph content
     const paragraphs = [
-        "I'm a Software Engineer focused on native Android development, building and maintaining production applications with an emphasis on correctness, performance, and long-term maintainability. I work close to the Android platform, using Kotlin and Java across both XML-based UI systems and modern Jetpack Compose.",
-        "In my current role, I contribute to a large production Android codebase, handling regular maintenance, bug fixes, and feature development. Alongside this, I refactor and migrate legacy components to Kotlin within active release cycles, shipping new features while progressively introducing Jetpack Compose–based UI and state-driven patterns to improve stability and long-term maintainability.",
-        "Beyond development, I've mentored interns, supported onboarding for new team members, and evaluated candidates through technical interviews, strengthening my approach to code reviews, technical communication, and trade-off driven decision-making.",
-        "While I have experience with backend and full-stack development (Spring Boot, React, TypeScript, Node.js), my core strength and long-term focus remain Android-native development. I'm currently deepening my expertise in Jetpack Compose and exploring Kotlin Multiplatform (KMP) to share business logic across platforms while maintaining platform-native UI for Android and iOS, without compromising user experience or performance."
+        "I’m a Software Engineer focused on native Android development, working with Kotlin and Java on production applications, prioritizing reliable behavior, performance, and code that remains maintainable over time. I contribute to large Android codebases through feature development, bug fixes, and ongoing modernization, including Kotlin migration and adopting Jetpack Compose. I’m currently deepening my expertise in Jetpack Compose and exploring Kotlin Multiplatform to share business logic while maintaining platform-native user experiences."
     ];
     
     const [currentIndex, setCurrentIndex] = useState(0);
     const [containerHeight, setContainerHeight] = useState<number | 'auto'>('auto');
     const carouselRef = useRef<HTMLDivElement>(null);
     const paragraphRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [paragraphHeights, setParagraphHeights] = useState<number[]>([]);
     const touchStartX = useRef<number | null>(null);
     const touchEndX = useRef<number | null>(null);
 
@@ -41,6 +39,30 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             }
         }
     }, [currentIndex]);
+
+    // Measure all paragraph heights and keep them in state so each slide wrapper can match
+    useEffect(() => {
+        const measureHeights = () => {
+            const heights = paragraphRefs.current.map((el) => (el ? el.offsetHeight : 0));
+            setParagraphHeights(heights);
+        };
+
+        // Delay a touch to ensure DOM layout is ready
+        const timeoutId = setTimeout(() => requestAnimationFrame(measureHeights), 50);
+
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => requestAnimationFrame(measureHeights), 150);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            clearTimeout(timeoutId);
+            clearTimeout(resizeTimeout);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [paragraphs.length]);
 
     // Auto-slide every 8 seconds
     useEffect(() => {
@@ -174,11 +196,11 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             style={{ height: '100vh' }}
         >
             <div 
-                className={`w-full h-full p-6 sm:p-8 md:p-12 relative z-10 overflow-y-auto hide-scrollbar flex flex-col md:flex-row gap-6 md:gap-8 md:justify-center md:items-start ${getAnimationClass()}`}
+                className={`w-full h-full p-6 sm:p-8 md:p-12 relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 md:justify-center md:items-start overflow-hidden ${getAnimationClass()}`}
                 style={{ maxHeight: '100vh', height: '100vh', boxSizing: 'border-box' }}
             >
                 {/* Left Sidebar - 25% with Border */}
-                <div className="w-full md:w-1/4 h-full md:h-full flex flex-col items-center md:items-center justify-start gap-6 md:gap-8 rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 md:p-10 overflow-y-auto hide-scrollbar">
+                <div className="w-full md:w-1/4 h-auto md:h-full flex flex-col items-center md:items-center justify-start gap-6 md:gap-8 rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 md:p-10 overflow-y-auto hide-scrollbar">
                     {/* Profile Image */}
                     <div className="flex justify-center">
                         <img 
@@ -246,7 +268,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                 </div>
 
                 {/* Main Content Section - 50% with Border, Rounded, and Elevation */}
-                <div className="w-full md:w-1/2 h-full flex flex-col justify-start rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 md:p-10 overflow-y-auto hide-scrollbar">
+                <div className="w-full md:w-1/2 h-auto md:h-full flex flex-col justify-start items-center rounded-2xl border border-gray-600/50 shadow-lg shadow-blue-500/10 bg-gray-900/30 backdrop-blur-sm p-4 sm:p-6 md:p-8 overflow-hidden">
                     {/* Paragraph Carousel */}
                     <div className="mb-8 md:mb-10">
                         <div 
@@ -266,8 +288,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         key={index}
                                         ref={(el) => { paragraphRefs.current[index] = el; }}
                                         className="w-full flex-shrink-0 px-2"
+                                        style={{ height: paragraphHeights[index] ? `${paragraphHeights[index]}px` : 'auto' }}
                                     >
-                                        <p className="text-gray-300 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">
+                                        <p className="text-gray-300 leading-relaxed text-xs sm:text-sm md:text-sm lg:text-base">
                                             {paragraph}
                                         </p>
                                     </div>
@@ -275,32 +298,18 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                             </div>
                         </div>
 
-                        {/* Progress Dots */}
-                        <div className="flex justify-center items-center gap-2 mt-6 sm:mt-8">
-                            {paragraphs.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentIndex(index)}
-                                    className={`transition-all duration-300 rounded-full ${
-                                        index === currentIndex
-                                            ? 'w-3 h-3 bg-white'
-                                            : 'w-2 h-2 bg-white/40 hover:bg-white/60'
-                                    }`}
-                                    aria-label={`Go to paragraph ${index + 1}`}
-                                />
-                            ))}
-                        </div>
+                        {/* Single paragraph - no progress dots */}
                     </div>
 
                     {/* Technical Skills Section */}
                     <div className="w-full">
-                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white text-center mb-3 sm:mb-4 md:mb-6">
+                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white text-center mb-2 sm:mb-3 md:mb-4">
                             Technical Skills
                         </h3>
 
                         {/* Primary Skills Section */}
                         <div className="mb-6 md:mb-8">
-                            <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white text-center mb-2 sm:mb-3 md:mb-4">
+                            <h4 className="text-xs sm:text-sm md:text-sm lg:text-base font-semibold text-white text-center mb-2 sm:mb-3 md:mb-4">
                                 Primary Skills
                             </h4>
                             <div
@@ -311,13 +320,13 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                     ref={primaryContentRef}
                                     className={primaryNeedsMarquee
                                         ? "flex items-center"
-                                        : "flex items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10"
+                                        : "flex items-center justify-center gap-3 sm:gap-4 md:gap-4 lg:gap-6 xl:gap-6"
                                     }
                                     style={primaryNeedsMarquee ? {
                                         animation: 'marquee 35s linear infinite',
                                         display: 'flex',
                                         width: 'max-content',
-                                        gap: '4rem',
+                                        gap: '3rem',
                                         willChange: 'transform'
                                     } : {}}
                                 >
@@ -330,9 +339,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                                 <img
                                                     src={skill.icon}
                                                     alt={skill.name}
-                                                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 transition-all duration-300 group-hover:scale-110"
                                                 />
-                                                <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                <span className="text-white text-[9px] sm:text-[9px] md:text-xs lg:text-xs font-semibold whitespace-nowrap">
                                                     {skill.name}
                                                 </span>
                                             </div>
@@ -342,14 +351,14 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         return (
                                             <div
                                                 key={`duplicate-${index}`}
-                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-3 hover:scale-110 transition-transform duration-300"
+                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-2 hover:scale-110 transition-transform duration-300"
                                             >
                                                 <img
                                                     src={skill.icon}
                                                     alt={skill.name}
-                                                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12 transition-all duration-300 group-hover:scale-110"
+                                                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-7 md:h-7 lg:w-9 lg:h-9 transition-all duration-300 group-hover:scale-110"
                                                 />
-                                                <span className="text-white text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-semibold whitespace-nowrap">
+                                                <span className="text-white text-[9px] sm:text-[9px] md:text-xs lg:text-xs font-semibold whitespace-nowrap">
                                                     {skill.name}
                                                 </span>
                                             </div>
@@ -361,7 +370,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
 
                         {/* Secondary Skills Section */}
                         <div>
-                            <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-400 text-center mb-2 sm:mb-3 flex items-center justify-center gap-2">
+                            <h4 className="text-xs sm:text-sm md:text-sm lg:text-base font-semibold text-gray-400 text-center mb-2 sm:mb-3 flex items-center justify-center gap-2">
                                 Secondary Skills
                             </h4>
                             <div
@@ -372,13 +381,13 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                     ref={secondaryContentRef}
                                     className={secondaryNeedsMarquee
                                         ? "flex items-center"
-                                        : "flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8"
+                                        : "flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-6"
                                     }
                                     style={secondaryNeedsMarquee ? {
                                         animation: 'marquee 30s linear infinite',
                                         display: 'flex',
                                         width: 'max-content',
-                                        gap: '3.5rem',
+                                        gap: '3rem',
                                         willChange: 'transform'
                                     } : {}}
                                 >
@@ -391,9 +400,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                                 <img
                                                     src={skill.icon}
                                                     alt={skill.name}
-                                                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-7 md:h-7 lg:w-8 lg:h-8 opacity-80"
                                                 />
-                                                <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
+                                                <span className="text-gray-400 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[10px] font-medium whitespace-nowrap">
                                                     {skill.name}
                                                 </span>
                                             </div>
@@ -408,7 +417,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                                 <img
                                                     src={skill.icon}
                                                     alt={skill.name}
-                                                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
+                                                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 opacity-80"
                                                 />
                                                 <span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium whitespace-nowrap">
                                                     {skill.name}
