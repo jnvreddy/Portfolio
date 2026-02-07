@@ -171,8 +171,13 @@ export const useSectionSnap = ({
       }
 
       lastScrollTimeRef.current = now;
-
+      // Require a minimum wheel delta to avoid reacting to tiny/trackpad gestures
+      const minWheelDelta = 40;
       const deltaY = e.deltaY;
+      if (Math.abs(deltaY) < minWheelDelta) {
+        // Treat as a normal small scroll — don't snap sections
+        return;
+      }
       const direction = deltaY > 0 ? 'down' : 'up';
       const currentSectionId = sectionIds[currentSectionIndex];
 
@@ -203,7 +208,6 @@ export const useSectionSnap = ({
   const handleTouchEnd = useCallback(
     (e: TouchEvent) => {
       if (scrollLockRef.current || isTransitioning) return;
-
       touchEndYRef.current = e.changedTouches[0].clientY;
       const diff = touchStartYRef.current - touchEndYRef.current;
       const minSwipeDistance = 50; // Minimum distance for a swipe
