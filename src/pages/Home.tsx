@@ -2,15 +2,15 @@ import React, { useRef, useEffect } from 'react';
 import FloatingContactButton from '../components/FloatingContactButton';
 import HomeSection from '../components/Hero';
 import About from '../components/About';
-import Projects from '../components/Projects';
+// import Projects from '../components/Projects';
 import Footer from '../components/Footer';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
 const Home: React.FC = () => {
-    const sectionIds = ['home', 'about', 'projects'];
+    const sectionIds = ['home', 'about'];
     const heroRef = useRef<HTMLElement>(null);
     const aboutRef = useRef<HTMLElement>(null);
-    const projectsRef = useRef<HTMLElement>(null);
+    // const projectsRef = useRef<HTMLElement>(null);
 
     const { registerSection, getSectionAnimationState, getSectionDirection } = useSectionSnap({
         sectionIds,
@@ -26,9 +26,9 @@ const Home: React.FC = () => {
         if (aboutRef.current) {
             registerSection('about', aboutRef.current);
         }
-        if (projectsRef.current) {
-            registerSection('projects', projectsRef.current);
-        }
+        // if (projectsRef.current) {
+        //     registerSection('projects', projectsRef.current);
+        // }
     }, [registerSection]);
 
     return (
@@ -44,11 +44,11 @@ const Home: React.FC = () => {
                 animationState={getSectionAnimationState('about')}
                 direction={getSectionDirection('about')}
             />
-            <Projects 
+            {/* <Projects 
                 ref={projectsRef}
                 animationState={getSectionAnimationState('projects')}
                 direction={getSectionDirection('projects')}
-            />
+            /> */}
             <Footer />
         </div>
     );

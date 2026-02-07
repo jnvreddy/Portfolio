@@ -4,7 +4,7 @@ import type { Project, ExperienceItem, SkillCategory, Organization, Contribution
 export const profileInfo = {
     name: 'J Nagavardhan Reddy',
     designation: 'Software Engineer',
-    profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    profileImage: 'https://media.licdn.com/dms/image/v2/D5603AQEiFb3iMTFV_g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1720691856534?e=1772064000&v=beta&t=LnAPPU8bexx8tl4F9XvkFJ-y_RYLz67mXPsiNnTi9S4',
     socialLinks: [
         {
             name: 'Twitter',

@@ -2,13 +2,12 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Background from './components/layouts/Background';
 import Loader from './components/ui/Loader';
-import SocialIcons from './components/SocialIcons';
 import { ContactModalProvider, useContactModal } from './contexts/ContactModalContext';
 import ContactModal from './components/ContactModal';
 
 // Lazy load routes for code splitting
 const Home = lazy(() => import('./pages/Home'));
-const Projects = lazy(() => import('./pages/Projects'));
+// const Projects = lazy(() => import('./pages/Projects'));
 // const OpenSource = lazy(() => import('./pages/OpenSource'));
 
 // Loading fallback component
@@ -20,12 +19,11 @@ const AppContent = () => {
   return (
     <div style={{ position: 'relative' }}>
       <Background />
-      <SocialIcons />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
+            {/* <Route path="/projects" element={<Projects />} /> */}
             {/* <Route path="/opensource" element={<OpenSource />} /> */}
           </Routes>
         </Suspense>

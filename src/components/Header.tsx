@@ -142,7 +142,7 @@ const Header: React.FC = () => {
           <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${activeSection === 'about' ? 'w-full' : 'w-0 group-hover:w-full'
             }`}></span>
         </a>
-        {isHomePage ? (
+        {/* {isHomePage ? (
           <a
             href="#projects"
             onClick={(e) => handleSectionClick(e, 'projects')}
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
             <span className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${isProjectsPage ? 'w-full' : 'w-0 group-hover:w-full'
               }`}></span>
           </Link>
-        )}
+        ) */}
         {/* <Link
           to="/opensource"
           className={getLinkClassName('/opensource')}
