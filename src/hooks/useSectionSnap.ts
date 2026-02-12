@@ -34,6 +34,7 @@ export const useSectionSnap = ({
   const lastScrollTimeRef = useRef(0);
   const touchStartYRef = useRef(0);
   const touchEndYRef = useRef(0);
+  const wheelDeltaAccumRef = useRef(0);
 
   // Register section ref
   const registerSection = useCallback((id: string, element: HTMLElement | null) => {
@@ -97,10 +98,8 @@ export const useSectionSnap = ({
       updateSectionStates(index, direction);
 
       // Scroll to section
-      sectionElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      const targetTop = sectionElement.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
 
       setCurrentSectionIndex(index);
     },
@@ -114,42 +113,56 @@ export const useSectionSnap = ({
 
     // Special handling for 'about' section - allow internal scrolling
     if (sectionId === 'about') {
-      // Find the scrollable container inside the about section
-      const scrollableContainer = sectionElement.querySelector('[class*="overflow-y-auto"]') as HTMLElement;
-      
+      // Robustly find a scrollable descendant: prefer elements with computed overflowY of 'auto' or 'scroll'
+      const findScrollable = (root: HTMLElement | null): HTMLElement | null => {
+        if (!root) return null;
+        // Check the root itself first
+        const rootStyle = window.getComputedStyle(root);
+        if ((rootStyle.overflowY === 'auto' || rootStyle.overflowY === 'scroll') && root.scrollHeight > root.clientHeight + 1) {
+          return root;
+        }
+
+        const descendants = Array.from(root.querySelectorAll('*')) as HTMLElement[];
+        for (const el of descendants) {
+          const style = window.getComputedStyle(el);
+          if ((style.overflowY === 'auto' || style.overflowY === 'scroll') && el.scrollHeight > el.clientHeight + 1) {
+            return el;
+          }
+        }
+        return null;
+      };
+
+      const scrollableContainer = findScrollable(sectionElement);
+
+      const threshold = 8; // small threshold in px
       if (scrollableContainer) {
         const scrollTop = scrollableContainer.scrollTop;
         const scrollHeight = scrollableContainer.scrollHeight;
         const clientHeight = scrollableContainer.clientHeight;
-        const threshold = 10; // Small threshold to account for rounding
 
         if (direction === 'down') {
-          // Check if we're at or near the bottom of the scrollable container
           const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
-          // Allow normal scroll if there's still content below
           return distanceFromBottom > threshold;
         } else {
-          // Check if we're at or near the top of the scrollable container
-          // Allow normal scroll if there's still content above
           return scrollTop > threshold;
         }
-      } else {
-        // Fallback to original logic if scrollable container not found
-        const rect = sectionElement.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionBottom = sectionTop + rect.height;
-        const currentScrollY = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const viewportBottom = currentScrollY + viewportHeight;
-        const threshold = 150;
+      }
 
-        if (direction === 'down') {
-          const distanceFromBottom = sectionBottom - viewportBottom;
-          return distanceFromBottom > threshold;
-        } else {
-          const distanceFromTop = currentScrollY - sectionTop;
-          return distanceFromTop > threshold;
-        }
+      // Fallback: compare section bounds with viewport
+      const rect = sectionElement.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionBottom = sectionTop + rect.height;
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const viewportBottom = currentScrollY + viewportHeight;
+
+      const fallbackThreshold = Math.round(viewportHeight * 0.15);
+      if (direction === 'down') {
+        const distanceFromBottom = sectionBottom - viewportBottom;
+        return distanceFromBottom > fallbackThreshold;
+      } else {
+        const distanceFromTop = currentScrollY - sectionTop;
+        return distanceFromTop > fallbackThreshold;
       }
     }
 
@@ -163,22 +176,42 @@ export const useSectionSnap = ({
         e.preventDefault();
         return;
       }
+      // Require a minimum wheel delta to avoid reacting to tiny/trackpad gestures
+      // Use an adaptive threshold: at least 2% of viewport or 20px minimum
+      const minWheelDelta = Math.max(20, Math.round(window.innerHeight * 0.02));
+      const rawDeltaY = e.deltaY;
+
+      // Normalize delta according to deltaMode so behavior is consistent across browsers
+      // DOM_DELTA_PIXEL (0): pixels
+      // DOM_DELTA_LINE (1): lines — approximate line height as 16px
+      // DOM_DELTA_PAGE (2): pages — treat as viewport height
+      const scale =
+        e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1;
+
+      const deltaYPx = rawDeltaY * scale;
+
+      // Accumulate deltas to detect intentional scroll gestures (helps Firefox/trackpad)
+      const sameSign = wheelDeltaAccumRef.current === 0 || Math.sign(wheelDeltaAccumRef.current) === Math.sign(deltaYPx);
+      wheelDeltaAccumRef.current = sameSign ? wheelDeltaAccumRef.current + deltaYPx : deltaYPx;
+
+      // If accumulated delta isn't large enough yet, allow native scroll
+      if (Math.abs(wheelDeltaAccumRef.current) < minWheelDelta) {
+        return;
+      }
 
       const now = Date.now();
+      // Throttle snaps only when a snap was recently performed
       if (now - lastScrollTimeRef.current < debounceDelay) {
+        // Prevent default to avoid small jumps while we're debouncing
         e.preventDefault();
         return;
       }
 
+      // Record the time of this snap attempt so rapid subsequent snaps are blocked
       lastScrollTimeRef.current = now;
-      // Require a minimum wheel delta to avoid reacting to tiny/trackpad gestures
-      const minWheelDelta = 40;
-      const deltaY = e.deltaY;
-      if (Math.abs(deltaY) < minWheelDelta) {
-        // Treat as a normal small scroll — don't snap sections
-        return;
-      }
-      const direction = deltaY > 0 ? 'down' : 'up';
+      const direction = wheelDeltaAccumRef.current > 0 ? 'down' : 'up';
+      // Reset accumulator after deciding direction
+      wheelDeltaAccumRef.current = 0;
       const currentSectionId = sectionIds[currentSectionIndex];
 
       // Check if we can scroll within the current section (for About section)
