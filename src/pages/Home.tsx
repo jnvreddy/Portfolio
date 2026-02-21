@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import HomeSection from '../components/Hero';
+import HomeSection from '../components/Home';
 import About from '../components/About';
-// import Projects from '../components/Projects';
 import Footer from '../components/Footer';
 import { useSectionSnap } from '../hooks/useSectionSnap';
 
