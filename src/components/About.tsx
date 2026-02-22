@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useImperativeHandle, forwardRef } from 're
 import { primarySkills, secondarySkills, profileInfo } from '../constants/data';
 import { useContactModal } from '../contexts/ContactModalContext';
 import type { SectionAnimationState } from '../types/sectionSnap';
+import { getAnimationClass } from '../utils/animations';
 
 interface AboutProps {
   animationState?: SectionAnimationState;
@@ -173,21 +174,6 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
 
     useImperativeHandle(ref, () => sectionRef.current as HTMLElement);
 
-    const getAnimationClass = () => {
-        switch (animationState) {
-            case 'entering':
-                return direction === 'down' ? 'animate-slide-in-up' : 'animate-slide-in-down';
-            case 'exiting':
-                return direction === 'down' ? 'animate-slide-out-up' : 'animate-slide-out-down';
-            case 'active':
-                return '';
-            case 'hidden':
-                return 'opacity-0';
-            default:
-                return '';
-        }
-    };
-
     return (
         <section 
             ref={sectionRef}
@@ -196,7 +182,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
             style={{ height: '100vh' }}
         >
             <div 
-                className={`w-full h-full p-6 sm:p-8 md:p-12 relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 md:justify-center md:items-start overflow-hidden ${getAnimationClass()}`}
+                className={`w-full h-full p-6 sm:p-8 md:p-12 relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 md:justify-center md:items-start overflow-hidden ${getAnimationClass(animationState, direction)}`}
                 style={{ maxHeight: '100vh', height: '100vh', boxSizing: 'border-box' }}
             >
                 {/* Left Sidebar - 25% with Border */}
