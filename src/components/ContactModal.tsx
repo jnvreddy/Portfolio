@@ -212,6 +212,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
       {/* Centered Modal */}
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
         className="relative w-[90%] max-w-2xl max-h-[90vh] bg-gray-900/30 backdrop-blur-sm border border-gray-600/50 rounded-2xl shadow-lg shadow-blue-500/10 overflow-y-auto hide-scrollbar flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -243,7 +246,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
           <div className="w-full">
             {/* Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 text-center">
+            <h2 id="contact-modal-title" className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 text-center">
               Get In Touch
             </h2>
 
