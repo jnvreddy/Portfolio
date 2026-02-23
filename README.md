@@ -12,7 +12,25 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - **Error Handling**: Comprehensive error boundaries and validation
 - **Accessibility**: ARIA-compliant components for better accessibility
 - **Code Splitting**: Lazy loading for optimal performance
-- **SEO Optimized**: Meta tags and Open Graph support
+- **SEO Optimized**: Comprehensive SEO with structured data, sitemap, robots.txt, and social media integration
+
+## 🔍 SEO Features
+
+This portfolio is optimized for search engines with a focus on **Kotlin**, **Kotlin Multiplatform**, and **Cross-platform Mobile Development**:
+
+- **robots.txt**: Search engine crawling configuration
+- **sitemap.xml**: Complete site structure with prioritized social profiles (GitHub, LinkedIn)
+- **Structured Data (JSON-LD)**: Schema.org Person markup for rich search results
+- **Meta Tags**: Comprehensive meta tags including Open Graph and Twitter Cards
+- **Canonical URLs**: Proper URL canonicalization
+- **Semantic HTML**: Accessible and SEO-friendly markup
+- **Social Links Priority**: GitHub and LinkedIn profiles highlighted for maximum visibility
+
+The SEO strategy emphasizes expertise in:
+- Kotlin and Kotlin Multiplatform development
+- Android native app development
+- Cross-platform mobile solutions
+- Jetpack Compose and modern Android architecture
 
 ## 🛠️ Tech Stack
 
@@ -96,6 +114,9 @@ npm run preview
 ```
 Portfolio/
 ├── public/           # Static assets
+│   ├── robots.txt   # SEO: Search engine crawling rules
+│   ├── sitemap.xml  # SEO: Site structure and URLs
+│   └── T-icons/     # Technology icons
 ├── src/
 │   ├── assets/      # Images, icons, etc.
 │   ├── components/  # React components
@@ -111,7 +132,7 @@ Portfolio/
 │   ├── main.tsx     # App entry point
 │   └── index.css    # Global styles
 ├── .env.example     # Example environment variables
-├── index.html       # HTML template
+├── index.html       # HTML template with SEO meta tags
 ├── package.json     # Dependencies and scripts
 ├── tsconfig.json    # TypeScript configuration
 └── vite.config.ts   # Vite configuration
