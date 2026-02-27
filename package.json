@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:validate": "echo '🔍 SEO Validation:\n1. Check sitemap at http://localhost:4173/sitemap.xml\n2. Check robots.txt at http://localhost:4173/robots.txt\n3. Verify OG image at http://localhost:4173/og-image.jpg\n4. Run Lighthouse in Chrome DevTools\n5. Test social cards at https://opengraph.dev/' && npm run preview",
+    "seo:check": "echo '📋 SEO Checklist:\n- [ ] og-image.jpg created (1200x630)\n- [ ] All meta tags verified\n- [ ] Sitemap updated\n- [ ] Social cards tested\n- [ ] Lighthouse score >90'",
+    "seo:update-sitemap": "node update-sitemap.js",
+    "build:analyze": "tsc -b && vite build --mode analyze"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",

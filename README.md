@@ -68,7 +68,19 @@ The SEO strategy emphasizes expertise in:
    
    Get your free access key at [web3forms.com](https://web3forms.com)
 
-4. **Start the development server**
+4. **Create Open Graph image for social sharing** (Important for SEO!)
+   
+   Create an image named `og-image.jpg` (1200×630px) and place it in the `/public` folder.
+   
+   See [OG_IMAGE_GUIDE.md](public/OG_IMAGE_GUIDE.md) for detailed instructions.
+   
+   Quick placeholder (for testing):
+   ```bash
+   # Download a placeholder or create your own 1200x630 image
+   # Save as public/og-image.jpg
+   ```
+
+5. **Start the development server**
    ```bash
    npm run dev
    ```
@@ -142,8 +154,32 @@ Portfolio/
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
+- `npm run seo:validate` - Preview build and display SEO validation checklist
+- `npm run seo:check` - Display SEO setup checklist
+- `npm run build:analyze` - Build with analysis mode
+
+## 🔍 SEO Testing & Validation
+
+After deployment, test your SEO setup:
+
+### Social Media Card Testing
+- **Facebook**: [Sharing Debugger](https://developers.facebook.com/tools/debug/)
+- **Twitter**: [Card Validator](https://cards-dev.twitter.com/validator)
+- **LinkedIn**: [Post Inspector](https://www.linkedin.com/post-inspector/)
+- **General**: [OpenGraph.dev](https://opengraph.dev/)
+
+### Search Engine Tools
+- **Google**: [Search Console](https://search.google.com/search-console)
+- **Bing**: [Webmaster Tools](https://www.bing.com/webmasters)
+- **Schema Validation**: [Schema.org Validator](https://validator.schema.org/)
+
+### Performance Testing
+- **Lighthouse**: Run in Chrome DevTools (aim for 90+ SEO score)
+- **PageSpeed Insights**: [pagespeed.web.dev](https://pagespeed.web.dev/)
+
+See [SEO_CHECKLIST.md](SEO_CHECKLIST.md) for comprehensive SEO guidelines.
 
 ## 🎨 Customization
 
