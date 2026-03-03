@@ -2,7 +2,7 @@
 export const profileInfo = {
     name: 'J Nagavardhan Reddy',
     designation: 'Software Engineer',
-    profileImage: 'https://media.licdn.com/dms/image/v2/D5603AQEiFb3iMTFV_g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1720691856534?e=1772064000&v=beta&t=LnAPPU8bexx8tl4F9XvkFJ-y_RYLz67mXPsiNnTi9S4',
+    profileImage: 'https://media.licdn.com/dms/image/v2/D5603AQEiFb3iMTFV_g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1720691856534?e=2147483647&v=beta&t=b6Q-DhKx9-_fQAzSkQbyfAeQ5k7Y5WlHzZ-z-vXMyJo',
     socialLinks: [
         {
             name: 'Twitter',
