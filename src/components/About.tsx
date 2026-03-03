@@ -113,19 +113,16 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                     // Calculate width of first set only (first N items where N = primarySkills.length)
                     const firstSetItems = children.slice(0, primarySkills.length);
                     if (firstSetItems.length > 0) {
-                        // Get computed gap from CSS (approximate or calculate from first two items)
-                        let gap = 0;
-                        if (firstSetItems.length > 1) {
-                            const firstRect = firstSetItems[0].getBoundingClientRect();
-                            const secondRect = firstSetItems[1].getBoundingClientRect();
-                            gap = secondRect.left - firstRect.right;
-                        }
+                        // Calculate total width with gaps
                         const firstSetWidth = firstSetItems.reduce((sum, child) => {
                             return sum + child.offsetWidth;
                         }, 0);
-                        const totalGapWidth = gap * (firstSetItems.length - 1);
+                        // Estimate gap (using a reasonable value based on responsive design)
+                        const estimatedGap = 16; // Approximate gap in pixels
+                        const totalGapWidth = estimatedGap * (firstSetItems.length - 1);
                         const totalContentWidth = firstSetWidth + totalGapWidth;
-                        setPrimaryNeedsMarquee(totalContentWidth > containerWidth);
+                        const needsMarquee = totalContentWidth > containerWidth;
+                        setPrimaryNeedsMarquee(needsMarquee);
                     }
                 }
 
@@ -135,25 +132,23 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                     const children = Array.from(secondaryContentRef.current.children) as HTMLElement[];
                     const firstSetItems = children.slice(0, secondarySkills.length);
                     if (firstSetItems.length > 0) {
-                        let gap = 0;
-                        if (firstSetItems.length > 1) {
-                            const firstRect = firstSetItems[0].getBoundingClientRect();
-                            const secondRect = firstSetItems[1].getBoundingClientRect();
-                            gap = secondRect.left - firstRect.right;
-                        }
                         const firstSetWidth = firstSetItems.reduce((sum, child) => {
                             return sum + child.offsetWidth;
                         }, 0);
-                        const totalGapWidth = gap * (firstSetItems.length - 1);
+                        const estimatedGap = 16;
+                        const totalGapWidth = estimatedGap * (firstSetItems.length - 1);
                         const totalContentWidth = firstSetWidth + totalGapWidth;
-                        setSecondaryNeedsMarquee(totalContentWidth > containerWidth);
+                        const needsMarquee = totalContentWidth > containerWidth;
+                        setSecondaryNeedsMarquee(needsMarquee);
                     }
                 }
             });
         };
 
-        // Initial check with a small delay to ensure rendering is complete
-        const timeoutId = setTimeout(checkOverflow, 100);
+        // Initial check with delays to ensure rendering is complete
+        const timeoutId1 = setTimeout(checkOverflow, 100);
+        const timeoutId2 = setTimeout(checkOverflow, 500);
+        const timeoutId3 = setTimeout(checkOverflow, 1000);
 
         // Use debounced resize handler for better performance
         let resizeTimeout: ReturnType<typeof setTimeout>;
@@ -164,7 +159,9 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
 
         window.addEventListener('resize', handleResize);
         return () => {
-            clearTimeout(timeoutId);
+            clearTimeout(timeoutId1);
+            clearTimeout(timeoutId2);
+            clearTimeout(timeoutId3);
             clearTimeout(resizeTimeout);
             window.removeEventListener('resize', handleResize);
         };
@@ -304,14 +301,11 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                 <div
                                     ref={primaryContentRef}
                                     className={primaryNeedsMarquee
-                                        ? "flex items-center"
+                                        ? "flex items-center marquee gap-8"
                                         : "flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6"
                                     }
                                     style={primaryNeedsMarquee ? {
-                                        animation: 'marquee 35s linear infinite',
-                                        display: 'flex',
                                         width: 'max-content',
-                                        gap: '2rem',
                                         willChange: 'transform'
                                     } : {}}
                                 >
@@ -336,7 +330,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         return (
                                             <div
                                                 key={`duplicate-${index}`}
-                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-2 hover:scale-110 transition-transform duration-300"
+                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 md:gap-2 hover:scale-110 transition-transform duration-300 ml-8"
                                             >
                                                 <img
                                                     src={skill.icon}
@@ -365,14 +359,11 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                 <div
                                     ref={secondaryContentRef}
                                     className={secondaryNeedsMarquee
-                                        ? "flex items-center"
+                                        ? "flex items-center marquee-secondary gap-8"
                                         : "flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6"
                                     }
                                     style={secondaryNeedsMarquee ? {
-                                        animation: 'marquee 30s linear infinite',
-                                        display: 'flex',
                                         width: 'max-content',
-                                        gap: '2rem',
                                         willChange: 'transform'
                                     } : {}}
                                 >
@@ -397,7 +388,7 @@ const About = forwardRef<HTMLElement, AboutProps>(({ animationState = 'active', 
                                         return (
                                             <div
                                                 key={`duplicate-${index}`}
-                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300"
+                                                className="flex-shrink-0 flex flex-col items-center justify-center gap-1 sm:gap-2 hover:scale-110 transition-transform duration-300 ml-8"
                                             >
                                                 <img
                                                     src={skill.icon}

@@ -10,3 +10,21 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Marquee animation for skills */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-secondary {
+  animation: marquee 30s linear infinite;
+}
