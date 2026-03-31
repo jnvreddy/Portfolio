@@ -1,48 +1,29 @@
 import React from 'react';
-import { SiAndroid } from 'react-icons/si';
 
 const Loader: React.FC = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-black">
-            <div className="relative">
-                <SiAndroid 
-                    className="text-6xl md:text-7xl text-white animate-pulse"
-                    style={{
-                        animation: 'androidPulse 2s ease-in-out infinite',
-                        filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))',
-                    }}
-                />
-                <div 
-                    className="absolute inset-0 border-4 border-white rounded-full animate-spin"
-                    style={{
-                        animation: 'androidRotate 3s linear infinite',
-                        borderRadius: '50%',
-                        borderTopColor: 'transparent',
-                        borderRightColor: 'transparent',
-                        borderBottomColor: 'transparent',
-                        width: '120%',
-                        height: '120%',
-                        top: '-10%',
-                        left: '-10%',
-                    }}
-                />
-            </div>
+            <div className="shape-morph"></div>
             <style>{`
-                @keyframes androidPulse {
-                    0%, 100% {
-                        transform: scale(1);
-                        opacity: 1;
-                    }
-                    50% {
-                        transform: scale(1.1);
-                        opacity: 0.8;
-                    }
+                .shape-morph {
+                    width: 80px;
+                    height: 80px;
+                    background: linear-gradient(45deg, #ffffff, #a0a0a0);
+                    animation: morphShape 3s ease-in-out infinite;
+                    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
                 }
-                @keyframes androidRotate {
-                    0% {
+
+                @keyframes morphShape {
+                    0%, 100% {
+                        border-radius: 0%;
                         transform: rotate(0deg);
                     }
-                    100% {
+                    33% {
+                        border-radius: 50% 50% 50% 0%;
+                        transform: rotate(180deg);
+                    }
+                    66% {
+                        border-radius: 50%;
                         transform: rotate(360deg);
                     }
                 }
