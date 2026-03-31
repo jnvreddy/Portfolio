@@ -159,14 +159,63 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     try {
+      // Create a nicely formatted HTML email
+      const htmlMessage = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <style>
+              body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+              .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+              .header h1 { margin: 0; font-size: 24px; }
+              .content { background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+              .field { margin-bottom: 20px; }
+              .label { font-weight: bold; color: #667eea; margin-bottom: 5px; font-size: 14px; text-transform: uppercase; }
+              .value { padding: 10px; background-color: #f5f5f5; border-left: 3px solid #667eea; margin-top: 5px; }
+              .message-box { padding: 15px; background-color: #f5f5f5; border-left: 3px solid #764ba2; margin-top: 5px; min-height: 100px; white-space: pre-wrap; }
+              .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #888; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>📬 New Portfolio Contact</h1>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <div class="label">From</div>
+                  <div class="value">${formData.name}</div>
+                </div>
+                <div class="field">
+                  <div class="label">Email Address</div>
+                  <div class="value"><a href="mailto:${formData.email}" style="color: #667eea; text-decoration: none;">${formData.email}</a></div>
+                </div>
+                <div class="field">
+                  <div class="label">Message</div>
+                  <div class="message-box">${formData.body}</div>
+                </div>
+                <div class="footer">
+                  <p>Sent from your Portfolio Contact Form</p>
+                  <p style="margin-top: 10px;">Received on ${new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}</p>
+                </div>
+              </div>
+            </div>
+          </body>
+        </html>
+      `;
+
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
+          subject: `New Portfolio Contact from ${formData.name}`,
           name: formData.name,
           email: formData.email,
-          message: formData.body,
+          message: htmlMessage,
+          from_name: formData.name,
+          replyto: formData.email,
         }),
       });
 
